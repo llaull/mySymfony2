@@ -21,30 +21,28 @@ class EmplacementController extends Controller
      */
     public function indexAction()
     {
+
         $em = $this->getDoctrine()->getManager();
+        $rep= $em->getRepository('DomotiquebundleModuleBundle:Emplacement')
+            ->createQueryBuilder('l');
 
-        $entities = $em->getRepository('DomotiquebundleModuleBundle:Emplacement')->findAll();
-
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
-//        $entities=$entities->getQuery()->getResult();
+//        var_dump($rep->getQuery()->getDql());
+        $entities=$rep->getQuery()->getResult();
 
         $delete_forms  = array_map(
             function($element){
-                return $this->createDeleteForm($element->getId());}
+                return $this->createDeleteForm($element->getId());
+            }
             ,$entities->toArray()
         );
 
-        die(var_dump($delete_forms));
+        return $this->render('DomotiquebundleModuleBundle:Emplacement:index.html.twig'
+            , array(
+                'pagination'        => $entities,
+                'delete_forms'    => $delete_forms
+            ));
 
-        return $this->render('DomotiquebundleModuleBundle:Emplacement:index.html.twig', array(
-            'pagination' => $pagination,
-            'delete_forms'    => $delete_forms
-        ));
+
     }
     /**
      * Creates a new Emplacement entity.
