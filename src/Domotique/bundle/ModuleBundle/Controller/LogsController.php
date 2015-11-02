@@ -2,7 +2,6 @@
 
 namespace Domotique\bundle\ModuleBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Domotique\bundle\ModuleBundle\Entity\Logs;
@@ -25,10 +24,7 @@ class LogsController extends Controller
         $entities = $this->getDoctrine()->getRepository('DomotiquebundleModuleBundle:Logs');
         $entities = $entities->reelTime($em);
 
-
-        return new JsonResponse(array('string' => $entities));
-
-
+        return new JsonResponse(array('name' => $entities));
     }
     /**
      * Lists all Logs entities.
@@ -54,8 +50,15 @@ class LogsController extends Controller
 
         $entities = $em->getRepository('DomotiquebundleModuleBundle:Logs')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('DomotiquebundleModuleBundle:Logs:index.html.twig', array(
-            'entities' => $entities,
+            'pagination' => $pagination,
         ));
     }
 

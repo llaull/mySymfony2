@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Infos
 {
+    public function __toString()
+    {
+        return $this->moduleNom;
+    }
+
     /**
      * @var integer
      *

@@ -25,8 +25,15 @@ class SondeUnitController extends Controller
 
         $entities = $em->getRepository('DomotiquebundleModuleBundle:SondeUnit')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('DomotiquebundleModuleBundle:SondeUnit:index.html.twig', array(
-            'entities' => $entities,
+            'pagination' => $pagination,
         ));
     }
     /**
@@ -44,7 +51,7 @@ class SondeUnitController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_domotique_module_sonde_unit_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_domotique_module_sonde_unit'));
         }
 
         return $this->render('DomotiquebundleModuleBundle:SondeUnit:new.html.twig', array(

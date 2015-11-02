@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SondeUnit
 {
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     /**
      * @var integer
      *

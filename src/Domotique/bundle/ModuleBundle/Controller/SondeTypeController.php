@@ -25,8 +25,15 @@ class SondeTypeController extends Controller
 
         $entities = $em->getRepository('DomotiquebundleModuleBundle:SondeType')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('DomotiquebundleModuleBundle:SondeType:index.html.twig', array(
-            'entities' => $entities,
+            'pagination' => $pagination,
         ));
     }
     /**
@@ -44,7 +51,7 @@ class SondeTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_domotique_module_sonde_type_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_domotique_module_sonde_type'));
         }
 
         return $this->render('DomotiquebundleModuleBundle:SondeType:new.html.twig', array(

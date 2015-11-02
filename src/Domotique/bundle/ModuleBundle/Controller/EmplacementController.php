@@ -21,28 +21,21 @@ class EmplacementController extends Controller
      */
     public function indexAction()
     {
-
         $em = $this->getDoctrine()->getManager();
-        $rep= $em->getRepository('DomotiquebundleModuleBundle:Emplacement')
-            ->createQueryBuilder('l');
 
-//        var_dump($rep->getQuery()->getDql());
-        $entities=$rep->getQuery()->getResult();
+        $entities = $em->getRepository('DomotiquebundleModuleBundle:Emplacement')->findAll();
 
-        $delete_forms  = array_map(
-            function($element){
-                return $this->createDeleteForm($element->getId());
-            }
-            ,$entities->toArray()
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
         );
 
-        return $this->render('DomotiquebundleModuleBundle:Emplacement:index.html.twig'
-            , array(
-                'pagination'        => $entities,
-                'delete_forms'    => $delete_forms
-            ));
 
-
+        return $this->render('DomotiquebundleModuleBundle:Emplacement:index.html.twig', array(
+            'pagination' => $pagination,
+        ));
     }
     /**
      * Creates a new Emplacement entity.
@@ -200,12 +193,13 @@ class EmplacementController extends Controller
      * Deletes a Emplacement entity.
      *
      */
-   /* public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+//        die(var_dump($form));
+//        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('DomotiquebundleModuleBundle:Emplacement')->find($id);
 
@@ -215,37 +209,10 @@ class EmplacementController extends Controller
 
             $em->remove($entity);
             $em->flush();
-        }
+//        }
 
         return $this->redirect($this->generateUrl('admin_domotique_module_emplacement'));
-    }*/
-
-
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->bind($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $entity = $em->getRepository('DomotiquebundleModuleBundle:Emplacement')
-                ->find($id);
-            // this line might need to be changed to point to the proper repository
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Emplacement entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('admin_domotique_module_emplacement'));
-        // this line might need to be changed to point to the proper
-        // post-delete route
     }
-
 
     /**
      * Creates a form to delete a Emplacement entity by id.
@@ -256,17 +223,11 @@ class EmplacementController extends Controller
      */
     private function createDeleteForm($id)
     {
-
-        return $this->createFormBuilder(array('id' => $id))
-        ->add('id', 'hidden')
-        ->getForm()
-    ;
-
-        /*return $this->createFormBuilder()
+        return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_domotique_module_emplacement_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;*/
+        ;
     }
 }

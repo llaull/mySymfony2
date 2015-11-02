@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Emplacement
 {
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     /**
      * @var integer
      *
@@ -27,8 +33,6 @@ class Emplacement
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
-
-
 
     /**
      * Get id

@@ -27,4 +27,4 @@ admin_domotique_module_emplacement_update:
 admin_domotique_module_emplacement_delete:
     path:     /{id}/delete
     defaults: { _controller: "DomotiquebundleModuleBundle:Emplacement:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]
