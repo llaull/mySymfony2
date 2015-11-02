@@ -6,6 +6,7 @@ namespace Domotique\bundle\ModuleBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Domotique\bundle\ModuleBundle\Entity\Logs;
+use Domotique\bundle\ModuleBundle\Repository;
 
 /**
  * Logs controller.
@@ -14,6 +15,21 @@ use Domotique\bundle\ModuleBundle\Entity\Logs;
 class LogsController extends Controller
 {
 
+    /**
+     * affiche en temps les logs
+     *
+     */
+    public function tempsReelAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entities = $this->getDoctrine()->getRepository('DomotiquebundleModuleBundle:Logs');
+        $entities = $entities->reelTime($em);
+
+
+        return new JsonResponse(array('string' => $entities));
+
+
+    }
     /**
      * Lists all Logs entities.
      *

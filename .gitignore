@@ -8,7 +8,16 @@
 /web/images
 /web/css
 /web/js
+/bin/doctrine
+/bin/doctrine-migrations.bat
+/bin/doctrine.php.bat
+/bin/doctrine-dbal
+/bin/security-checker
+/bin/security-checker.bat
+/bin/doctrine-migrations
+/bin/doctrine.bat
+/bin/doctrine-dbal.bat
+/bin/doctrine.php
 /vendor
-/bin/*
 /tmp
 /.idea

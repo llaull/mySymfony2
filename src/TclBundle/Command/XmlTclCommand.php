@@ -43,7 +43,7 @@ class XmlTclCommand extends ContainerAwareCommand
         $newTaskLog->setDestination("Command");
         $newTaskLog->setIdTask($task);
 
-        throw new \Exception('Something went wrong!');
+    //    throw new \Exception('Something went wrong!');
 
         // Showing when the script is launched
         $now = new \DateTime();

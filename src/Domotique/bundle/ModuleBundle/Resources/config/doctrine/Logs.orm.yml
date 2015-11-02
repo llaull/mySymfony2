@@ -1,5 +1,6 @@
 Domotique\bundle\ModuleBundle\Entity\Logs:
     type: entity
+    repositoryClass: Domotique\bundle\ModuleBundle\Repository\LogsRepository
     table: domotique__module_logs
     indexes:
         modules_id:

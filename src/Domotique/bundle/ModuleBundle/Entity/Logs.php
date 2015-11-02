@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Logs
  *
- * @ORM\Table(name="domotique__module_logs", indexes={@ORM\Index(name="modules_id", columns={"modules_id"}), @ORM\Index(name="sonde_type", columns={"sonde_type"}), @ORM\Index(name="sonde_unit", columns={"sonde_unit"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Domotique\bundle\ModuleBundle\Repository\LogsRepository")
+ * @ORM\Table(name="domotique__module_logs", indexes={@ORM\Index(name="modules_id", columns={"modules_id"}), @ORM\Index(name="sonde_type", columns={"sonde_type"}), @ORM\Index(name="sonde_unit", columns={"sonde_unit"})})
  */
 class Logs
 {
