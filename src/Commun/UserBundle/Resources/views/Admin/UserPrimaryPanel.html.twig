@@ -1,0 +1,24 @@
+<div class="tab-pane active" id="userbar-one">
+    <div class="main-info">
+        <div class="user-img"><img src="http://placehold.it/150x150" alt="User Picture"/></div>
+        <h1>
+            {{ app.user.username }}
+            {#<small>Administrator</small>#}
+        </h1>
+    </div>
+    <div class="list-group">
+        <a href="{{ path('fos_user_profile_edit') }}" class="list-group-item"><i class="fa fa-user"></i>{{ 'layout.edit_profil'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_profile_show') }}" class="list-group-item"><i class="fa fa-cog"></i>{{ 'layout.view_profil'|trans({}, 'FOSUserBundle') }}</a>
+        {#<a href="#" class="list-group-item"><i class="fa fa-flask"></i>Projects<span class="badge">2</span></a>#}
+
+        {#<div class="empthy"></div>#}
+        {#<a href="#" class="list-group-item"><i class="fa fa-refresh"></i>Updates<span class="badge">5</span></a>#}
+        {#<a href="#" class="list-group-item"><i class="fa fa-comment"></i>Messages<span class="badge">12</span></a>#}
+        {#<a href="#" class="list-group-item"><i class="fa fa-comments"></i> Comments<span class="badge">45</span></a>#}
+
+        <div class="empthy"></div>
+        {#<a href="#" data-toggle="modal" class="list-group-item lockme"><i class="fa fa-lock"></i> Lock</a>#}
+        <a data-toggle="modal" href="{{ path('fos_user_security_logout') }}" class="list-group-item goaway"><i
+                    class="fa fa-power-off"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+    </div>
+</div>

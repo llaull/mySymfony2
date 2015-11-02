@@ -1,0 +1,165 @@
+<?php
+
+namespace Application\Migrations;
+
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+class Version20151002111132 extends AbstractMigration
+{
+    /**
+     * @param Schema $schema
+     */
+    public function up(Schema $schema)
+    {
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql("INSERT INTO `tcl__ligne` (`id`, `added`, `type`, `description`) VALUES (NULL, NOW(), 'métro', 'A'),
+(NULL, NOW(), 'métro', 'B'),
+(NULL, NOW(), 'funiculaire', 'C'),
+(NULL, NOW(), 'funiculaire', 'D'),
+(NULL, NOW(), 'Tram', 'Rhônexpress'),
+(NULL, NOW(), 'Tram', '1'),
+(NULL, NOW(), 'Tram', '2'),
+(NULL, NOW(), 'Tram', '3'),
+(NULL, NOW(), 'Tram', '4'),
+(NULL, NOW(), 'Tram', '5'),
+(NULL, NOW(), 'C', '1'),
+(NULL, NOW(), 'C', '2'),
+(NULL, NOW(), 'C', '3'),
+(NULL, NOW(), 'C', '4'),
+(NULL, NOW(), 'C', '5'),
+(NULL, NOW(), 'C', '6'),
+(NULL, NOW(), 'C', '7'),
+(NULL, NOW(), 'C', '8'),
+(NULL, NOW(), 'C', '9'),
+(NULL, NOW(), 'C', '10'),
+(NULL, NOW(), 'C', '11'),
+(NULL, NOW(), 'C', '12'),
+(NULL, NOW(), 'C', '13'),
+(NULL, NOW(), 'C', '14'),
+(NULL, NOW(), 'C', '15'),
+(NULL, NOW(), 'C', '16'),
+(NULL, NOW(), 'C', '17'),
+(NULL, NOW(), 'C', '18'),
+(NULL, NOW(), 'C', '19'),
+(NULL, NOW(), 'C', '20'),
+(NULL, NOW(), 'C', '21'),
+(NULL, NOW(), 'C', '22'),
+(NULL, NOW(), 'C', '23'),
+(NULL, NOW(), 'C', '24'),
+(NULL, NOW(), 'C', '25'),
+(NULL, NOW(), 'C', '26'),
+(NULL, NOW(), 'BUS', '1'),
+(NULL, NOW(), 'BUS', '2'),
+(NULL, NOW(), 'BUS', '3'),
+(NULL, NOW(), 'BUS', '4'),
+(NULL, NOW(), 'BUS', '5'),
+(NULL, NOW(), 'BUS', '6'),
+(NULL, NOW(), 'BUS', '7'),
+(NULL, NOW(), 'BUS', '8'),
+(NULL, NOW(), 'BUS', '9'),
+(NULL, NOW(), 'BUS', '10'),
+(NULL, NOW(), 'BUS', '11'),
+(NULL, NOW(), 'BUS', '12'),
+(NULL, NOW(), 'BUS', '13'),
+(NULL, NOW(), 'BUS', '14'),
+(NULL, NOW(), 'BUS', '15'),
+(NULL, NOW(), 'BUS', '16'),
+(NULL, NOW(), 'BUS', '17'),
+(NULL, NOW(), 'BUS', '18'),
+(NULL, NOW(), 'BUS', '19'),
+(NULL, NOW(), 'BUS', '20'),
+(NULL, NOW(), 'BUS', '21'),
+(NULL, NOW(), 'BUS', '22'),
+(NULL, NOW(), 'BUS', '23'),
+(NULL, NOW(), 'BUS', '24'),
+(NULL, NOW(), 'BUS', '25'),
+(NULL, NOW(), 'BUS', '26'),
+(NULL, NOW(), 'BUS', '27'),
+(NULL, NOW(), 'BUS', '28'),
+(NULL, NOW(), 'BUS', '29'),
+(NULL, NOW(), 'BUS', '30'),
+(NULL, NOW(), 'BUS', '31'),
+(NULL, NOW(), 'BUS', '32'),
+(NULL, NOW(), 'BUS', '33'),
+(NULL, NOW(), 'BUS', '34'),
+(NULL, NOW(), 'BUS', '35'),
+(NULL, NOW(), 'BUS', '36'),
+(NULL, NOW(), 'BUS', '37'),
+(NULL, NOW(), 'BUS', '38'),
+(NULL, NOW(), 'BUS', '39'),
+(NULL, NOW(), 'BUS', '40'),
+(NULL, NOW(), 'BUS', '41'),
+(NULL, NOW(), 'BUS', '42'),
+(NULL, NOW(), 'BUS', '43'),
+(NULL, NOW(), 'BUS', '44'),
+(NULL, NOW(), 'BUS', '45'),
+(NULL, NOW(), 'BUS', '46'),
+(NULL, NOW(), 'BUS', '47'),
+(NULL, NOW(), 'BUS', '48'),
+(NULL, NOW(), 'BUS', '49'),
+(NULL, NOW(), 'BUS', '50'),
+(NULL, NOW(), 'BUS', '51'),
+(NULL, NOW(), 'BUS', '52'),
+(NULL, NOW(), 'BUS', '53'),
+(NULL, NOW(), 'BUS', '54'),
+(NULL, NOW(), 'BUS', '55'),
+(NULL, NOW(), 'BUS', '56'),
+(NULL, NOW(), 'BUS', '57'),
+(NULL, NOW(), 'BUS', '58'),
+(NULL, NOW(), 'BUS', '59'),
+(NULL, NOW(), 'BUS', '60'),
+(NULL, NOW(), 'BUS', '61'),
+(NULL, NOW(), 'BUS', '62'),
+(NULL, NOW(), 'BUS', '63'),
+(NULL, NOW(), 'BUS', '64'),
+(NULL, NOW(), 'BUS', '65'),
+(NULL, NOW(), 'BUS', '66'),
+(NULL, NOW(), 'BUS', '67'),
+(NULL, NOW(), 'BUS', '68'),
+(NULL, NOW(), 'BUS', '69'),
+(NULL, NOW(), 'BUS', '70'),
+(NULL, NOW(), 'BUS', '71'),
+(NULL, NOW(), 'BUS', '72'),
+(NULL, NOW(), 'BUS', '73'),
+(NULL, NOW(), 'BUS', '74'),
+(NULL, NOW(), 'BUS', '75'),
+(NULL, NOW(), 'BUS', '76'),
+(NULL, NOW(), 'BUS', '77'),
+(NULL, NOW(), 'BUS', '78'),
+(NULL, NOW(), 'BUS', '79'),
+(NULL, NOW(), 'BUS', '80'),
+(NULL, NOW(), 'BUS', '81'),
+(NULL, NOW(), 'BUS', '82'),
+(NULL, NOW(), 'BUS', '83'),
+(NULL, NOW(), 'BUS', '84'),
+(NULL, NOW(), 'BUS', '85'),
+(NULL, NOW(), 'BUS', '86'),
+(NULL, NOW(), 'BUS', '87'),
+(NULL, NOW(), 'BUS', '88'),
+(NULL, NOW(), 'BUS', '89'),
+(NULL, NOW(), 'BUS', '90'),
+(NULL, NOW(), 'BUS', '91'),
+(NULL, NOW(), 'BUS', '92'),
+(NULL, NOW(), 'BUS', '93'),
+(NULL, NOW(), 'BUS', '94'),
+(NULL, NOW(), 'BUS', '95'),
+(NULL, NOW(), 'BUS', '96'),
+(NULL, NOW(), 'BUS', '97'),
+(NULL, NOW(), 'BUS', '98')");
+
+
+    }
+
+    /**
+     * @param Schema $schema
+     */
+    public function down(Schema $schema)
+    {
+        // this down() migration is auto-generated, please modify it to your needs
+
+    }
+}

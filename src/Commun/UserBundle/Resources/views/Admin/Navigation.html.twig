@@ -1,0 +1,40 @@
+<nav class="main-header clearfix" role="navigation"><a class="navbar-brand" href="#"><span class="text-blue">ORB</span></a>
+
+    <!--Search-->
+    {#<div class="site-search">#}
+    {#<form action="#" id="inline-search">#}
+    {#<i class="fa fa-search"></i>#}
+    {#<input type="search" placeholder="Search">#}
+    {#</form>#}
+    {#</div>#}
+
+    <!--Navigation Itself-->
+
+    <div class="navbar-content">
+
+        <!--Sidebar Toggler-->
+        <a href="#" class="btn btn-default left-toggler"><i class="fa fa-bars"></i></a>
+        <!--Right Userbar Toggler-->
+        <a href="#" class="btn btn-user right-toggler pull-right"><i class="entypo-vcard"></i> <span
+                    class="logged-as hidden-xs">Logged as</span><span
+                    class="logged-as-name hidden-xs">{{ app.user.username }}</span></a>
+
+        <!--Fullscreen Trigger-->
+        <button type="button" class="btn btn-default hidden-xs pull-right" id="toggle-fullscreen"><i
+                    class=" entypo-popup"></i></button>
+
+        <!--Settings Dropdown-->
+        {#{% block Notifications_Dropdown %}{% include'CommunUserBundle:Admin:Navigation_settingsDropdown.html.twig' %}{% endblock %}#}
+
+
+        <!--Lock Screen-->
+        <a href="#" data-toggle="modal" class="btn btn-default hidden-xs pull-right lockme"> <i class="entypo-lock"></i>
+        </a>
+
+        <!--Notifications Dropdown-->
+
+
+        <!--Inbox Dropdown-->
+        {#{% block Inbox_Dropdown %}{% include'CommunUserBundle:Admin:Navigation_inboxDropdown.html.twig' %}{% endblock %}#}
+    </div>
+</nav>

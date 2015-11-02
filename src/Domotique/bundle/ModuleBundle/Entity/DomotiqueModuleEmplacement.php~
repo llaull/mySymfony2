@@ -1,0 +1,33 @@
+<?php
+
+namespace Domotique\bundle\ModuleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DomotiqueModuleEmplacement
+ *
+ * @ORM\Table(name="domotique__module_emplacement")
+ * @ORM\Entity
+ */
+class DomotiqueModuleEmplacement
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="emplacement_ID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $emplacementId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="text", length=65535, nullable=false)
+     */
+    private $nom;
+
+
+}
+

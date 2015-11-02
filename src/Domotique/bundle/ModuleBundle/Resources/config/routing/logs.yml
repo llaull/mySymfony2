@@ -1,0 +1,10 @@
+admin_domotique_module_logs:
+    path:     /
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:index" }
+
+admin_domotique_module_logs_show:
+    path:     /{id}/show
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:show" }
+
+
+

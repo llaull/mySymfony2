@@ -1,0 +1,11 @@
+admin_tcl_feed_d:
+    path:     /
+    defaults: { _controller: "TclBundle:Feed:index" }
+
+
+admin_tcl_feed_show:
+    path:     /{id}/show
+    defaults: { _controller: "TclBundle:Feed:show" }
+
+
+

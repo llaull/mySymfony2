@@ -1,0 +1,28 @@
+carnets_admin_page:
+    resource: "@CarnetsBundle/Resources/config/routing/page.yml"
+    prefix:   /admin/page
+
+carnets_admin_lieu:
+    resource: "@CarnetsBundle/Resources/config/routing/lieu.yml"
+    prefix:   /admin/lieu
+
+carnets_admin_carnet:
+    resource: "@CarnetsBundle/Resources/config/routing/carnet.yml"
+    prefix:   /admin/carnet
+
+
+carnets_de_voy_homepage:
+    path:     /carnets
+    defaults: { _controller: CarnetsBundle:Default:index }
+
+carnets_de_voy_destination:
+    path:     /carnet/{slug}
+    defaults: { _controller: CarnetsBundle:Carnet:show }
+
+carnets_de_voy_page:
+    path:     /carnet/{carnet}/{ville}/{page}.html
+    defaults: { _controller: CarnetsBundle:Page:show }
+
+carnets_de_voy_twitter:
+    path:     /twitter
+    defaults: { _controller: CarnetsBundle:Twitter:index }

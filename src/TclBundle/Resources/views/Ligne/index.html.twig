@@ -1,0 +1,59 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}flux tcl{% endblock title %}
+{% block h1_header %}feed{% endblock h1_header %}
+{% block h1_header_s %}-{% endblock h1_header_s %}
+
+{% block dynamic_body %}
+
+    <div class="col-md-12 bootstrap-grid">
+
+        <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
+            <header>
+                <h2>Datatable
+                    <small>Basic Init {{ pagination.getTotalItemCount }}</small>
+                </h2>
+            </header>
+            <div class="inner-spacer">
+
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_ligne_new') }}">
+                            Create a new entry
+                        </a>
+                    </li>
+                </ul>
+
+                <table class="table table-striped table-hover" id="table-1">
+                    <thead>
+                    <tr>
+                        <th>Added</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in pagination %}
+                        <tr {% if loop.index is odd %}class="info"{% endif %}>
+                            <td>{% if entity.added %}{{ entity.added|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ entity.type }}</td>
+                            <td>{{ entity.description }}</td>
+                            <td>
+                                <div class="btn-group">
+                                        <a class="btn btn-primary btn-sm" role="button" href="{{ path('admin_ligne_show', { 'id': entity.id }) }}">show</a>
+                                        <a class="btn btn-warning btn-sm" role="button" href="{{ path('admin_ligne_edit', { 'id': entity.id }) }}">edit</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock dynamic_body %}
+

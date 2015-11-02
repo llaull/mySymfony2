@@ -1,0 +1,48 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}liste des chaines{% endblock title %}
+{% block h1_header %}chaines{% endblock h1_header %}
+{% block h1_header_s %}disponnible{% endblock h1_header_s %}
+
+{% block dynamic_body %}
+
+    <div class="col-md-12 bootstrap-grid">
+
+        <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
+            <header>
+                <h2>liste des chaines
+                    <small>Obtenu par xml</small>
+                </h2>
+            </header>
+            <div class="inner-spacer">
+
+                <table class="table table-striped table-hover" id="table-1">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Codetv</th>
+                        <th>Added</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in entities %}
+                        <tr {% if loop.index is odd %}class="info"{% endif %}>
+                            <td>{{ entity.name }} ({{ entity.codeTV }})</td>
+                            <td>{{ entity.codeZappette }}</td>
+                            <td>{% if entity.added %}{{ entity.added|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-warning btn-sm" role="button"
+                                       href="{{ path('admin_channel_edit', { 'id': entity.id }) }}">edit</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock dynamic_body %}
+

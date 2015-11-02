@@ -1,0 +1,15 @@
+{% extends 'CarnetsBundle:Default:index.html.twig' %}
+{% block body %}
+    <div class="container">
+        <ul>
+            {% for carnet in entity %}
+                <li>
+                    <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}">
+                        {{ carnet.destination }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

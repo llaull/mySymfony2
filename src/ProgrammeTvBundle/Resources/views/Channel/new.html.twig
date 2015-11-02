@@ -1,0 +1,15 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}nouvelle  !{% endblock title %}
+{% block dynamic_body %}
+    <h1>Channel creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_channel') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

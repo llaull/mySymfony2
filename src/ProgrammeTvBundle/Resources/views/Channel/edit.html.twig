@@ -1,0 +1,36 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}Channel edit{% endblock title %}
+{% block h1_header %}Channel edit{% endblock h1_header %}
+{% block h1_header_s %}-{% endblock h1_header_s %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% trans_default_domain "app" %}
+{% block dynamic_body %}
+
+    <div class="col-md-6 bootstrap-grid">
+
+        <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
+            <header>
+                <h2>new
+                    <small>carnet</small>
+                </h2>
+            </header>
+            <div class="inner-spacer">
+                <div class="inner-spacer">
+
+                    {{ form(edit_form) }}
+
+                </div>
+                <ul class="record_actions">
+                    <li>
+                        <a href="{{ path('admin_channel') }}">
+                            {{ 'layout.back_list'|trans({}, 'app') }}
+                        </a>
+                    </li>
+                    <li>
+                        {{ form(delete_form) }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

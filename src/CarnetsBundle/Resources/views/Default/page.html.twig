@@ -1,0 +1,10 @@
+{% extends 'CarnetsBundle:Default:index.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {#{{ dump(page) }}#}
+        ->
+        {{ page.contenu | raw }}
+        <-
+    </div>
+{% endblock %}

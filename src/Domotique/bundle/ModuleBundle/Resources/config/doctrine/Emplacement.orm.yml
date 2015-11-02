@@ -1,0 +1,21 @@
+Domotique\bundle\ModuleBundle\Entity\Emplacement:
+    type: entity
+    table: domotique__module_emplacement
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

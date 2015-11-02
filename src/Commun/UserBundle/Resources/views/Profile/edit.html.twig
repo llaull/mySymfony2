@@ -1,0 +1,6 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}edit profile{% endblock title %}
+
+{% block dynamic_body %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock dynamic_body %}

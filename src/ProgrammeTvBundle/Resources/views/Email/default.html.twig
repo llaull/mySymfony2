@@ -1,0 +1,39 @@
+{#{{ dump(programmes) }}#}
+
+<table border="0" cellspacing="1" cellpadding="1" align="left" style="width:600px;margin:0 auto;background:#FFF;">
+    <tr>
+        <td colspan="5" style="padding:15px 0;">
+            <h1 style="color:#000;font-size:24px;padding:0 15px;margin:0;">Programme
+                du {{ "now"|date("j F Y") }}</h1>
+        </td>
+    </tr>
+    {#ligne#}
+    {% for channel in channels %}
+        <tr style="border:1px solid green">
+            <td style="width:15px;border:1px solid red">&nbsp;</td>
+            <td style="width:150px; font-family:Verdana, sans-serif; font-size:x-small" valign="top">
+                {{ channel.name }}
+            </td>
+            <td style="width:15px;border:1px solid red">&nbsp;</td>
+            {#programme#}
+            <td style="width:400px;padding:0 0 0 0;font-family:Verdana, sans-serif; font-size:x-small;border:1px solid red">
+                {% for programme in programmes %}
+                    {% if programme.idChannel.name == channel.name %}
+                        <span style="font-weight: bold">{{ programme.start.date|date('H:i') }}</span> -
+                        {{ programme.title }}
+                        </br>
+                    {% endif %}
+            {% endfor %}
+                </br>
+            </td>
+            {#programme#}
+            <td style="width:15px;border:1px solid red">&nbsp;</td>
+        </tr>
+    {% endfor %}
+    {#ligne#}
+    <tr>
+        <td colspan="5" style="padding:15px 0;">
+            <p style="color:#666;font-size:12px;padding:0 15px;margin:0;">Footer</p>
+        </td>
+    </tr>
+</table>

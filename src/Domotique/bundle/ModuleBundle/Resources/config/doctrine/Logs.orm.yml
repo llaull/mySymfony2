@@ -1,0 +1,76 @@
+Domotique\bundle\ModuleBundle\Entity\Logs:
+    type: entity
+    table: domotique__module_logs
+    indexes:
+        modules_id:
+            columns:
+                - modules_id
+        sonde_type:
+            columns:
+                - sonde_type
+        sonde_unit:
+            columns:
+                - sonde_unit
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+    fields:
+        sondeValeur:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            options:
+                comment: 'valeur de la sonde'
+            column: sonde_valeur
+        sondeId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                comment: 'si plusieurs meme sondes dans meme module'
+            column: sonde_id
+        temps:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'NOW de l enregistrement'
+    manyToOne:
+        modules:
+            targetEntity: Infos
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                modules_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        sondeType:
+            targetEntity: SondeType
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sonde_type:
+                    referencedColumnName: id
+            orphanRemoval: false
+        sondeUnit:
+            targetEntity: SondeUnit
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sonde_unit:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

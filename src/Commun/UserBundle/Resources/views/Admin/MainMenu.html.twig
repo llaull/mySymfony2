@@ -1,0 +1,79 @@
+<!--Main Menu-->
+<div class="responsive-admin-menu">
+    <div class="responsive-menu">ORB
+        <div class="menuicon"><i class="fa fa-angle-down"></i></div>
+    </div>
+    <ul id="menu">
+
+        {#back office accueil #}
+        <li><a class="{{ "Commun"|menuActive(app.request.attributes.get('_controller')) }}"
+               href="{{ path('commun_user_home_index') }}"
+               title="Dashboard" data-id="dash-sub"><i class="entypo-briefcase"></i><span> Dashboard</span></a>
+        </li>
+
+        {#bundle tv#}
+        <li>
+            <a class="{{ "ProgrammeTvBundle"|menuActive(app.request.attributes.get('_controller')) }} submenu"
+               href="#"
+               title="Programme TV" data-id="tv-sub"><i class="fa fa-film"></i><span> Programme TV</span></a>
+            <ul id="tv-sub">
+                <li><a href="{{ path('admin_channel') }}" title="Voire les chaine disponnible"><i
+                                class="fa fa-sort-alpha-asc"></i><span>Voire les chaines</span></a>
+                </li>
+                <li><a href="{{ path('admin_channel_order') }}" title="Ordonne les chaines"><i
+                                class="entypo-list"></i><span>Ordonne les chaine</span></a>
+                </li>
+
+            </ul>
+        </li>
+
+        {#bundle TCL#}
+        <li><a class="{{ "TclBundle"|menuActive(app.request.attributes.get('_controller')) }} submenu"
+               href="#"
+               title="tcl" data-id="tcl-sub"><i class="entypo-rocket"></i><span> TCL</span></a>
+            <ul id="tcl-sub">
+                <li><a href="{{ path('tcl_homepage') }}" title="Power Widgets"><i class="entypo-rocket"></i><span> les rames</span></a>
+                </li>
+                <li><a href="{{ path('admin_ligne') }}" title="Portlets"><i
+                                class="fa fa-square"></i><span> les feeds</span></a>
+                </li>
+            </ul>
+        </li>
+
+        {#bundle carnet2voyage#}
+        <li><a class="{{ "CarnetsBundle"|menuActive(app.request.attributes.get('_controller')) }} submenu" href="#"
+               title="Carnet de voyages" data-id="carnets-sub"><i
+                        class="entypo-address"></i><span> carnet de voyages</span></a>
+            <ul id="carnets-sub">
+                <li><a href="{{ path('admin_carnet') }}" title="Les carnets"><i
+                                class="entypo-rocket"></i><span> les carnets</span></a>
+                </li>
+                <li><a href="{{ path('admin_lieu') }}" title="Les lieux"><i
+                                class="entypo-rocket"></i><span> les lieux</span></a>
+                </li>
+                <li><a href="{{ path('admin_page') }}" title="Les pages"><i
+                                class="entypo-rocket"></i><span> les pages</span></a>
+                </li>
+            </ul>
+        </li>
+
+        {#bundle Domotique / modules#}
+        <li><a class="{{ "DomotiquebundleModuleBundle"|menuActive(app.request.attributes.get('_controller')) }} submenu" href="#"
+               title="Carnet de voyages" data-id="domotique-sub"><i
+                        class="entypo-address"></i><span> Domotique</span></a>
+            <ul id="domotique-sub">
+                <li><a href="{{ path('admin_domotique_module_emplacement') }}" title="Les Emplacements"><i
+                                class="entypo-rocket"></i><span> les Emplacements</span></a>
+                </li>
+                <li><a href="{{ path('admin_domotique_module_sonde_type') }}" title="Les Types"><i
+                                class="entypo-rocket"></i><span> les Types</span></a>
+                </li>
+                <li><a href="{{ path('admin_domotique_module_sonde_unit') }}" title="Les Unit"><i
+                                class="entypo-rocket"></i><span> les Units</span></a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+<!--/MainMenu-->

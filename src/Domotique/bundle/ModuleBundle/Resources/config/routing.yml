@@ -1,0 +1,25 @@
+domotiquebundle_module_domotique_module_logs_add:
+    path:     /domotiques/{string}
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:add" }
+
+domotiquebundle_module_admin_domotique_module_sonde_unit:
+    resource: "@DomotiquebundleModuleBundle/Resources/config/routing/sondeunit.yml"
+    prefix:   /admin/domotique/module/sonde/unit
+
+domotiquebundle_module_admin_domotique_module_sonde_type:
+    resource: "@DomotiquebundleModuleBundle/Resources/config/routing/sondetype.yml"
+    prefix:   /admin/domotique/module/sonde/type
+
+domotiquebundle_module_admin_domotique_module_logs:
+    resource: "@DomotiquebundleModuleBundle/Resources/config/routing/logs.yml"
+    prefix:   /admin/domotique/module/logs
+
+domotiquebundle_module_admin_domotique_module_infos:
+    resource: "@DomotiquebundleModuleBundle/Resources/config/routing/infos.yml"
+    prefix:   /admin/domotique/module/infos
+
+domotiquebundle_module_admin_domotique_module_emplacement:
+    resource: "@DomotiquebundleModuleBundle/Resources/config/routing/emplacement.yml"
+    prefix:   /admin/domotique/module/emplacement
+
+

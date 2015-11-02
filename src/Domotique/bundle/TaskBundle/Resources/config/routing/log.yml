@@ -1,0 +1,30 @@
+admin_taskLog:
+    path:     /
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:index" }
+
+admin_taskLog_show:
+    path:     /{id}/show
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:show" }
+
+admin_taskLog_new:
+    path:     /new
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:new" }
+
+admin_taskLog_create:
+    path:     /create
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:create" }
+    methods:  POST
+
+admin_taskLog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:edit" }
+
+admin_taskLog_update:
+    path:     /{id}/update
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:update" }
+    methods:  [POST, PUT]
+
+admin_taskLog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DomotiquebundleTaskBundle:Log:delete" }
+    methods:  [POST, DELETE]

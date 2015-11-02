@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>--</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+
+{% if entity is defined %}
+    {% if entity.slug is defined %}
+        {% block nav %}{{ render(controller('CarnetsBundle:Menu:menu', {'carnet':entity.slug})) }}{% endblock %}
+    {% endif %}
+{% endif %}
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
+</body>
+</html>

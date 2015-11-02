@@ -1,0 +1,67 @@
+<?php
+
+namespace ProgrammeTvBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="tv__channel")
+ * @ORM\Entity(repositoryClass="ProgrammeTvBundle\Repository\ChannelRepository")
+ */
+class Channel {
+
+    public function __construct()
+    {
+        $this->added = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=15, unique=true)
+     */
+    protected $idKazer;
+
+    /**
+     *
+     * @ORM\Column(type="integer", unique=true, nullable=true)
+     */
+    protected $ordre;
+
+
+    /**
+     * @var datetime $ajouter
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $added;
+
+    /**
+     *
+     * @ORM\Column(type="string", length=20,unique=true)
+     */
+    protected $name;
+
+    /**
+     *
+     * @ORM\Column(type="string", length=13,unique=true, nullable=true)
+     */
+    protected $codeTV;
+
+    /**
+     * @ORM\Column(type="integer", unique=true, nullable=true)
+     */
+    protected $codeZappette;
+
+}

@@ -1,0 +1,30 @@
+admin_task:
+    path:     /
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:index" }
+
+admin_task_show:
+    path:     /{id}/show
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:show" }
+
+admin_task_new:
+    path:     /new
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:new" }
+
+admin_task_create:
+    path:     /create
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:create" }
+    methods:  POST
+
+admin_task_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:edit" }
+
+admin_task_update:
+    path:     /{id}/update
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:update" }
+    methods:  [POST, PUT]
+
+admin_task_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DomotiquebundleTaskBundle:Task:delete" }
+    methods:  [POST, DELETE]

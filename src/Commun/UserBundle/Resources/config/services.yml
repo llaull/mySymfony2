@@ -1,0 +1,6 @@
+services:
+    app.twig_extension:
+        class: Commun\UserBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

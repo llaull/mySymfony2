@@ -1,0 +1,14 @@
+/web/bundles
+/web/assets
+/web/uploads
+/app/config/parameters.yml
+/app/bootstrap.php.cache
+/app/logs
+/app/cache
+/web/images
+/web/css
+/web/js
+/vendor
+/bin
+/tmp
+/.idea

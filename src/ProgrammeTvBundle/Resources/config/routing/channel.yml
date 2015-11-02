@@ -1,0 +1,39 @@
+admin_channel:
+    path:     /
+    defaults: { _controller: "ProgrammeTvBundle:Channel:index" }
+
+admin_channel_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProgrammeTvBundle:Channel:show" }
+
+admin_channel_new:
+    path:     /new
+    defaults: { _controller: "ProgrammeTvBundle:Channel:new" }
+
+admin_channel_create:
+    path:     /create
+    defaults: { _controller: "ProgrammeTvBundle:Channel:create" }
+    methods:  POST
+
+admin_channel_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProgrammeTvBundle:Channel:edit" }
+
+admin_channel_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProgrammeTvBundle:Channel:update" }
+    methods:  [POST, PUT]
+
+admin_channel_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProgrammeTvBundle:Channel:delete" }
+    methods:  [POST, DELETE]
+
+admin_channel_order:
+    path:     /order/
+    defaults: { _controller: "ProgrammeTvBundle:Channel:order" }
+
+admin_channel_order_edit:
+    path:     /order/edit/
+    defaults: { _controller: "ProgrammeTvBundle:Channel:orderEdit" }
+    methods:  [POST, PUT]

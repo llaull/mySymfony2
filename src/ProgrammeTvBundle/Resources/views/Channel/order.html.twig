@@ -1,0 +1,63 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}ordoner les chaines{% endblock title %}
+{% block h1_header %}chaine{% endblock h1_header %}
+{% block h1_header_s %}gérer l'ordre{% endblock h1_header_s %}
+
+{% block dynamic_body %}
+    <div class="col-md-6 bootstrap-grid">
+
+        <!-- New widget -->
+        <div class="powerwidget cold-grey" id="nestable-1" data-widget-editbutton="false">
+            <header>
+                <h2>Nestable Basics
+                    <small>N-Lists</small>
+                </h2>
+            </header>
+            <div class="inner-spacer">
+                <div class="dd" id="nestable">
+                    <ul class="dd-list" id="nestablex">
+                        {% for entity in entities %}
+                        <li class="dd-item" id="{{ entity.id }}">
+                            <div class="dd-handle">{{ entity.name }}</div>
+                            {% endfor %}
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /New widget -->
+
+    </div>
+{% endblock dynamic_body %}
+
+{% block dynamic_js %}
+    <script>
+
+        (function ($) {
+            $('#nestablex').sortable({
+                axis: 'y',
+                update: function () {
+
+                    var i = 0;
+                    var array = jQuery('#nestablex li').map(function () {
+                        return '{"id":"' + this.id + '","order":"' + ++i + '"}';
+                    }).get();
+                    var order = '[' + array.join(',') + ']';
+                    console.log(order);
+
+                    $.ajax({
+                        data: 'data=' + order,
+                        cache: false,
+                        type: 'POST',
+                        url: "{{ path ('admin_channel_order_edit')}}",
+                        success: function (data) {
+//                            alert(data);
+                        }
+                    });
+                }
+            });
+
+        })(jQuery);
+    </script>
+{% endblock dynamic_js %}

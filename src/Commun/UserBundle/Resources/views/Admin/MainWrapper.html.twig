@@ -1,0 +1,42 @@
+{% extends "CommunUserBundle:Admin:body.html.twig" %}
+{% block MainWrapper %}
+    <div class="main-wrap">
+
+        <!--OffCanvas Menu -->
+        {% block UserMenu %}{% include'CommunUserBundle:Admin:UserMenu.html.twig' %}{% endblock %}
+        <!-- /Offcanvas user menu-->
+
+        {% block MainMenu %}{% include'CommunUserBundle:Admin:MainMenu.html.twig' %}{% endblock %}
+
+
+        <div class="content-wrapper">
+            <!--Content Wrapper-->
+            {% block HorisontalDropdown %}{% include'CommunUserBundle:Admin:HorisontalDropdown.html.twig' %}{% endblock %}
+
+            <!--Breadcrumb-->
+            <div class="breadcrumb clearfix">
+                {% set action = app.request.attributes.get("_controller")|split('::') %}
+                {% set controleur = action[0]|split('\\') %}
+
+                <ul>
+                    <li><a href="{{ path('commun_user_home_index') }}"><i class="fa fa-home"></i></a></li>
+                    <li><a href="{% block controlerLink %}{% endblock controlerLink %}">{{ controleur[2]|replace({'Controller': ""}) }}</a></li>
+                    <li class="active">{{ action[1]|replace({'Action': ""}) }}</li>
+                </ul>
+            </div>
+            <!--/Breadcrumb-->
+            <div class="page-header">
+                <h1>{% block h1_header %}{% endblock h1_header %}
+                    <small>{% block h1_header_s %}{% endblock h1_header_s %}</small>
+                </h1>
+            </div>
+
+            <!-- Widget Row Start grid -->
+            <div class="row" id="powerwidgets">
+                {% block dynamic_body %}{% endblock dynamic_body %}
+            </div>
+
+        </div>
+        <!-- / Content Wrapper -->
+    </div>
+{% endblock %}

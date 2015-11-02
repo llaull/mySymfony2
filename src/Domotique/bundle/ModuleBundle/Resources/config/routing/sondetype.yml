@@ -1,0 +1,30 @@
+admin_domotique_module_sonde_type:
+    path:     /
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:index" }
+
+admin_domotique_module_sonde_type_show:
+    path:     /{id}/show
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:show" }
+
+admin_domotique_module_sonde_type_new:
+    path:     /new
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:new" }
+
+admin_domotique_module_sonde_type_create:
+    path:     /create
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:create" }
+    methods:  POST
+
+admin_domotique_module_sonde_type_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:edit" }
+
+admin_domotique_module_sonde_type_update:
+    path:     /{id}/update
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:update" }
+    methods:  [POST, PUT]
+
+admin_domotique_module_sonde_type_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:delete" }
+    methods:  [POST, DELETE]

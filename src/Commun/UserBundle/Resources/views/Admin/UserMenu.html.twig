@@ -1,0 +1,26 @@
+<aside class="user-menu">
+
+    <!-- Tabs -->
+    <div class="tabs-offcanvas">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a href="#userbar-one" data-toggle="tab">Main</a></li>
+            {#<li><a href="#userbar-two" data-toggle="tab">Users</a></li>#}
+            {#<li><a href="#userbar-three" data-toggle="tab">ToDo</a></li>#}
+        </ul>
+        <div class="tab-content">
+
+            <!--User Primary Panel-->
+            {% block UserPrimaryPanel %}{% include'CommunUserBundle:Admin:UserPrimaryPanel.html.twig' %}{% endblock %}
+
+            <!--User Chat Panel-->
+            {#{% block UserChatPanel %}{% include'CommunUserBundle:Admin:UserChatPanel.html.twig' %}{% endblock %}#}
+
+            <!--User Tasks Panel-->
+            {#{% block UserTasksPanel %}{% include'CommunUserBundle:Admin:UserTasksPanel.html.twig' %}{% endblock %}#}
+
+        </div>
+    </div>
+
+    <!-- /tabs -->
+
+</aside>

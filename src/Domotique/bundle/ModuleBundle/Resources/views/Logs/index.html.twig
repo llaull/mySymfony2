@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Logs list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sondevaleur</th>
+                <th>Sondeid</th>
+                <th>Temps</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_domotique_module_logs_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.sondeValeur }}</td>
+                <td>{{ entity.sondeId }}</td>
+                <td>{% if entity.temps %}{{ entity.temps|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_domotique_module_logs_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

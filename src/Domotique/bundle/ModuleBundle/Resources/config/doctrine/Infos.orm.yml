@@ -1,0 +1,67 @@
+Domotique\bundle\ModuleBundle\Entity\Infos:
+    type: entity
+    table: domotique__module_infos
+    indexes:
+        emplacement_id:
+            columns:
+                - emplacement_id
+    uniqueConstraints:
+        module_ref:
+            columns:
+                - module_ref
+        nrf_id:
+            columns:
+                - nrf_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+    fields:
+        moduleRef:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'referencement du reseau'
+            column: module_ref
+        moduleNom:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+                comment: 'petit nom du nomdule'
+            column: module_nom
+        nrfId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'referencement du reseau NRF24'
+            column: nrf_id
+        moduleType:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+                comment: 'version du modules'
+            column: module_type
+    manyToOne:
+        emplacement:
+            targetEntity: Emplacement
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                emplacement_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
