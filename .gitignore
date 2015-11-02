@@ -9,6 +9,6 @@
 /web/css
 /web/js
 /vendor
-/bin
+/bin/*
 /tmp
 /.idea
