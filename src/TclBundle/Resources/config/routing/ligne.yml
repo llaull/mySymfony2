@@ -2,10 +2,6 @@ admin_ligne:
     path:     /
     defaults: { _controller: "TclBundle:Ligne:index" }
 
-admin_ligne_show:
-    path:     /{id}/show
-    defaults: { _controller: "TclBundle:Ligne:show" }
-
 admin_ligne_new:
     path:     /new
     defaults: { _controller: "TclBundle:Ligne:new" }
@@ -27,4 +23,4 @@ admin_ligne_update:
 admin_ligne_delete:
     path:     /{id}/delete
     defaults: { _controller: "TclBundle:Ligne:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE,GET]

@@ -39,8 +39,9 @@
                             <td>{% if entity.temps %}{{ entity.temps|date('Y-m-d H:i:s') }}{% endif %}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-danger btn-sm" role="button"
-                                       href="">del</a>
+                                    <a class="btn btn-danger btn-sm confirm-delete" role="button"
+                                       data-href="{{ path('admin_ligne_delete', { 'id': entity.id }) }}"
+                                       href="{{ path('admin_ligne_delete', { 'id': entity.id }) }}">Delete</a>
                                 </div>
                             </td>
                         </tr>

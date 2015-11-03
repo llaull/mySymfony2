@@ -1,11 +1,7 @@
-tcl_admin_ligne:
+admin_tcl_ligne:
     resource: "@TclBundle/Resources/config/routing/ligne.yml"
-    prefix:   /admin/ligne
+    prefix:   /admin/tcl/ligne
 
 admin_tcl_feed:
     resource: "@TclBundle/Resources/config/routing/feed.yml"
     prefix:   /admin/tcl/feed
-
-tcl_homepage:
-    path:     /tcl/home/
-    defaults: { _controller: TclBundle:Default:index }

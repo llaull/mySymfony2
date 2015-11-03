@@ -192,26 +192,21 @@ class SondeUnitController extends Controller
      * Deletes a SondeUnit entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DomotiquebundleModuleBundle:SondeUnit')->find($id);
+        $entity = $em->getRepository('DomotiquebundleModuleBundle:SondeUnit')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find SondeUnit entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find SondeUnit entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('admin_domotique_module_sonde_unit'));
     }
-
     /**
      * Creates a form to delete a SondeUnit entity by id.
      *

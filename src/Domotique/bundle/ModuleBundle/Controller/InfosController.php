@@ -192,26 +192,21 @@ class InfosController extends Controller
      * Deletes a Infos entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find($id);
+        $entity = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Infos entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Infos entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('admin_domotique_module_infos'));
     }
-
     /**
      * Creates a form to delete a Infos entity by id.
      *

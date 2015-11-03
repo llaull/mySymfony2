@@ -17,9 +17,7 @@
             <div class="inner-spacer">
 
                 <ul class="btn-group">
-                    <li>
-                        <a class="btn btn-success btn-sm" role="button" href="{{ path('admin_carnet_new') }}">New</a>
-                    </li>
+                    <a class="btn btn-success btn-sm" role="button" href="{{ path('admin_carnet_new') }}">New</a>
                 </ul>
 
                 <table class="table table-striped table-hover" id="table-1">
@@ -37,9 +35,13 @@
                             <td class="col-md-5">{{ entity.destination }}</td>
                             <td class="col-md-2">
                                 <div class="btn-group">
-                                    <a class="btn btn-default btn-sm" role="button"  href="{{ path('carnets_de_voy_destination', { 'slug': entity.slug }) }}">view</a>
-                                    <a class="btn btn-warning btn-sm" role="button"  href="{{ path('admin_carnet_edit', { 'id': entity.id }) }}">edit</a>
-                                    <a class="btn btn-danger btn-sm" role="button"  href="{{ path('admin_carnet_delete', { 'id': entity.id }) }}">del</a>
+                                    <a class="btn btn-default btn-sm" role="button"
+                                       href="{{ path('carnets_de_voy_destination', { 'slug': entity.slug }) }}">view</a>
+                                    <a class="btn btn-warning btn-sm" role="button"
+                                       href="{{ path('admin_carnet_edit', { 'id': entity.id }) }}">edit</a>
+                                    <a class="btn btn-danger btn-sm confirm-delete" role="button"
+                                       data-href="{{ path('admin_carnet_delete', { 'id': entity.id }) }}"
+                                       href="{{ path('admin_carnet_delete', { 'id': entity.id }) }}">Delete</a>
                                 </div>
                             </td>
                         </tr>

@@ -27,4 +27,4 @@ admin_domotique_module_sonde_type_update:
 admin_domotique_module_sonde_type_delete:
     path:     /{id}/delete
     defaults: { _controller: "DomotiquebundleModuleBundle:SondeType:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]

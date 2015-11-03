@@ -24,7 +24,7 @@ class LigneController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('TclBundle:Ligne')->findAll();
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
             $this->get('request')->query->get('page', 1)/*page number*/,
@@ -35,6 +35,7 @@ class LigneController extends Controller
             'pagination' => $pagination,
         ));
     }
+
     /**
      * Creates a new Ligne entity.
      *
@@ -55,7 +56,7 @@ class LigneController extends Controller
 
         return $this->render('TclBundle:Ligne:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -85,33 +86,11 @@ class LigneController extends Controller
     public function newAction()
     {
         $entity = new Ligne();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TclBundle:Ligne:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Ligne entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('TclBundle:Ligne')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Ligne entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('TclBundle:Ligne:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -133,19 +112,19 @@ class LigneController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('TclBundle:Ligne:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Ligne entity.
-    *
-    * @param Ligne $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Ligne entity.
+     *
+     * @param Ligne $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Ligne $entity)
     {
         $form = $this->createForm(new LigneType(), $entity, array(
@@ -157,6 +136,7 @@ class LigneController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Ligne entity.
      *
@@ -178,35 +158,32 @@ class LigneController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_ligne_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_ligne'));
         }
 
         return $this->render('TclBundle:Ligne:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Ligne entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Ligne $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('TclBundle:Ligne')->find($id);
+        $entity = $em->getRepository('TclBundle:Ligne')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Ligne entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Ligne entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('admin_ligne'));
     }
@@ -224,7 +201,6 @@ class LigneController extends Controller
             ->setAction($this->generateUrl('admin_ligne_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

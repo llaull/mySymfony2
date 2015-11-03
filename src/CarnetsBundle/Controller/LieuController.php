@@ -196,26 +196,21 @@ class LieuController extends Controller
      * Deletes a Lieu entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CarnetsBundle:Lieu')->find($id);
+        $entity = $em->getRepository('CarnetsBundle:Lieu')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Lieu entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Lieu entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('admin_lieu'));
     }
-
     /**
      * Creates a form to delete a Lieu entity by id.
      *

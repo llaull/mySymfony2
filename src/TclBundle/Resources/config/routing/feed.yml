@@ -1,11 +1,14 @@
-admin_tcl_feed_d:
+admin_tcl_feed_index:
     path:     /
     defaults: { _controller: "TclBundle:Feed:index" }
 
 
 admin_tcl_feed_show:
-    path:     /{id}/show
+    path:     /show/{id}
     defaults: { _controller: "TclBundle:Feed:show" }
 
 
+admin_tcl_feed_sshow:
+    path:     /{id}
+    defaults: { _controller: "TclBundle:Feed:sshow" }
 

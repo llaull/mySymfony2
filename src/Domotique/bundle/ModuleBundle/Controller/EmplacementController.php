@@ -37,6 +37,7 @@ class EmplacementController extends Controller
             'pagination' => $pagination,
         ));
     }
+
     /**
      * Creates a new Emplacement entity.
      *
@@ -57,7 +58,7 @@ class EmplacementController extends Controller
 
         return $this->render('DomotiquebundleModuleBundle:Emplacement:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -87,11 +88,11 @@ class EmplacementController extends Controller
     public function newAction()
     {
         $entity = new Emplacement();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('DomotiquebundleModuleBundle:Emplacement:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -112,7 +113,7 @@ class EmplacementController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('DomotiquebundleModuleBundle:Emplacement:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -135,19 +136,19 @@ class EmplacementController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('DomotiquebundleModuleBundle:Emplacement:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Emplacement entity.
-    *
-    * @param Emplacement $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Emplacement entity.
+     *
+     * @param Emplacement $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Emplacement $entity)
     {
         $form = $this->createForm(new EmplacementType(), $entity, array(
@@ -159,6 +160,7 @@ class EmplacementController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Emplacement entity.
      *
@@ -184,11 +186,12 @@ class EmplacementController extends Controller
         }
 
         return $this->render('DomotiquebundleModuleBundle:Emplacement:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Emplacement entity.
      *
@@ -198,18 +201,17 @@ class EmplacementController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-//        die(var_dump($form));
-//        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DomotiquebundleModuleBundle:Emplacement')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Emplacement entity.');
-            }
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('DomotiquebundleModuleBundle:Emplacement')->find($id);
 
-            $em->remove($entity);
-            $em->flush();
-//        }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Emplacement entity.');
+        }
+
+        $em->remove($entity);
+        $em->flush();
+
 
         return $this->redirect($this->generateUrl('admin_domotique_module_emplacement'));
     }
@@ -227,7 +229,6 @@ class EmplacementController extends Controller
             ->setAction($this->generateUrl('admin_domotique_module_emplacement_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

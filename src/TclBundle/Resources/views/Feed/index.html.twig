@@ -15,14 +15,6 @@
             </header>
             <div class="inner-spacer">
 
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_channel_new') }}">
-                            Create a new entry
-                        </a>
-                    </li>
-                </ul>
-
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
                     <tr>
@@ -48,7 +40,7 @@
                             <td>
                                 <ul>
                                     <li>
-                                        <a href="{{ path('admin_tcl_feed_show', { 'id': entity.id }) }}">show</a>
+                                        <a data-toggle="modal" data-target="#myModal" href="{{ path('admin_tcl_feed_show', { 'id': entity.id }) }}">show</a>
                                     </li>
                                 </ul>
                             </td>
@@ -62,5 +54,23 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    {#{%- use 'TclBundle:Feed:show.html.twig' -%}#}
+                    {#{{ render(controller('TclBundle:Feed:show', { 'id': '5'})) }}#}
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 
 {% endblock dynamic_body %}

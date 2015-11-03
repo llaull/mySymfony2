@@ -27,4 +27,4 @@ admin_domotique_module_infos_update:
 admin_domotique_module_infos_delete:
     path:     /{id}/delete
     defaults: { _controller: "DomotiquebundleModuleBundle:Infos:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]

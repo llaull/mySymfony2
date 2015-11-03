@@ -27,4 +27,4 @@ admin_task_update:
 admin_task_delete:
     path:     /{id}/delete
     defaults: { _controller: "DomotiquebundleTaskBundle:Task:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]

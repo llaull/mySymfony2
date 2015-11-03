@@ -27,4 +27,4 @@ admin_page_update:
 admin_page_delete:
     path:     /{id}/delete
     defaults: { _controller: "CarnetsBundle:Page:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]

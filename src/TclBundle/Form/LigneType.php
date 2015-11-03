@@ -15,7 +15,6 @@ class LigneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('added')
             ->add('type')
             ->add('description')
         ;

@@ -203,22 +203,18 @@ class ChannelController extends Controller
      * Deletes a Channel entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ProgrammeTvBundle:Channel')->find($id);
+        $entity = $em->getRepository('ProgrammeTvBundle:Channel')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Channel entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Channel entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('admin_channel'));
     }

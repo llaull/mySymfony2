@@ -4,7 +4,7 @@ namespace TclBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use TclBundle\Entity\Feed;
 
 /**
  * Feed controller.
@@ -40,16 +40,31 @@ class FeedController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+//        die(var_dump($id));
+            $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TclBundle:Feed')->find($id);
+            $entity = $em->getRepository('TclBundle:Feed')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Feed entity.');
-        }
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Feed entity.');
+            }
 
-        return $this->render('TclBundle:Feed:show.html.twig', array(
-            'entity'      => $entity,
-        ));
+            return $this->render('TclBundle:Feed:show.html.twig', array(
+                'entity' => $entity,
+            ));
     }
+
+    public function sshowAction($id)
+    {
+//        die(var_dump($id));
+
+        return $view   = $this->showAction($id);
+
+        return array(
+            'entity' => $view,
+
+        );
+
+    }
+
 }

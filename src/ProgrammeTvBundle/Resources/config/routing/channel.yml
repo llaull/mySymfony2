@@ -27,7 +27,7 @@ admin_channel_update:
 admin_channel_delete:
     path:     /{id}/delete
     defaults: { _controller: "ProgrammeTvBundle:Channel:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]
 
 admin_channel_order:
     path:     /order/

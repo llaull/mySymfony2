@@ -43,8 +43,9 @@
                                        { 'carnet': entity.Cslug,'ville': entity.Lslug,'page': entity.slug }) }}">view</a>
                                     <a class="btn btn-warning btn-sm" role="button"
                                        href="{{ path('admin_page_edit', { 'id': entity.id }) }}">edit</a>
-                                    <a class="btn btn-danger btn-sm" role="button"
-                                       href="{{ path('admin_page_delete', { 'id': entity.id }) }}">del</a>
+                                    <a class="btn btn-danger btn-sm confirm-delete" role="button"
+                                       data-href="{{ path('admin_page_delete', { 'id': entity.id }) }}"
+                                       href="{{ path('admin_page_delete', { 'id': entity.id }) }}">Delete</a>
                                 </div>
                             </td>
 

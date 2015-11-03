@@ -205,11 +205,8 @@ class CarnetController extends Controller
      */
     public function deleteAction($id)
     {
-//        $form = $this->createDeleteForm($id);
-//        $form->handleRequest($request);
-
-//        if ($form->isValid()) {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('CarnetsBundle:Carnet')->find($id);
 
         if (!$entity) {
@@ -218,12 +215,10 @@ class CarnetController extends Controller
 
         $em->remove($entity);
         $em->flush();
-//        }
 
         return $this->redirect($this->generateUrl('admin_carnet'));
     }
-
-    /**
+        /**
      * Creates a form to delete a Carnet entity by id.
      *
      * @param mixed $id The entity id

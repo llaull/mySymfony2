@@ -192,26 +192,21 @@ class SondeTypeController extends Controller
      * Deletes a SondeType entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DomotiquebundleModuleBundle:SondeType')->find($id);
+        $entity = $em->getRepository('DomotiquebundleModuleBundle:SondeType')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find SondeType entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find SondeType entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('admin_domotique_module_sonde_type'));
     }
-
     /**
      * Creates a form to delete a SondeType entity by id.
      *
