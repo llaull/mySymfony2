@@ -1,22 +1,25 @@
-<html>
-
+<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}login {% endblock %} - Back Office</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <script src="{{ asset('js/vendors/modernizr/modernizr.custom.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
-</head>
+    <script src="{{ asset('assets/modernizr/modernizr.custom.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/entypo.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}">
+    {% stylesheets
+    '@CommunUserBundle/Resources/public/css/*'
+    filter='cssrewrite' output='css/compiled/backOffice.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
 
 <body>
-{% block user_body_content %}
-
-{% endblock %}
-<!--Scripts-->
-
-<!--/Scripts-->
-
+{% block user_body_content %}{% endblock %}
 </body>
+
+</head>
+
 </html>

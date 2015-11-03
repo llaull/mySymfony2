@@ -80,4 +80,23 @@ class LogsController extends Controller
             'entity' => $entity,
         ));
     }
+    /**
+     * Deletes a Logs entity.
+     *
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('DomotiquebundleModuleBundle:Logs')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Logs entity.');
+        }
+
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_domotique_module_logs'));
+    }
 }

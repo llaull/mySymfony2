@@ -60,22 +60,22 @@
         {#bundle Domotique / modules#}
         <li><a class="{{ "Domotique"|menuActive(app.request.attributes.get('_controller')) }} submenu" href="#"
                title="Carnet de voyages" data-id="domotique-sub"><i
-                        class="entypo-address"></i><span> test</span></a>
+                        class="entypo-network"></i><span> Domotique</span></a>
             <ul id="domotique-sub">
                 <li><a href="{{ path('admin_domotique_module_logs') }}" title="Les Logs"><i
-                                class="entypo-rocket"></i><span> les Logs</span></a>
-                </li>
-                <li><a href="{{ path('admin_domotique_module_emplacement') }}" title="Les Emplacements"><i
-                                class="entypo-rocket"></i><span> les Emplacements</span></a>
-                </li>
-                <li><a href="{{ path('admin_domotique_module_sonde_type') }}" title="Les Types"><i
-                                class="entypo-rocket"></i><span> les Types</span></a>
-                </li>
-                <li><a href="{{ path('admin_domotique_module_sonde_unit') }}" title="Les Unit"><i
-                                class="entypo-rocket"></i><span> les Units</span></a>
+                                class="entypo-database"></i><span> les Logs</span></a>
                 </li>
                 <li><a href="{{ path('admin_domotique_module_infos') }}" title="Les modules"><i
-                                class="entypo-rocket"></i><span> les modules</span></a>
+                                class="fa fa-puzzle-piece"></i><span> les modules</span></a>
+                </li>
+                <li><a href="{{ path('admin_domotique_module_emplacement') }}" title="Les Emplacements"><i
+                                class="entypo-compass"></i><span> les Emplacements</span></a>
+                </li>
+                <li><a href="{{ path('admin_domotique_module_sonde_type') }}" title="Les Types"><i
+                                class="entypo-air"></i><span> les Types</span></a>
+                </li>
+                <li><a href="{{ path('admin_domotique_module_sonde_unit') }}" title="Les Unit"><i
+                                class="entypo-language"></i><span> les Units</span></a>
                 </li>
             </ul>
         </li>

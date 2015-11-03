@@ -6,5 +6,9 @@ admin_domotique_module_logs_show:
     path:     /{id}/show
     defaults: { _controller: "DomotiquebundleModuleBundle:Logs:show" }
 
+admin_domotique_module_logs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:delete" }
+    methods:  [POST, DELETE, GET]
 
 
