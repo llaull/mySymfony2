@@ -1,38 +1,30 @@
-    <h1>Feed</h1>
+<h1>Feed</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Added</th>
-                <td>{{ entity.added|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-            <tr>
-                <th>Used</th>
-                <td>{{ entity.used }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        {#<a href="{{ path('admin_tcl_feed') }}">#}
-            {#Back to the list#}
-        {#</a>#}
-    </li>
-</ul>
+<table class="record_properties">
+    <tbody>
+    <tr>
+        <th>Id</th>
+        <td>{{ entity.id }}</td>
+    </tr>
+    <tr>
+        <th>Created</th>
+        <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+        <th>Added</th>
+        <td>{{ entity.added|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+        <th>Title</th>
+        <td>{{ entity.title }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ entity.description }}</td>
+    </tr>
+    <tr>
+        <th>Used</th>
+        <td>{{ entity.used }}</td>
+    </tr>
+    </tbody>
+</table>

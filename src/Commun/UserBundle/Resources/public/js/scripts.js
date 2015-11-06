@@ -58,10 +58,49 @@
     });
 
     // ========================================================================
-    //	confirm delete dans les tabledata
+    //	modal - show entity
     // ========================================================================
 
-    $("a.confirm-delete").click(function (e) {
+    $("a.modal-show").click(function () {
+
+        var title = $(this).data('text');
+        var editId = $(this).data('id');
+        var url = $(this).attr('href');
+        var res="";
+        var success=false;
+        var data=editId;
+        $.when(
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: data,
+                success: function(response){
+                    res=response;
+                    success=true;
+                },
+                error:function(){
+                    //handle error
+                }
+            })).then(function(){
+                if(success)
+                {
+                    $('h4#myModalLabel').html(title);
+                    $('div.modal-body').html(res);
+                    $("#modalShow").modal("show");
+
+                }
+            });
+
+        return false;
+
+    });
+
+
+    // ========================================================================
+    //	modal - delete dans les tabledata
+    // ========================================================================
+
+    $("a.modal-delete").click(function (e) {
         e.preventDefault();
         var $link = $(this);
 
