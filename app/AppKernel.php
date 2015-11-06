@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new FM\ElfinderBundle\FMElfinderBundle(),
             new Domotique\bundle\TaskBundle\DomotiquebundleTaskBundle(),
             new Domotique\bundle\ModuleBundle\DomotiquebundleModuleBundle(),
+            new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

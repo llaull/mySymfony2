@@ -27,7 +27,8 @@
         "knplabs/knp-paginator-bundle": "^2.5",
         "stof/doctrine-extensions-bundle": "^1.2",
         "egeloen/ckeditor-bundle": "~2.0",
-        "helios-ag/fm-elfinder-bundle": "~5"
+        "helios-ag/fm-elfinder-bundle": "~5",
+        "ras/flash-alert-bundle": "dev-master"
 
     },
     "require-dev": {

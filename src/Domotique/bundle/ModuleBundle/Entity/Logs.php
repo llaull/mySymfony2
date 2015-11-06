@@ -13,6 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Logs
 {
+
+    public function __construct()
+    {
+        $this->temps = new \DateTime();
+        $this->created = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->temps.' - '.$this->sondeValeur;
+    }
+
     /**
      * @var integer
      *

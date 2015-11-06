@@ -30,6 +30,10 @@ FROM
         domotique__module_logs
     WHERE
         temps > CURDATE()
+        AND
+        temps > SUBTIME(NOW(),"02:00:00")
+         AND
+        DATE_SUB(CURTIME(),INTERVAL 1 HOUR) >= temps
     GROUP BY modules_id , sonde_unit , sonde_type) AS b ON b.modules_id = l.modules_id
         AND b.sonde_unit = l.sonde_unit
         AND b.max_temp = l.temps

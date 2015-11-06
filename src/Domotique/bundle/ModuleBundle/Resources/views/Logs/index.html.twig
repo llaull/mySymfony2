@@ -10,18 +10,20 @@
         <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
             <header>
                 <h2>tableaux</h2>
-                {#<h2>plup#}
-                {#<small>blbl</small>#}
-                {#</h2>#}
+
+                <h2>plup
+                    <small>blbl</small>
+                </h2>
             </header>
             <div class="inner-spacer">
-
-                <ul class="btn-group">
-                    <li>
+                <div class="panel-body">
+                    {{ render_flash_alerts() }}
+                    {#{% block dynamic_body_flash %}{% include'CommunUserBundle:Admin:MainFlashMessage.html.twig' %}{% endblock dynamic_body_flash %}#}
+                    <div class="btn-group">
                         <a class="btn btn-success btn-sm" role="button"
                            href="{{ path('admin_domotique_module_emplacement_new') }}">New</a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
                     <tr>
@@ -54,25 +56,5 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    Exemple de modal
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Valider</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 {% endblock dynamic_body %}
 

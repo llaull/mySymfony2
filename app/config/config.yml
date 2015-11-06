@@ -126,3 +126,8 @@ fm_elfinder:
                         upload_allow:     ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'application/zip', 'audio/mpeg', 'text/csv', 'video/mp4', 'video/webm', 'application/pdf']
                         upload_deny:      ['all']
                         upload_max_size:  8M
+
+ras_flash_alert:
+#    template: '::flashAlerts.html.twig'     # defaults to 'RasFlashAlertBundle::layout.html.twig'
+#    isAddStyles: false                      # defaults to true
+#    isAddJsAlertClose: false                # defaults to true
