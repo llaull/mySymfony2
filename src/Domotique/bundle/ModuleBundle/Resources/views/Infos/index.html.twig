@@ -25,6 +25,7 @@
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
                     <tr>
+                        <th>id</th>
                         <th>Moduleref</th>
                         <th>Modulenom</th>
                         <th>Nrfid</th>
@@ -35,11 +36,12 @@
                     <tbody>
                     {% for entity in pagination %}
                         <tr>
-                            <td>{{ entity.moduleRef }}</td>
-                            <td>{{ entity.moduleNom }}</td>
-                            <td>{{ entity.nrfId }}</td>
-                            <td>{{ entity.moduleType }}</td>
-                            <td>
+                            <td class="col-md-1">{{ entity.id }}</td>
+                            <td class="col-md-2">{{ entity.moduleRef }}</td>
+                            <td class="col-md-2">{{ entity.moduleNom }}</td>
+                            <td class="col-md-2">{{ entity.nrfId }}</td>
+                            <td class="col-md-2">{{ entity.moduleType }}</td>
+                            <td class="col-md-2">
                                 <div class="btn-group">
                                     <a class="btn btn-warning btn-sm" role="button"
                                        href="{{ path('admin_domotique_module_infos_edit', { 'id': entity.id }) }}">edit</a>

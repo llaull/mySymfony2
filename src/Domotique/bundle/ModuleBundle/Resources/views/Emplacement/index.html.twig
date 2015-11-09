@@ -25,6 +25,7 @@
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nom</th>
                         <th>Actions</th>
                     </tr>
@@ -32,7 +33,8 @@
                     <tbody>
                     {% for entity in pagination %}
                         <tr {% if loop.index is odd %}class="info"{% endif %}>
-                            <td class="col-md-5">{{ entity.nom }}</td>
+                            <td class="col-md-1">{{ entity.id }}</td>
+                            <td class="col-md-9">{{ entity.nom }}</td>
                             <td class="col-md-2">
                                 <div class="btn-group">
                                     <a class="btn btn-warning btn-sm" role="button"
