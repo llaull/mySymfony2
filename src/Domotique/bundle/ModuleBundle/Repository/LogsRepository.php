@@ -4,7 +4,8 @@ namespace Domotique\bundle\ModuleBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class LogsRepository extends EntityRepository{
+class LogsRepository extends EntityRepository
+{
 
     /**
      * affiche tous les logs en trie
@@ -13,15 +14,34 @@ class LogsRepository extends EntityRepository{
     public function findAll()
     {
         $qb = $this->createQueryBuilder('l');
-        $qb->orderBy('l.temps', 'DESC')
-        ;
+        $qb->orderBy('l.temps', 'DESC');
 
         return $qb
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
+    /*
+     *
+     */
+    public function moyenByModuleBySondes($em)
+    {
+
+        //$rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` FROM module_logs GROUP BY HOUR(temps) ,`module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` ORDER BY `Day` ASC";
+        $rq = " SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne , `module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` FROM module_logs GROUP BY YEAR(temps), MONTH(temps), DAY(temps), HOUR(temps), `module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` ORDER BY temps ASC";
+
+        $connection = $em->getConnection();
+        $statement = $connection->prepare($rq);
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    /**
+     * @param $em
+     * @return mixed
+     */
     public function reelTime($em)
     {
         $rq = 'SELECT
