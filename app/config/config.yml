@@ -128,6 +128,6 @@ fm_elfinder:
                         upload_max_size:  8M
 
 ras_flash_alert:
-#    template: '::flashAlerts.html.twig'     # defaults to 'RasFlashAlertBundle::layout.html.twig'
-#    isAddStyles: false                      # defaults to true
-#    isAddJsAlertClose: false                # defaults to true
+    template: 'CommunUserBundle:alerts:layout.html.twig'     # defaults to 'RasFlashAlertBundle::layout.html.twig'
+    isAddStyles: true                      # defaults to true
+    isAddJsAlertClose: true                # defaults to true

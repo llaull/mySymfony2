@@ -92,14 +92,28 @@
     <!--Bootstrap-->
     <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
 
-    <!--bootbox-->
-    {#<script src="{{ asset('assets/bootbox.min.js') }}"></script>#}
 
     {% javascripts
-    '@CommunUserBundle/Resources/public/js/*'
+    '@CommunUserBundle/Resources/public/js/datatables/jquery.dataTables.min.js'
+    '@CommunUserBundle/Resources/public/js/datatables/jquery.dataTables-bootstrap.js'
+    '@CommunUserBundle/Resources/public/js/datatables/dataTables.colVis.js'
+    '@CommunUserBundle/Resources/public/js/datatables/colvis.extras.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/vendors/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/scripts.js'
     output='js/compiled/backOffice.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+
 
 
     {% block dynamic_js %}{% endblock dynamic_js %}

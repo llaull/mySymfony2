@@ -69,15 +69,15 @@ class LogsController extends Controller
 
         $entities = $em->getRepository('DomotiquebundleModuleBundle:Logs')->findAll();
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
+//        $paginator = $this->get('knp_paginator');
+//        $pagination = $paginator->paginate(
+//            $entities,
+//            $this->get('request')->query->get('page', 1)/*page number*/,
+//            10/*limit per page*/
+//        );
 
         return $this->render('DomotiquebundleModuleBundle:Logs:index.html.twig', array(
-            'pagination' => $pagination,
+            'pagination' => $entities,
         ));
     }
 
@@ -119,10 +119,22 @@ class LogsController extends Controller
 
         $this->get('ras_flash_alert.alert_reporter')->addError("suppression ok");
 
-//        $this->addFlash(
-//            'notice',
-//            'Your changes were saved!'
-//        );
+        return $this->redirect($this->generateUrl('admin_domotique_module_logs'));
+    }
+
+    /**
+     * truncate la table logs
+     *
+     */
+    public function truncateAction(){
+
+        $stmt = $this->getDoctrine()->getEntityManager()
+            ->getConnection()
+            ->prepare('TRUNCATE domotique__module_logs;');
+
+        $stmt->execute();
+
+        $this->get('ras_flash_alert.alert_reporter')->addSuccess("TRUNCATE ok");
 
         return $this->redirect($this->generateUrl('admin_domotique_module_logs'));
     }

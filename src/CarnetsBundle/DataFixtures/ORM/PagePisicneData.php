@@ -15,7 +15,7 @@ class PagePisicneData extends AbstractFixture implements OrderedFixtureInterface
 
         $p = new Page();
         $p->setCreated(new \DateTime());
-        $p->setContenu('plup plup plup');
+        $p->setContenu('lorem !');
         $p->setLieu($this->getReference('lieu-gene'));
         $p->setTitre('piscine');
 

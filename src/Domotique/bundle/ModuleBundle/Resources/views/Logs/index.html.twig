@@ -1,75 +1,76 @@
+{% set pageTitle = 'historiques modules' %}
+{% set pageTitleB = 'modules' %}
+
 {% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
-{% block title %}{% endblock title %}
-{% block h1_header %}{% endblock h1_header %}
-{% block h1_header_s %}-{% endblock h1_header_s %}
+{% block title %}{{ pageTitle }}{% endblock title %}
+{% block h1_header %}{{ pageTitle }}{% endblock h1_header %}
+{% block h1_header_s %} {{ pageTitleB }}{% endblock h1_header_s %}
 
 {% block dynamic_body %}
 
     <div class="col-md-12 bootstrap-grid">
 
-        <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
-            <header>
-                <h2>historique
-                    <small> des logs brut</small>
-                </h2>
-            </header>
-            <div class="inner-spacer">
-                <div class="panel-body">
-                    {{ render_flash_alerts() }}
-                    <div class="btn-group">
-                        <a class="btn btn-success btn-sm" role="button"
-                           href="{{ path('admin_domotique_module_emplacement_new') }}">New</a>
-                        <a class="btn btn-danger btn-sm" role="button"
-                           href="{{ path('admin_domotique_module_emplacement_new') }}">vider le log</a>
-                        <a class="btn btn-danger btn-sm" role="button"
-                           href="{{ path('admin_domotique_module_emplacement_new') }}">supprimer les valeur à 0</a>
-                    </div>
+    <div class="powerwidget cold-grey" id="datatable-filter-column" data-widget-editbutton="false">
+        <header>
+            <h2>{{ pageTitle }}
+                <small> logs brut</small>
+            </h2>
+        </header>
+        <div class="inner-spacer">
+            <div class="panel-body">
+                {{ render_flash_alerts() }}
+                <div class="btn-group">
+                    {#<a class="btn btn-success btn-sm" role="button"#}
+                    {#href="{{ path('admin_domotique_module_emplacement_new') }}">New</a>#}
+                    <a class="btn btn-danger btn-sm" role="button"
+                       href="{{ path('admin_domotique_module_logs_truncate') }}">vider le log</a>
+                    <a class="btn btn-warning btn-sm" role="button"
+                       href="{{ path('admin_domotique_module_emplacement_new') }}">supprimer les valeur à 0</a>
                 </div>
-                <table class="table table-striped table-hover" id="table-1">
-                    <thead>
-                    <tr>
-                        <th>Sondevaleur</th>
-                        <th>Sondeid</th>
-                        <th>Temps</th>
-                        <th>Actions</th>
+            </div>
+            <table class="display table table-striped table-hover" id="table-1">
+                <thead>
+                <tr>
+                    <th>Sondevaleur</th>
+                    <th>Sondeid</th>
+                    <th>Temps</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#{{ dump(pagination) }}#}
+                {% for entity in pagination %}
+                    <tr {% if loop.index is odd %}class="default"{% endif %}>
+                        <td>{{ entity.sondeValeur }}</td>
+                        <td>{{ entity.sondeId }}</td>
+                        <td>{% if entity.temps %}{{ entity.temps|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-danger btn-sm modal-delete" role="button"
+                                   data-href="{{ path('admin_domotique_module_logs_delete', { 'id': entity.id }) }}"
+                                   href="{{ path('admin_domotique_module_logs_delete', { 'id': entity.id }) }}">Delete</a>
+                            </div>
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {% for entity in pagination %}
-                        <tr>
-                            <td>{{ entity.sondeValeur }}</td>
-                            <td>{{ entity.sondeId }}</td>
-                            <td>{% if entity.temps %}{{ entity.temps|date('Y-m-d H:i:s') }}{% endif %}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-danger btn-sm modal-delete" role="button"
-                                       data-href="{{ path('admin_domotique_module_logs_delete', { 'id': entity.id }) }}"
-                                       href="{{ path('admin_domotique_module_logs_delete', { 'id': entity.id }) }}">Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <div class="navigation">
-                    {{ knp_pagination_render(pagination) }}
-                </div>
-            </div>
-        </div>
-
-        <div class="powerwidget" id="" data-widget-editbutton="false">
-            <header>
-                <h2>plup
-                    <small>blbl</small>
-                </h2>
-            </header>
-            <div class="inner-spacer">
-                <div class="panel-body">
-                    d
-                </div>
-                graphique
-            </div>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-{% endblock dynamic_body %}
 
+    <!-- New widget -->
+    <div class="powerwidget cold-grey" id="morrisbasic" data-widget-editbutton="false">
+        <header>
+            <h2>Morris Chart
+                <small>Morris basic</small>
+            </h2>
+        </header>
+        <div class="inner-spacer">
+            <div class="morrischart" id="morris-area">blbl</div>
+        </div>
+    </div>
+    <!-- /New widget -->
+
+
+
+{% endblock dynamic_body %}

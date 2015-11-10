@@ -11,4 +11,9 @@ admin_domotique_module_logs_delete:
     defaults: { _controller: "DomotiquebundleModuleBundle:Logs:delete" }
     methods:  [POST, DELETE, GET]
 
+admin_domotique_module_logs_truncate:
+    path:     /truncate
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:truncate" }
+    methods:  [POST, DELETE, GET]
+
 
