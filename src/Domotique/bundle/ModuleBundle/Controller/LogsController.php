@@ -117,7 +117,7 @@ class LogsController extends Controller
         $em->remove($entity);
         $em->flush();
 
-        $this->get('ras_flash_alert.alert_reporter')->addError("Access denied");
+        $this->get('ras_flash_alert.alert_reporter')->addError("suppression ok");
 
 //        $this->addFlash(
 //            'notice',

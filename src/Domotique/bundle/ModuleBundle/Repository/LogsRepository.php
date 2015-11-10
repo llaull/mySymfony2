@@ -6,6 +6,21 @@ use Doctrine\ORM\EntityRepository;
 
 class LogsRepository extends EntityRepository{
 
+    /**
+     * affiche tous les logs en trie
+     * @return array
+     */
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('l');
+        $qb->orderBy('l.temps', 'DESC')
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     public function reelTime($em)
     {
