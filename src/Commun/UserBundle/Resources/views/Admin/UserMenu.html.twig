@@ -16,7 +16,9 @@
             {#{% block UserChatPanel %}{% include'CommunUserBundle:Admin:UserChatPanel.html.twig' %}{% endblock %}#}
 
             <!--User Tasks Panel-->
-            {% block UserTasksPanel %}{{ render(controller('CommunToDoBundle:Todo:index')) }}{% endblock %}
+            {% block UserTasksPanel %}
+                {{ render(controller('CommunToDoBundle:Todo:index')) }}
+            {% endblock %}
 
         </div>
     </div>

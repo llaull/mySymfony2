@@ -3,6 +3,7 @@
 namespace Commun\ToDoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Commun\ToDoBundle\Entity\Todo;
@@ -23,13 +24,10 @@ class TodoController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $entity = $em->getRepository('CommunToDoBundle:Todo')->findAll();
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Todo entity.');
-        }
-
+        $entity = $em->getRepository('CommunToDoBundle:Todo')->findByUser($user->getId());
+        
         return $this->container->get('templating')->renderResponse('CommunToDoBundle:Todo:UserTasksPanel.html.twig', array(
             'entity' => $entity
         ));
@@ -56,7 +54,11 @@ class TodoController extends Controller
         $stmt->bindValue('value', $data);
         $stmt->execute();
 
-        return new JsonResponse(array('string' => 'ok'));
+        $lastId = $this->getDoctrine()->getEntityManager()->getConnection()->lastInsertId();
+
+//        return (' {string: "ok", id: "1"} ');
+        return new Response('{string: "ok", id: "' . $lastId . '"}');
+
 
     }
 
@@ -79,9 +81,9 @@ class TodoController extends Controller
 
             $stmt->execute();
 
-            return new JsonResponse(array('string' => 'success'));
+            return new JsonResponse(array('string' => 'success', 'id' => '00'));
 
-        } catch (\Exception $e) {
+        } catch (\Doctrine\ORM\ORMException $e) {
             return new JsonResponse(array('string' => $e->getMessage()));
             echo "ERROR:" . $e->getMessage();
         }
@@ -106,7 +108,7 @@ class TodoController extends Controller
 
             return new JsonResponse(array('string' => 'success'));
 
-        } catch (\Exception $e) {
+        } catch (\Doctrine\ORM\ORMException $e) {
             return new JsonResponse(array('string' => $e->getMessage()));
             echo "ERROR:" . $e->getMessage();
         }

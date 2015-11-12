@@ -11,19 +11,20 @@
                     </button>
                     </span></div>
                 <section id="task-list">
-                    <ul id="todo-list">
+                    <ul id="todo-list" data-deleteroute="{{ path ('admin_todo_delete') }}"
+                        data-editroute="{{ path ('admin_todo_edit') }}">
                         {% for todo in entity %}
-                            <li>
-                                <div class="view">
-                                    <input class="toggle" data-route="{{ path ('admin_todo_edit') }}"
-                                           data-id="{{ todo.id }}"
-                                           type="checkbox" {% if todo.status == false %} checked {% endif %}>
-                                    <label {% if todo.status == false %} data="done"
-                                        style="text-decoration: line-through;" {% endif %}> {{ todo.value }}</label>
-                                    <a data-route="{{ path ('admin_todo_delete') }}" data-id="{{ todo.id }}"
-                                       class="remove"></a>
-                                </div>
-                            </li>
+                            {% if todo.id is defined %}
+                                <li data-id="{{ todo.id }}">
+                                    <div class="view">
+                                        <input class="toggle"
+                                               type="checkbox" {% if todo.status == false %} checked {% endif %}>
+                                        <label {% if todo.status == false %} data="done"
+                                            style="text-decoration: line-through;" {% endif %}> {{ todo.value }}</label>
+                                        <a class="remove"></a>
+                                    </div>
+                                </li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </section>
