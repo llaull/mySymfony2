@@ -1,0 +1,63 @@
+{% extends "CommunUserBundle:Default:body.html.twig" %}
+{% block content %}
+    Hello {{ name }}!
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+    {% else %}
+        blb
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+
+
+    <div id="colorPicker">
+        <a class="color"><div class="colorInner"></div></a>
+        <div class="track"></div>
+        <ul class="dropdown"><li></li></ul>
+        <input type="texte" class="colorInput"/>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+
+    {% stylesheets
+    '@DomotiquebundleFrontBundle/Resources/public/js/tinycolorpicker/tinycolorpicker.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    {% javascripts
+    '@DomotiquebundleFrontBundle/Resources/public/js/tinycolorpicker/jquery.tinycolorpicker.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            // Initialize a colorpicker like this.
+            //
+            var $box = $('#colorPicker');
+            $box.tinycolorpicker();
+
+            // Try this to get access to the actual colorpicker instance.
+            //
+            var box = $box.data("plugin_tinycolorpicker");
+
+            // Now you have access to all the methods and properties.
+            //
+            // box.setColor("#cccccc");
+            // console.log(box.colorRGB);
+            //
+            // etc..
+
+            // You can bind to the change event like this.
+            //
+            $box.bind("change", function()
+            {
+                console.log("do something when a new color is set");
+            });
+        });
+    </script>
+{% endblock %}

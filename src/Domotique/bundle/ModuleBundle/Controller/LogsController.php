@@ -34,7 +34,7 @@ class LogsController extends Controller
     public function addAction($string)
     {
         //get @
-        // domotiques/5-2-1-55
+        // m/g/5-2-1-55
         $data = explode("-", $string);
 
         $now = new \DateTime();

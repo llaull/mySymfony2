@@ -1,3 +1,7 @@
+domotiquebundle_front:
+    resource: "@DomotiquebundleFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
 commun_to_do:
     resource: "@CommunToDoBundle/Resources/config/routing.yml"
     prefix:   /

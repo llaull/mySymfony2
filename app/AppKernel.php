@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Domotique\bundle\ModuleBundle\DomotiquebundleModuleBundle(),
             new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
             new Commun\ToDoBundle\CommunToDoBundle(),
+            new Domotique\bundle\FrontBundle\DomotiquebundleFrontBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

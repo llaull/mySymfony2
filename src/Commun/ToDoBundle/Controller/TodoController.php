@@ -27,7 +27,7 @@ class TodoController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $entity = $em->getRepository('CommunToDoBundle:Todo')->findByUser($user->getId());
-        
+
         return $this->container->get('templating')->renderResponse('CommunToDoBundle:Todo:UserTasksPanel.html.twig', array(
             'entity' => $entity
         ));

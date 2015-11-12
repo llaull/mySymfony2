@@ -1,0 +1,6 @@
+domotiquebundle_front_homepage:
+    path:     /domobox/
+    defaults: { _controller: DomotiquebundleFrontBundle:Default:index }
+domotiquebundle_front_homepage_none:
+    path:     /domobox/none
+    defaults: { _controller: DomotiquebundleFrontBundle:Default:index }

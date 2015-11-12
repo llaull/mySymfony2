@@ -1,5 +1,5 @@
 domotiquebundle_module_domotique_module_logs_add:
-    path:     /domotiques/{string}
+    path:     /m/g/{string}
     defaults: { _controller: "DomotiquebundleModuleBundle:Logs:add" }
 
 domotiquebundle_module_domotique_module_logs:
