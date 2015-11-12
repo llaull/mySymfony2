@@ -1,0 +1,18 @@
+admin_todo:
+    path:     /
+    defaults: { _controller: "CommunToDoBundle:Todo:index" }
+
+admin_todo_new:
+    path:     /new
+    defaults: { _controller: "CommunToDoBundle:Todo:new" }
+    methods:  POST
+
+admin_todo_edit:
+    path:     /edit
+    defaults: { _controller: "CommunToDoBundle:Todo:edit" }
+
+
+admin_todo_delete:
+    path:     /delete
+    defaults: { _controller: "CommunToDoBundle:Todo:delete" }
+    methods:  [POST, DELETE]

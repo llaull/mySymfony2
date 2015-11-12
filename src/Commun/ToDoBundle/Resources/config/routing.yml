@@ -1,0 +1,7 @@
+commun_to_do_admin_todo:
+    resource: "@CommunToDoBundle/Resources/config/routing/todo.yml"
+    prefix:   /admin/todo
+
+commun_to_do_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: CommunToDoBundle:Default:index }

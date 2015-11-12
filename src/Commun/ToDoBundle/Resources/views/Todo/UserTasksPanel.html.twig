@@ -1,0 +1,33 @@
+<div class="tab-pane" id="userbar-three">
+    <div class="nano">
+        <!--Adding Some Scroll-->
+        <div class="nano-content">
+            <div class="small-todos">
+                <div class="input-group input-group-sm">
+                    <input id="new-todo" placeholder="Add ToDo" type="text" class="form-control">
+                    <span class="input-group-btn">
+                    <button id="add-todo" class="btn btn-default" type="button"
+                            data-route="{{ path ('admin_todo_new') }}"><i class="fa fa-plus-circle"></i>
+                    </button>
+                    </span></div>
+                <section id="task-list">
+                    <ul id="todo-list">
+                        {% for todo in entity %}
+                            <li>
+                                <div class="view">
+                                    <input class="toggle" data-route="{{ path ('admin_todo_edit') }}"
+                                           data-id="{{ todo.id }}"
+                                           type="checkbox" {% if todo.status == false %} checked {% endif %}>
+                                    <label {% if todo.status == false %} data="done"
+                                        style="text-decoration: line-through;" {% endif %}> {{ todo.value }}</label>
+                                    <a data-route="{{ path ('admin_todo_delete') }}" data-id="{{ todo.id }}"
+                                       class="remove"></a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
