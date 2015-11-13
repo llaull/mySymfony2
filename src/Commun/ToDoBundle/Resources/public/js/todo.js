@@ -14,7 +14,7 @@ $(document).ready(function () {
             var $currentList = $(this).closest('ul#todo-list');
             var route = $currentList.data('deleteroute');
             var todo = $currentListItem.data('id');
-            console.log(" remove -> " + todo + ' sur ' +route);
+            console.log(" remove -> " + todo + ' sur ' + route);
 
             $currentListItem = $(this).closest('li');
             $currentListItem.remove();
@@ -40,7 +40,7 @@ $(document).ready(function () {
             var $currentList = $(this).closest('ul#todo-list');
             var route = $currentList.data('editroute');
             var todo = $currentListItem.data('id');
-            console.log(" edit -> " + todo + ' sur ' +route);
+            console.log(" edit -> " + todo + ' sur ' + route);
             /*
              * Do this or add css and remove JS dynamic css.
              */
@@ -78,34 +78,49 @@ $(document).ready(function () {
             }
         });
     }
+
     $todoList = $('#todo-list');
     $('#new-todo').keypress(function (e) {
-        if (e.which === EnterKey) {
+        if (e.which === 13) {
+            var route = $todoList.data('addroute');
+            var todo = $('#new-todo').val();
             $('.remove').off('click');
             $('.toggle').off('click');
             var todos = $todoList.html();
-            todos += "" +
-                "<li>" +
-                "<div class='view'>" +
-                "<input class='toggle' type='checkbox'>" +
-                "<label data=''>" + " " + $('#new-todo').val() + "</label>" +
-                "<a class='remove'></a>" +
-                "</div>" +
-                "</li>";
-            $(this).val('');
-            $todoList.html(todos);
-            runBind();
-            $('#taskslist').show();
 
+            // ajax add
+            $.ajax({
+                data: 'data=' + todo,
+                cache: false,
+                type: 'POST',
+                url: route,
+                success: function (data) {
+                    console.log(" add -> " + todo + ' sur ' + route + " d ->"+data);
+                    var obj = eval('(' + data + ')');
+
+                    todos += "" +
+                    "<li data-id='" + obj.id + "'>" +
+                    "<div class='view'>" +
+                    "<input class='toggle' type='checkbox'>" +
+                    "<label data=''>" + " " + $('#new-todo').val() + "</label>" +
+                    "<a class='remove'></a>" +
+                    "</div>" +
+                    "</li>";
+                    $(this).val('');
+                    $todoList.html(todos);
+                    runBind();
+                    $('#taskslist').show();
+                }
+            });
+            //end ajax
         }
     }); // end if
     $('#add-todo').click(function (e) {
-        var route = $(this).data('route');
+        var route = $todoList.data('addroute');
         var todo = $('#new-todo').val();
         $('.remove').off('click');
         $('.toggle').off('click');
         var todos = $todoList.html();
-
 
         // ajax add
         $.ajax({
@@ -114,11 +129,11 @@ $(document).ready(function () {
             type: 'POST',
             url: route,
             success: function (data) {
-                console.log(" add -> " + todo + ' sur ' +route);
+                console.log(" add -> " + todo + ' sur ' + route);
                 var obj = eval('(' + data + ')');
 
                 todos += "" +
-                "<li data-id='"+obj.id+"'>" +
+                "<li data-id='" + obj.id + "'>" +
                 "<div class='view'>" +
                 "<input class='toggle' type='checkbox'>" +
                 "<label data=''>" + " " + $('#new-todo').val() + "</label>" +
@@ -129,7 +144,6 @@ $(document).ready(function () {
                 $todoList.html(todos);
                 runBind();
                 $('#taskslist').show();
-
 
             }
         });
