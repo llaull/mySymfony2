@@ -6,13 +6,12 @@
                 <div class="input-group input-group-sm">
                     <input id="new-todo" placeholder="Add ToDo" type="text" class="form-control">
                     <span class="input-group-btn">
-                    <button id="add-todo" class="btn btn-default" type="button"
-                            data-route="{{ path ('admin_todo_new') }}"><i class="fa fa-plus-circle"></i>
+                    <button id="add-todo" class="btn btn-default" type="button"><i class="fa fa-plus-circle"></i>
                     </button>
                     </span></div>
                 <section id="task-list">
                     <ul id="todo-list" data-deleteroute="{{ path ('admin_todo_delete') }}"
-                        data-editroute="{{ path ('admin_todo_edit') }}">
+                        data-editroute="{{ path ('admin_todo_edit') }}" data-addroute="{{ path('admin_todo_new') }}">
                         {% for todo in entity %}
                             {% if todo.id is defined %}
                                 <li data-id="{{ todo.id }}">

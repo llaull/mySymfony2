@@ -1,6 +1,8 @@
-domotiquebundle_front_homepage:
+domobox_homepage:
     path:     /domobox/
     defaults: { _controller: DomotiquebundleFrontBundle:Default:index }
-domotiquebundle_front_homepage_none:
-    path:     /domobox/none
-    defaults: { _controller: DomotiquebundleFrontBundle:Default:index }
+
+#    set une valeur au controleur qui envera au module
+domotique_module_set_color:
+    path:     /domobox/module/set/
+    defaults: { _controller: DomotiquebundleFrontBundle:Default:getModuleColor }

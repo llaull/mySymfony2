@@ -43,7 +43,7 @@ class Infos
     /**
      * @var integer
      *
-     * @ORM\Column(name="nrf_id", type="integer", nullable=false)
+     * @ORM\Column(name="nrf_id", type="string", length=15, nullable=false)
      */
     private $nrfId;
 
@@ -63,7 +63,6 @@ class Infos
      * })
      */
     private $emplacement;
-
 
 
     /**

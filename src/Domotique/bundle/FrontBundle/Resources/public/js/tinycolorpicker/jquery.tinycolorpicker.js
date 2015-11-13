@@ -80,7 +80,6 @@
             var colorPicker   = new Image()
             ,   backgroundUrl = $track.css("background-image").replace(/"/g, "").replace(/url\(|\)$/ig, "")
             ;
-
             $track.css("background-image", "none");
 
             $(colorPicker).load(function()
@@ -91,7 +90,7 @@
                 context.drawImage(colorPicker, 0, 0, this.width, this.height);
             });
 
-            colorPicker.src = "http://baijs.com/tinycolorpicker/images/text-color.png";
+            colorPicker.src = self.options.backgroundUrl || backgroundUrl;
         }
 
         function setEvents()
@@ -229,7 +228,7 @@
             /****/
             $colorInput.val(self.rgbToDecimal(self.colorHex));
             //$colorInput.val(self.colorHex);
-console.log(self.colorHex);
+//console.log(self.rgbToDecimal(self.colorHex));
 
           
         };
@@ -238,7 +237,7 @@ console.log(self.colorHex);
         {
             var result = hex.replace("#","");
 
-            return parseInt(result, 16) +  "-";;
+            return parseInt(result, 16);
         };
 
 

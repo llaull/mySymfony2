@@ -10,6 +10,3 @@ services:
     outils.date:
         class: TclBundle\Services\Outils
         arguments: ["@service_container"]
-
-    plip.plop:
-        class: CarnetsBundle\Services\Menu

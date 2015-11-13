@@ -39,8 +39,9 @@ Domotique\bundle\ModuleBundle\Entity\Infos:
                 comment: 'petit nom du nomdule'
             column: module_nom
         nrfId:
-            type: integer
+            type: text
             nullable: false
+            length: 15
             options:
                 unsigned: false
                 comment: 'referencement du reseau NRF24'

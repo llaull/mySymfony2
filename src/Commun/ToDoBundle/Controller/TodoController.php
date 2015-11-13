@@ -71,13 +71,15 @@ class TodoController extends Controller
     {
         $data = $request->request->get('data');
         $params = json_decode($data, true);
+        $now = new \DateTime();
 
         try {
             $stmt = $this->getDoctrine()->getEntityManager()
                 ->getConnection()
-                ->prepare("UPDATE commun__todo SET status = :statusId WHERE id = :dataId;");
+                ->prepare("UPDATE commun__todo SET status = :statusId, modified = :modified WHERE id = :dataId;");
             $stmt->bindValue("dataId", $params["0"]["todo"], \PDO::PARAM_INT);
             $stmt->bindValue("statusId", $params["1"]["done"], \PDO::PARAM_INT);
+            $stmt->bindValue("modified", $now->format('Y-m-d H:i:s'));
 
             $stmt->execute();
 

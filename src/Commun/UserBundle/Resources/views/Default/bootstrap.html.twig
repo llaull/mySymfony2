@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %} - Back Office</title>
+    <title>{% block title %}{{ pageTitle }}{% endblock %} - Front</title>
 
     <script src="{{ asset('assets/modernizr/modernizr.custom.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
@@ -13,19 +13,14 @@
 <body>
     {% block nav %}{% include'CommunUserBundle:Default:nav.html.twig' %}{% endblock %}
     {% block body %}{% endblock %}
-    {{app.request.session.get("nom_parametre")}}
 
     <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/jquery-ui/jquery-ui.min.js') }}"></script>
 
     <!--Bootstrap-->
     <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
-
     {% block javascripts %}{% endblock %}
-
 </body>
 
 </head>
-
-{% block AdminBody %}{% endblock%}
 </html>
