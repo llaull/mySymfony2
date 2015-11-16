@@ -15,6 +15,7 @@ class LogsRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('l');
         $qb->orderBy('l.temps', 'DESC');
+        $qb->setMaxResults('500');
 
         return $qb
             ->getQuery()
