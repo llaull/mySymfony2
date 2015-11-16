@@ -14,8 +14,12 @@ class MyCurlService {
     public function getToUrl($url,$proxy=false)
     {
         $proxyAdress = $this->container->getParameter('ext_proxy');
+        $headers[] = 'Cache-Control: no-cache';
+        $headers[] = 'Host: domobox.llovem.eu';
+        $headers[] = 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:28.0) Gecko/20100101 Firefox/28.0';
 
         $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         if($proxy == true){
@@ -23,6 +27,7 @@ class MyCurlService {
         }
         $data = curl_exec($ch);
         curl_close($ch);
+        die(var_dump($data));
         return $data;
 
     }
