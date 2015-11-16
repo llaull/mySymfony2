@@ -31,15 +31,16 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Unable to find module entity.');
         }
 
-//        $module_url = "http://" . '127.0.0.1' . "/?" . "color=" . $params[1]->color;
-        $module_url = "http://" . $entity->getNrfId() . "/?" . "color=" . $params[1]->color;
+        //$module_url = "http://" . '127.0.0.1' . "/?" . "color=" . $params[1]->color;
+        //$module_url = "http://" . $entity->getNrfId() ;
+        $module_url = "http://" . $entity->getNrfId() . "/" . $params[1]->path . "/" . $params[2]->color;
 
 
         if (!$this->isGranted("ROLE_ADMIN", NULL)) {
             return new JsonResponse(array('string' => 'nop'));
         } else {
 
-            $curl = $curling->getToUrl($module_url, true);
+            $curl = $curling->getToUrl($module_url, false);
             return new JsonResponse(array('string' => 'ok', 'curl' => $curl, 'data' => $data));
         }
 

@@ -1,0 +1,40 @@
+admin_user:
+    path:     /
+    defaults: { _controller: "CommunUserBundle:User:index" }
+
+admin_user_show:
+    path:     /{id}/show
+    defaults: { _controller: "CommunUserBundle:User:show" }
+
+admin_user_new:
+    path:     /new
+    defaults: { _controller: "CommunUserBundle:User:new" }
+
+admin_user_create:
+    path:     /create
+    defaults: { _controller: "CommunUserBundle:User:create" }
+    methods:  POST
+
+admin_user_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CommunUserBundle:User:edit" }
+
+admin_user_update:
+    path:     /{id}/update
+    defaults: { _controller: "CommunUserBundle:User:update" }
+    methods:  [POST, PUT]
+
+admin_user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CommunUserBundle:User:delete" }
+    methods:  [POST, DELETE]
+
+admin_user_reset_pwd:
+    path:     /{id}/reset_pwd
+    defaults: { _controller: "CommunUserBundle:User:delete" }
+    methods:  [POST, DELETE]
+
+admin_user_enable:
+    path:     /{id}/enable
+    defaults: { _controller: "CommunUserBundle:User:delete" }
+    methods:  [POST, DELETE]

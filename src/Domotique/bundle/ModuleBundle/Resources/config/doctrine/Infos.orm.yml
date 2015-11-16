@@ -9,9 +9,6 @@ Domotique\bundle\ModuleBundle\Entity\Infos:
         module_ref:
             columns:
                 - module_ref
-        nrf_id:
-            columns:
-                - nrf_id
     id:
         id:
             type: integer

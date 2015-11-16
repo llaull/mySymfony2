@@ -44,21 +44,27 @@
 
                 var selectedValue = $(this).find(".colorInput").val();
                 var moduleID = $(this).find(".moduleID").val();
+                var path = $(this).find(".path").val();
 
-                var dataJson = '[' + '{"module":"' + moduleID + '"},' + '{"color":"' + selectedValue + '"}' + ']';
+                var dataJson = '[' + '{"module":"' + moduleID + '"},' + '{"path":"color"},' +'{"color":"' + selectedValue + '"}' + ']';
+                ajax('{{ path ('domotique_module_set_color') }}',dataJson)
 
-                // ajax
+
+            });
+
+            /*
+            function Ajax
+             */
+            function ajax($route,$dataJson){
                 $.ajax({
-                    data: 'data=' + dataJson,
+                    data: 'data=' + $dataJson,
                     cache: false,
                     type: 'POST',
-                    url: '{{ path ('domotique_module_set_color') }}',
+                    url: $route,
                     success: function () {
                     }
                 });
-                //end ajax
-
-            });
+            }
         });
     </script>
 {% endblock %}

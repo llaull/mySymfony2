@@ -6,9 +6,15 @@
     <ul id="menu">
 
         {#back office accueil #}
-        <li><a class="{{ "Commun"|menuActive(app.request.attributes.get('_controller')) }}"
-               href="{{ path('commun_user_home_index') }}"
+        <li>
+            <a class="{{ "CommunUserBundle"|menuActive(app.request.attributes.get('_controller')) }} submenu"
+               href="#"
                title="Dashboard" data-id="dash-sub"><i class="entypo-briefcase"></i><span> Dashboard</span></a>
+            <ul id="dash-sub">
+                <li><a href="{{ path('admin_user') }}" title="Gérer les utilisateurs"><i
+                                class="fa fa-sort-alpha-asc"></i><span>Gérer les utilisateurs</span></a>
+                </li>
+            </ul>
         </li>
 
         {#bundle tv#}

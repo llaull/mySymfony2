@@ -1,0 +1,63 @@
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}flux tcl{% endblock title %}
+{% block h1_header %}feed{% endblock h1_header %}
+{% block h1_header_s %}TCL{% endblock h1_header_s %}
+
+{% block dynamic_body %}
+
+    <div class="col-md-12 bootstrap-grid">
+
+        <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
+            <header>
+                <h2>user
+                    <small>enregistrer</small>
+                </h2>
+            </header>
+            <div class="inner-spacer">
+
+                {{ dump(entities) }}
+
+                <table class="table table-striped table-hover" id="table-1">
+                    <thead>
+                    <tr>
+                        <th>username</th>
+                        <th>email</th>
+                        <th>enabled</th>
+                        <th>roles</th>
+                        <th>actions</th>
+                        {#<th{% if pagination.isSorted('p.created') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created', 'p.created') }}</th>#}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in entities %}
+                        <tr {% if loop.index is odd %}class="default"{% endif %}>
+                            <td>{{ entity.username }}</td>
+                            <td>{{ entity.email }}</td>
+                            <td>{{ entity.enabled }}</td>
+                            <td>{% for role in entity.roles %}
+                                    {{ role }}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a data-id="{{ entity.id }}" class="modal-show btn btn-success btn-sm"
+                                       data-text="show" role="button"
+                                       href="{{ path('admin_user_edit', { 'id': entity.id }) }}">éditer</a>
+                                    <a data-id="{{ entity.id }}" class="modal-show btn btn-default btn-sm"
+                                       data-text="show" role="button"
+                                       href="{{ path('admin_user_reset_pwd', { 'id': entity.id }) }}">reset passord</a>
+                                    <a data-id="{{ entity.id }}" class="modal-show btn btn-warning btn-sm"
+                                       data-text="show" role="button"
+                                       href="{{ path('admin_user_enable', { 'id': entity.id }) }}">désactiver</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock dynamic_body %}

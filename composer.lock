@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eabe6214286f681851486022827830ec",
-    "content-hash": "87877d7cb1393270b956ced14f0d1de7",
+    "hash": "9a155ddf183d0f9dde9ff9cb2d589d94",
+    "content-hash": "769caad4eaf3a2b9032ba34e64ca5e45",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -49,16 +49,16 @@
         },
         {
             "name": "components/elfinder",
-            "version": "1.0.1",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helios-ag/elfinder-component.git",
-                "reference": "8a84025abec9258a325081649541b8b2b28b18f1"
+                "reference": "04f7bba5e87ba65be50d3f5aad55658cf2514273"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helios-ag/elfinder-component/zipball/8a84025abec9258a325081649541b8b2b28b18f1",
-                "reference": "8a84025abec9258a325081649541b8b2b28b18f1",
+                "url": "https://api.github.com/repos/helios-ag/elfinder-component/zipball/04f7bba5e87ba65be50d3f5aad55658cf2514273",
+                "reference": "04f7bba5e87ba65be50d3f5aad55658cf2514273",
                 "shasum": ""
             },
             "require": {
@@ -70,22 +70,22 @@
             "extra": {
                 "component": {
                     "scripts": [
-                        "js/elfinder.min.js"
+                        "dist/js/elfinder.min.js"
                     ],
                     "styles": [
-                        "css/elfinder.min.css",
-                        "css/theme.css"
+                        "dist/css/elfinder.min.css",
+                        "dist/css/theme.css"
                     ],
                     "files": [
-                        "img/*.png",
-                        "img/*.gif",
-                        "js/i18n/*.js"
+                        "dist/img/*.png",
+                        "dist/img/*.gif",
+                        "dist/js/i18n/*.js"
                     ]
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -102,24 +102,21 @@
                 "elfinder",
                 "file manager"
             ],
-            "time": "2015-06-30 13:38:48"
+            "time": "2015-10-14 06:04:42"
         },
         {
             "name": "components/jquery",
-            "version": "1.11.1",
+            "version": "1.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "923b3973ed5b6e465a621d3032106fc6832a9a3c"
+                "reference": "e7c492908a9746439e20b19a671c5001e8832732"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/923b3973ed5b6e465a621d3032106fc6832a9a3c",
-                "reference": "923b3973ed5b6e465a621d3032106fc6832a9a3c",
+                "url": "https://api.github.com/repos/components/jquery/zipball/e7c492908a9746439e20b19a671c5001e8832732",
+                "reference": "e7c492908a9746439e20b19a671c5001e8832732",
                 "shasum": ""
-            },
-            "require": {
-                "robloach/component-installer": "*"
             },
             "type": "component",
             "extra": {
@@ -147,7 +144,7 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2014-10-10 05:49:59"
+            "time": "2015-06-08 13:35:17"
         },
         {
             "name": "components/jqueryui",
@@ -1636,20 +1633,20 @@
         },
         {
             "name": "helios-ag/fm-elfinder-bundle",
-            "version": "5.1",
+            "version": "5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helios-ag/FMElfinderBundle.git",
-                "reference": "738a39db7b1a5e8a72023b37a9cefc5604fbd324"
+                "reference": "01545d6343fdeafb7f308d16e14f42e36d3ddb6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/738a39db7b1a5e8a72023b37a9cefc5604fbd324",
-                "reference": "738a39db7b1a5e8a72023b37a9cefc5604fbd324",
+                "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/01545d6343fdeafb7f308d16e14f42e36d3ddb6d",
+                "reference": "01545d6343fdeafb7f308d16e14f42e36d3ddb6d",
                 "shasum": ""
             },
             "require": {
-                "components/elfinder": "~1.0",
+                "components/elfinder": "~2.0",
                 "helios-ag/fm-elfinder-php-connector": "~2.0",
                 "php": ">=5.3.3",
                 "symfony/framework-bundle": "~2.4",
@@ -1657,9 +1654,9 @@
                 "symfony/twig-bundle": "~2.4"
             },
             "require-dev": {
-                "doctrine/doctrine-bundle": "~1.0",
-                "matthiasnoback/symfony-config-test": "0.*",
-                "matthiasnoback/symfony-dependency-injection-test": "0.*",
+                "matthiasnoback/symfony-config-test": "~1",
+                "matthiasnoback/symfony-dependency-injection-test": "~0.7",
+                "satooshi/php-coveralls": "dev-master",
                 "symfony/form": "~2.1"
             },
             "suggest": {
@@ -1694,20 +1691,20 @@
                 "elfinder",
                 "file manager"
             ],
-            "time": "2015-09-24 15:59:49"
+            "time": "2015-11-15 18:24:14"
         },
         {
             "name": "helios-ag/fm-elfinder-php-connector",
-            "version": "2.4",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helios-ag/ElFinderPHP.git",
-                "reference": "eba46deedf73de01e1e80ff67b486ee27188e5c4"
+                "reference": "ed896cc7f2a5ecb6c0009747927f40e36015ad9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helios-ag/ElFinderPHP/zipball/eba46deedf73de01e1e80ff67b486ee27188e5c4",
-                "reference": "eba46deedf73de01e1e80ff67b486ee27188e5c4",
+                "url": "https://api.github.com/repos/helios-ag/ElFinderPHP/zipball/ed896cc7f2a5ecb6c0009747927f40e36015ad9f",
+                "reference": "ed896cc7f2a5ecb6c0009747927f40e36015ad9f",
                 "shasum": ""
             },
             "require": {
@@ -1747,25 +1744,25 @@
                 "elfinder",
                 "filemanager"
             ],
-            "time": "2015-11-07 06:33:04"
+            "time": "2015-11-16 04:03:08"
         },
         {
             "name": "incenteev/composer-parameter-handler",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Incenteev/ParameterHandler.git",
-                "reference": "84a205fe80a46101607bafbc423019527893ddd0"
+                "reference": "d7ce7f06136109e81d1cb9d57066c4d4a99cf1cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/84a205fe80a46101607bafbc423019527893ddd0",
-                "reference": "84a205fe80a46101607bafbc423019527893ddd0",
+                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/d7ce7f06136109e81d1cb9d57066c4d4a99cf1cc",
+                "reference": "d7ce7f06136109e81d1cb9d57066c4d4a99cf1cc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/yaml": "~2.0"
+                "symfony/yaml": "~2.3|~3.0"
             },
             "require-dev": {
                 "composer/composer": "1.0.*@dev",
@@ -1798,7 +1795,7 @@
             "keywords": [
                 "parameters management"
             ],
-            "time": "2015-06-03 08:27:03"
+            "time": "2015-11-10 17:04:01"
         },
         {
             "name": "jdorn/sql-formatter",

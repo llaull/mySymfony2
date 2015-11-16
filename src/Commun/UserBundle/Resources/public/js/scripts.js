@@ -66,6 +66,9 @@
         var oTable = $('#table-0').DataTable();
         oTable.fnSort( [ [0,'desc'] ] );
     }
+    if ($('#table-1').length) {
+        var oTable = $('#table-1').DataTable();
+    }
 
     // ========================================================================
     //	modal - show entity

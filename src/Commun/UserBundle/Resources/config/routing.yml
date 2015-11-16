@@ -1,3 +1,7 @@
+commun_user_admin_user:
+    resource: "@CommunUserBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user
+
 fos_user_security:
    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

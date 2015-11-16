@@ -11,12 +11,17 @@ namespace TclBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* @ORM\Entity
-* @ORM\Table(name="tcl__ligne")
-* @ORM\Entity(repositoryClass="TclBundle\Repository\LigneRepository")
-*/
+ * @ORM\Entity
+ * @ORM\Table(name="tcl__ligne")
+ * @ORM\Entity(repositoryClass="TclBundle\Repository\LigneRepository")
+ */
 class Ligne
 {
+
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * @ORM\Id
@@ -42,6 +47,30 @@ class Ligne
      */
     protected $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Commun\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="tcl__ligne_user",
+     *      joinColumns={@ORM\JoinColumn(name="ligne_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
+     **/
+    protected $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * Get id

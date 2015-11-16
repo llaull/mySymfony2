@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Infos
  *
- * @ORM\Table(name="domotique__module_infos", uniqueConstraints={@ORM\UniqueConstraint(name="module_ref", columns={"module_ref"}), @ORM\UniqueConstraint(name="nrf_id", columns={"nrf_id"})}, indexes={@ORM\Index(name="emplacement_id", columns={"emplacement_id"})})
+ * @ORM\Table(name="domotique__module_infos", uniqueConstraints={@ORM\UniqueConstraint(name="module_ref", columns={"module_ref"}), indexes={@ORM\Index(name="emplacement_id", columns={"emplacement_id"})})
  * @ORM\Entity
  */
 class Infos
@@ -41,7 +41,7 @@ class Infos
     private $moduleNom;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="nrf_id", type="string", length=15, nullable=false)
      */

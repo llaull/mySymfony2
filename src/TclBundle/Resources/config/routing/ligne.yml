@@ -24,3 +24,7 @@ admin_ligne_delete:
     path:     /{id}/delete
     defaults: { _controller: "TclBundle:Ligne:delete" }
     methods:  [POST, DELETE,GET]
+
+admin_ligne_favoris:
+    path:     /favoris
+    defaults: { _controller: "TclBundle:Ligne:index" }
