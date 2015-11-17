@@ -1,9 +1,47 @@
 {% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
-{% block title %}flux tcl{% endblock title %}
-{% block h1_header %}feed{% endblock h1_header %}
-{% block h1_header_s %}TCL{% endblock h1_header_s %}
+{% block title %}les utilisateurs{% endblock title %}
+{% block h1_header %}utilisateurs{% endblock h1_header %}
+{% block h1_header_s %}-{% endblock h1_header_s %}
 
 {% block dynamic_body %}
+
+    <div class="col-md-12 bootstrap-grid">
+
+    <!-- New widget -->
+    <div class="powerwidget col-grey" id="user-directory" data-widget-editbutton="false">
+        <header>
+            <h2>Utilisateurs
+                <small>Clear</small>
+            </h2>
+        </header>
+        <div class="inner-spacer">
+            <div id="items" class="items-switcher items-view-grid">
+                <div class="row">
+    {#{{ dump(entities) }}#}
+                </div>
+                <ul>
+                    {% for entity in entities %}
+                    <li>
+                        <div class="items-inner clearfix">
+                            <a class="items-image" href="#"><img class="img-circle"
+                                                                 src="{{ asset('bundles/communuser/images/user-male.png') }}"></a>
+                            <h3 class="items-title">{{ entity.username }}</h3>
+                            <span class="label label-default">{{ entity.roles.0 }}</span>
+                            <div class="items-details">
+                                {% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}
+                            </div>
+                            <div class="control-buttons">
+                                {#<a href="#" title="bloque"><i class="fa fa-ban"></i></a>#}
+                                {#<a href="#" title="Delete"><i class="fa fa-times-circle"></i></a>#}
+                                {#<a href="#" title="Modify"><i class="fa fa-cog"></i></a></div>#}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
 
     <div class="col-md-12 bootstrap-grid">
 
@@ -15,7 +53,7 @@
             </header>
             <div class="inner-spacer">
 
-                {{ dump(entities) }}
+                {#{{ dump(entities) }}#}
 
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
@@ -25,7 +63,6 @@
                         <th>enabled</th>
                         <th>roles</th>
                         <th>actions</th>
-                        {#<th{% if pagination.isSorted('p.created') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created', 'p.created') }}</th>#}
                     </tr>
                     </thead>
                     <tbody>
@@ -40,13 +77,13 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a data-id="{{ entity.id }}" class="modal-show btn btn-success btn-sm"
+                                    <a data-id="{{ entity.id }}" class="btn btn-success btn-sm"
                                        data-text="show" role="button"
                                        href="{{ path('admin_user_edit', { 'id': entity.id }) }}">éditer</a>
-                                    <a data-id="{{ entity.id }}" class="modal-show btn btn-default btn-sm"
+                                    <a data-id="{{ entity.id }}" class="btn btn-default btn-sm"
                                        data-text="show" role="button"
                                        href="{{ path('admin_user_reset_pwd', { 'id': entity.id }) }}">reset passord</a>
-                                    <a data-id="{{ entity.id }}" class="modal-show btn btn-warning btn-sm"
+                                    <a data-id="{{ entity.id }}" class="btn btn-warning btn-sm"
                                        data-text="show" role="button"
                                        href="{{ path('admin_user_enable', { 'id': entity.id }) }}">désactiver</a>
                                 </div>
