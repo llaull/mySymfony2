@@ -46,24 +46,42 @@
                 var moduleID = $(this).find(".moduleID").val();
                 var path = $(this).find(".path").val();
 
-                var dataJson = '[' + '{"module":"' + moduleID + '"},' + '{"path":"color"},' +'{"color":"' + selectedValue + '"}' + ']';
-                ajax('{{ path ('domotique_module_set_color') }}',dataJson)
+                var dataJson = '[' + '{"module":"' + moduleID + '"},' + '{"path":"color"},' + '{"color":"' + selectedValue + '"}' + ']';
+               // ajax('{{ path ('domotique_module_set_color') }}', dataJson);
+                ajax('{{ path ('domotique_module_set_curl') }}', dataJson);
 
 
             });
 
             /*
-            function Ajax
+             function Ajax
              */
-            function ajax($route,$dataJson){
+            function ajax($route, $dataJson) {
+
                 $.ajax({
-                    data: 'data=' + $dataJson,
-                    cache: false,
-                    type: 'POST',
+                    type: "POST",
+                    dataType: 'json',
                     url: $route,
-                    success: function () {
+                    data: {
+                        restUrl: "127.0.0.1/index.php?s=lnlblb",
+                        method: 'GET',
+                        params: {
+                            action: "getFriendList"
+                        }
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data + " <-> " + textStatus + " <-> " + jqXHR);
                     }
                 });
+
+//                $.ajax({
+//                    data: 'data=' + $dataJson,
+//                    cache: false,
+//                    type: 'POST',
+//                    url: $route,
+//                    success: function () {
+//                    }
+//                });
             }
         });
     </script>
