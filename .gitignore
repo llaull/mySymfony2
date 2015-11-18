@@ -1,3 +1,4 @@
+/composer.lock
 /web/bundles
 /web/assets
 /web/uploads
@@ -21,4 +22,3 @@
 /vendor
 /tmp
 /.idea
-composer.lock
