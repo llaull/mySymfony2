@@ -71,7 +71,7 @@ class XmlTclCommand extends ContainerAwareCommand
         } else {
 
             $myFavoris = array('31', '43', 'métro D', 'métro B', 'métro A', 'T2', 'T4');
-            $i = 0; //itérateur de neauvou accident
+            $i = 0; //itérateur de nouveaux accidents
 
 
             foreach ($data->channel->item as $value) {
@@ -130,7 +130,6 @@ class XmlTclCommand extends ContainerAwareCommand
         // Showing when the script is over
         $now = new \DateTime();
         $end = $now->format('d-m-Y G:i:s');
-//        $output->writeln('<comment>End : ' . $end . ' ---</comment>');
         $output->writeln('<comment>' .$i . ' ajout en ' . abs(strtotime($start) - strtotime($end)) . 'sec'. '</comment>');
         $newTaskLog->setReponse($i . ' ajout en ' . abs(strtotime($start) - strtotime($end)) . 'sec');
         $em->persist($newTaskLog);
@@ -138,10 +137,6 @@ class XmlTclCommand extends ContainerAwareCommand
         // Flushing and clear data on queue
         $em->flush();
         $em->clear();
-
-
-        // die(var_dump($output));
-
     }
 
 }

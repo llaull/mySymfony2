@@ -43,7 +43,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ['CommunUserBundle','DomotiquebundleFrontBundle']
+    bundles:        ['CommunUserBundle','DomotiquebundleFrontBundle','CarnetsBundle']
     #java: /usr/bin/java
     node: C:\Users\hazardl\AppData\Roaming\npm
     filters:

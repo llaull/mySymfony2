@@ -128,6 +128,7 @@ class KazerXmlCommand extends ContainerAwareCommand
      * @param $ssTitre
      * @param $desc
      * @param null $category
+     * @param $output
      */
     protected function programmes($em,$debut, $fin, $channel, $title, $ssTitre, $desc, $category = NULL,$output)
     {
