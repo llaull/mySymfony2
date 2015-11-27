@@ -65,7 +65,7 @@ class Channel {
     protected $codeZappette;
 
     /**
-     * @ORM\Column(type="string", unique=true, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $imageB64;
 
