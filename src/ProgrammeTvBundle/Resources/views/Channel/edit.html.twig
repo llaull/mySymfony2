@@ -10,8 +10,8 @@
 
         <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
             <header>
-                <h2>new
-                    <small>carnet</small>
+                <h2>Edition
+                    <small>chaînes</small>
                 </h2>
             </header>
             <div class="inner-spacer">
@@ -20,16 +20,7 @@
                     {{ form(edit_form) }}
 
                 </div>
-                <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('admin_channel') }}">
-                            {{ 'layout.back_list'|trans({}, 'app') }}
-                        </a>
-                    </li>
-                    <li>
-                        {{ form(delete_form) }}
-                    </li>
-                </ul>
+
             </div>
         </div>
     </div>
