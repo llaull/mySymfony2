@@ -64,6 +64,26 @@ class Channel {
      */
     protected $codeZappette;
 
+    /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    protected $imageB64;
+
+    /**
+     * @return mixed
+     */
+    public function getImageB64()
+    {
+        return $this->imageB64;
+    }
+
+    /**
+     * @param mixed $imageB64
+     */
+    public function setImageB64($imageB64)
+    {
+        $this->imageB64 = $imageB64;
+    }
 
     /**
      * Get id
