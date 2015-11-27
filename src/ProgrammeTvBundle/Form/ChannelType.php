@@ -19,6 +19,7 @@ class ChannelType extends AbstractType
             ->add('name')
             ->add('codeTV')
             ->add('codeZappette')
+            ->add('imageB64')
         ;
         $builder->add('idKazer', null, array('disabled' => true));
     }
