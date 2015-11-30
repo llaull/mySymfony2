@@ -70,6 +70,18 @@
         var oTable = $('#table-1').DataTable();
     }
 
+    //cache la premiere ligne
+    if ($('#table-hidden-1').length) {
+        var oTable = $('#table-hidden-1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [ 0 ],
+                    "visible": false
+                }
+            ]
+        } );
+    }
+
     // ========================================================================
     //	modal - show entity
     // ========================================================================
