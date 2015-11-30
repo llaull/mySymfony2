@@ -10,7 +10,7 @@
         <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
             <header>
                 <h2>feed recu en xml
-                    <small>remplit en cron {{ pagination.getTotalItemCount }}</small>
+                    <small>remplit en cron</small>
                 </h2>
             </header>
             <div class="inner-spacer">
@@ -18,11 +18,8 @@
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
                     <tr>
-                        {#<th>Id</th>#}
-                        {#<th{% if pagination.isSorted('p.created') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created', 'p.created') }}</th>#}
-                        <th{% if pagination.isSorted('p.added') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Added', 'p.added') }}</th>
-                        {#<th>Added</th>#}
-                        <th{% if pagination.isSorted('p.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'p.title')|raw }}</th>
+                        <th>Added</th>
+                        <th>Title</th>
                         <th>Description</th>
                         <th>Actions</th>
                     </tr>
@@ -46,9 +43,6 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <div class="navigation">
-                    {{ knp_pagination_render(pagination) }}
-                </div>
             </div>
         </div>
     </div>

@@ -24,15 +24,8 @@ class LigneController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('TclBundle:Ligne')->findAll();
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
-
         return $this->render('TclBundle:Ligne:index.html.twig', array(
-            'pagination' => $pagination,
+            'pagination' => $entities,
         ));
     }
 
