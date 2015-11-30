@@ -18,6 +18,7 @@
                 <table class="table table-striped table-hover" id="table-1">
                     <thead>
                     <tr>
+                        <th>ordre</th>
                         <th>Name</th>
                         <th>Codetv</th>
                         <th>Added</th>
@@ -27,6 +28,7 @@
                     <tbody>
                     {% for entity in entities %}
                         <tr {% if loop.index is odd %}class="info"{% endif %}>
+                            <td>{{ entity.ordre }}</td>
                             <td>{{ entity.name }} ({{ entity.codeTV }})</td>
                             <td>{{ entity.codeZappette }}</td>
                             <td>{% if entity.added %}{{ entity.added|date('Y-m-d H:i:s') }}{% endif %}</td>
