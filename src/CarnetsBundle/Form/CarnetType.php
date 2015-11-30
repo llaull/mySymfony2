@@ -20,7 +20,7 @@ class CarnetType extends AbstractType
             ->add('destination')
 //            ->add('imageName')
 //            ->add('imageName','elfinder', array('instance'=>'form', 'enable'=>true))
-            ->add('imageName', 'file', array('label' => 'Brochure (PDF file)', 'data_class' => 'Doctrine\ORM\GridFSFile'))
+//            ->add('imageName', 'file', array('label' => 'Brochure (PDF file)', 'data_class' => 'Doctrine\ORM\GridFSFile'))
 //            ->add('imageName', 'file', array('label' => 'Brochure (PDF file)', 'data_class' => 'Symfony\Component\HttpFoundation\File\File','property_path' => 'path'  ))
 //            ->add('imageName', 'ckeditor', array(
 //                    'label' => 'Upload',

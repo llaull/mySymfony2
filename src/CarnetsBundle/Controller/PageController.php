@@ -25,15 +25,9 @@ class PageController extends Controller
 
         $entities = $em->getRepository('CarnetsBundle:Page')->findAll();
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
 
         return $this->render('CarnetsBundle:Page:index.html.twig', array(
-            'pagination' => $pagination,
+            'pagination' => $entities,
         ));
     }
     /**

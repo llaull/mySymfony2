@@ -52,6 +52,7 @@ class LieuController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_lieu'));
+           // return $this->redirect($this->generateUrl('admin_lieu_new'));
         }
 
         return $this->render('CarnetsBundle:Lieu:new.html.twig', array(

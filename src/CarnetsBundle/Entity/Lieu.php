@@ -27,7 +27,7 @@ class Lieu
 
     public function __toString()
     {
-        return $this->ville;
+        return '('.$this->carnet.') '.$this->ville;
     }
 
     /**
