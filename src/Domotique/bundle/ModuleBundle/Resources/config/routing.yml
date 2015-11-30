@@ -6,6 +6,14 @@ domotiquebundle_module_domotique_module_logs:
     path:     /logz
     defaults: { _controller: "DomotiquebundleModuleBundle:Logs:tempsReel" }
 
+domotique_log_moyen:
+    path: /log/moyenne
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:logMoyenne" }
+
+domotique_log_moyen_bis:
+    path: /log/moyenne/bis
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:logMoyenneBis" }
+
 
 domotiquebundle_module_admin_domotique_module_sonde_unit:
     resource: "@DomotiquebundleModuleBundle/Resources/config/routing/sondeunit.yml"

@@ -25,11 +25,52 @@ class LogsRepository extends EntityRepository
     /*
      *
      */
-    public function moyenByModuleBySondes($em)
+    public function moyenneByModuleBySondes($em)
     {
 
-        //$rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` FROM module_logs GROUP BY HOUR(temps) ,`module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` ORDER BY `Day` ASC";
-        $rq = " SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne , `module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` FROM module_logs GROUP BY YEAR(temps), MONTH(temps), DAY(temps), HOUR(temps), `module_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit_id` ORDER BY temps ASC";
+        //$rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`modules_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit` FROM domotique__module_logs GROUP BY HOUR(temps) ,`modules_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit` ORDER BY `Day` ASC";
+//        $rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne , `modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` FROM domotique__module_logs GROUP BY YEAR(temps), MONTH(temps), DAY(temps), HOUR(temps), `modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` ORDER BY temps ASC";
+        $rq = "
+        SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS jour,
+               HOUR(temps) AS heure,
+               AVG(`sonde_valeur`) AS moyenne,
+               `modules_id`,
+               `sonde_id`,
+               unit.nom AS sonde_unitee,
+               unit.symbole AS sonde_symbole,
+               type.nom AS sondy_type
+        FROM domotique__module_logs AS logs
+        INNER JOIN domotique__sonde_unit AS unit ON unit.id = logs.sonde_unit
+        INNER JOIN domotique__sonde_type AS type ON type.id = logs.sonde_type
+        GROUP BY YEAR(temps),
+                 MONTH(temps),
+                 DAY(temps),
+                 HOUR(temps),
+                 -- MINUTE(temps),
+                 `modules_id`,
+                 `sonde_id`,
+                 `sonde_type`,
+                 `sonde_unit`
+        ORDER BY temps ASC
+        ";
+
+
+
+        $connection = $em->getConnection();
+        $statement = $connection->prepare($rq);
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    /*
+     *
+     */
+    public function moyenneByModuleBySondesBis($em)
+    {
+
+        $rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` FROM domotique__module_logs GROUP BY HOUR(temps) ,`modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` ORDER BY `Day` ASC";
 
         $connection = $em->getConnection();
         $statement = $connection->prepare($rq);

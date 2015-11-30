@@ -16,9 +16,9 @@ class InfosType extends AbstractType
     {
         $builder
             ->add('moduleRef')
-            ->add('moduleNom')
-            ->add('nrfId')
-            ->add('moduleType')
+            ->add('moduleNom', NULL, array('label' => 'nom'))
+            ->add('nrfId', NULL, array('label' => 'adresse'))
+            ->add('moduleType',NULL, array('label' => 'type'))
             ->add('emplacement')
         ;
     }

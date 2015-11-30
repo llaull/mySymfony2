@@ -69,13 +69,6 @@ class LogsController extends Controller
 
         $entities = $em->getRepository('DomotiquebundleModuleBundle:Logs')->findAll();
 
-//        $paginator = $this->get('knp_paginator');
-//        $pagination = $paginator->paginate(
-//            $entities,
-//            $this->get('request')->query->get('page', 1)/*page number*/,
-//            10/*limit per page*/
-//        );
-
         return $this->render('DomotiquebundleModuleBundle:Logs:index.html.twig', array(
             'pagination' => $entities,
         ));
@@ -126,7 +119,8 @@ class LogsController extends Controller
      * truncate la table logs
      *
      */
-    public function truncateAction(){
+    public function truncateAction()
+    {
 
         $stmt = $this->getDoctrine()->getEntityManager()
             ->getConnection()
@@ -137,5 +131,31 @@ class LogsController extends Controller
         $this->get('ras_flash_alert.alert_reporter')->addSuccess("TRUNCATE ok");
 
         return $this->redirect($this->generateUrl('admin_domotique_module_logs'));
+    }
+
+    /**
+     *
+     */
+    public function logMoyenneAction()
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $entities = $this->getDoctrine()->getRepository('DomotiquebundleModuleBundle:Logs');
+        $entities = $entities->moyenneByModuleBySondes($em);
+
+        return new JsonResponse(array('sondes' => $entities));
+    }
+
+    /**
+     *
+     */
+    public function logMoyenneBisAction()
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $entities = $this->getDoctrine()->getRepository('DomotiquebundleModuleBundle:Logs');
+        $entities = $entities->moyenneByModuleBySondesBis($em);
+
+        return new JsonResponse(array('name' => $entities));
     }
 }
