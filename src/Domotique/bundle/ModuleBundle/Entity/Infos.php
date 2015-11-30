@@ -7,9 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Infos
  *
- * @ORM\Table(name="domotique__module_infos", uniqueConstraints={@ORM\UniqueConstraint(name="module_ref", columns={"module_ref"}), indexes={@ORM\Index(name="emplacement_id", columns={"emplacement_id"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Domotique\bundle\ModuleBundle\Repository\InfosRepository")*
+ * @ORM\Table(name="domotique__module_infos",
+ * uniqueConstraints={@ORM\UniqueConstraint(name="module_ref", columns={"module_ref"})}
+ *
+ * )
  */
+//indexes={@ORM\Index(name="emplacement_id", columns={"emplacement_id"}),
+//* @ORM\Table(name="domotique__module_infos", uniqueConstraints={@ORM\UniqueConstraint(name="module_ref", columns={"module_ref"}), indexes={@ORM\Index(name="emplacement_id", columns={"emplacement_id"})})
+
+
+
 class Infos
 {
     public function __toString()
