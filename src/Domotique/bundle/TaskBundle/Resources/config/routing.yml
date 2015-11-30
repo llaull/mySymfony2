@@ -5,7 +5,3 @@ domotiquebundle_task_admin_task:
 domotiquebundle_task_admin_taskLog:
     resource: "@DomotiquebundleTaskBundle/Resources/config/routing/log.yml"
     prefix:   /admin/taskLog
-
-domotiquebundle_task_homepage:
-    path:     /t/{name}
-    defaults: { _controller: DomotiquebundleTaskBundle:Default:index }
