@@ -45,6 +45,78 @@ class Lieu
     protected $created;
 
     /**
+     * @var datetime $dateArrived
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $dateArrived;
+
+    /**
+     * @var datetime $dateDeparture
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $dateDeparture;
+
+
+    /**
+     * @var carnet
+     *
+     * @ORM\ManyToOne(targetEntity="Lieu")
+     * @ORM\JoinColumn(name="depart_id", referencedColumnName="id", nullable=true)
+     */
+    protected $departLieu;
+
+    /**
+     * @return datetime
+     */
+    public function getDateArrived()
+    {
+        return $this->dateArrived;
+    }
+
+    /**
+     * @param datetime $dateArrived
+     */
+    public function setDateArrived($dateArrived)
+    {
+        $this->dateArrived = $dateArrived;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getDateDeparture()
+    {
+        return $this->dateDeparture;
+    }
+
+    /**
+     * @param datetime $dateDeparture
+     */
+    public function setDateDeparture($dateDeparture)
+    {
+        $this->dateDeparture = $dateDeparture;
+    }
+
+    /**
+     * @return carnet
+     */
+    public function getDepartLieu()
+    {
+        return $this->departLieu;
+    }
+
+    /**
+     * @param carnet $departLieu
+     */
+    public function setDepartLieu($departLieu)
+    {
+        $this->departLieu = $departLieu;
+    }
+
+
+    /**
      * @ORM\Column(type="string", length=90)
      */
     protected $ville;
@@ -74,6 +146,27 @@ class Lieu
      * @ORM\Column(type="string",length=200, nullable=true)
      */
     protected $image;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $ordre;
+
+    /**
+     * @return mixed
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * @param mixed $ordre
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    }
 
     /**
      * Get id

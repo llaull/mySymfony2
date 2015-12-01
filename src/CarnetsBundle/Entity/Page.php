@@ -77,6 +77,27 @@ class Page
     protected $slug;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $ordre;
+
+    /**
+     * @return mixed
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * @param mixed $ordre
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    }
+
+    /**
      * Get id
      *
      * @return integer

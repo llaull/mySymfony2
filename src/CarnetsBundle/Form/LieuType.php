@@ -5,6 +5,7 @@ namespace CarnetsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class LieuType extends AbstractType
 {
@@ -18,8 +19,28 @@ class LieuType extends AbstractType
 //            ->add('created')
             ->add('ville')
             ->add('carnet')
+            ->add('dateArrived')
+            ->add('dateArrived', 'date', array(
+                    'widget' => 'single_text',
+                    'input' => 'datetime',
+                    'format' => 'dd/MM/yyyy',
+                    'attr' => array('class' => 'date'),
+                )
+            )
+            ->add('dateDeparture', 'date', array(
+                    'widget' => 'single_text',
+                    'input' => 'datetime',
+                    'format' => 'dd/MM/yyyy',
+                    'attr' => array('class' => 'date'),
+                )
+            )
+            ->add('departLieu')
         ;
 
+
+        $builder->add('contenu', 'ckeditor', array(
+            'label' => 'Contenu',
+        ));
     }
 
     /**

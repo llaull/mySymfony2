@@ -19,6 +19,10 @@ carnets_de_voy_destination:
     path:     /carnet/{slug}
     defaults: { _controller: CarnetsBundle:Carnet:show }
 
+carnets_de_voy_ville:
+    path:     /carnet/{carnet}/{ville}.html
+    defaults: { _controller: CarnetsBundle:Lieu:show }
+
 carnets_de_voy_page:
     path:     /carnet/{carnet}/{ville}/{page}.html
     defaults: { _controller: CarnetsBundle:Page:show }

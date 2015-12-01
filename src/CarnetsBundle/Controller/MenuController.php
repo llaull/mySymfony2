@@ -19,14 +19,17 @@ class MenuController extends Controller {
             throw $this->createNotFoundException('Unable to find Carnet entity.');
         }
 
+        $lieux = $em->getRepository('CarnetsBundle:Lieu')->findBy(
+            array('carnet' => $entity),
+            array('ordre' => 'ASC'));
 
-        $l = $em->getRepository('CarnetsBundle:Lieu')->findByCarnet($entity);
-
-        $p = $em->getRepository('CarnetsBundle:Page')->findByLieu($l);
+        $pages = $em->getRepository('CarnetsBundle:Page')->findBy(
+            array('lieu' => $lieux),
+            array('ordre' => 'ASC'));
 
         return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:menu.html.twig', array(
-            'lieu' => $l,
-            'page' => $p,
+            'lieu' => $lieux,
+            'page' => $pages,
         ));
     }
 }

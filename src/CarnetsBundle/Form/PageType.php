@@ -19,16 +19,11 @@ class PageType extends AbstractType
             ->add('titre')
             ->add('lieu')
             ->add('contenu')
-//            ->add('lieu', new LieuType())
             ;
-
-
 
         $builder->add('contenu', 'ckeditor', array (
             'label' => 'Contenu',
         ));
-
-
 
     }
 

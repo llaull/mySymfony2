@@ -15,6 +15,52 @@ use CarnetsBundle\Form\PageType;
 class PageController extends Controller
 {
 
+
+    public function orderAction(Request $request)
+    {
+
+        $data = $request->request->get('data');
+        $params = json_decode($data);
+        $em = $this->getDoctrine()->getManager();
+
+        //met tout a null
+        $q = $em->createQuery('update CarnetsBundle:Lieu c set c.ordre = 1');
+        $q->execute();
+        $q = $em->createQuery('update CarnetsBundle:Page c set c.ordre = 1');
+        $q->execute();
+
+        var_dump($params);
+
+        foreach ($params as $v) {
+            if ($v->type != "lieu") {
+                $em = $this->getDoctrine()->getManager();
+
+                $entity = $em->getRepository('CarnetsBundle:Page')->find($v->id);
+
+                if (!$entity) {
+                    throw $this->createNotFoundException('Unable to find Page entity.');
+                }
+
+                $entity->setOrdre($v->order);
+                $em->flush();
+            } else {
+                $em = $this->getDoctrine()->getManager();
+
+                $entity = $em->getRepository('CarnetsBundle:Lieu')->find($v->id);
+
+                if (!$entity) {
+                    throw $this->createNotFoundException('Unable to find Lieu entity.');
+                }
+
+                $entity->setOrdre($v->order);
+                $em->flush();
+            }
+
+        }
+        die();
+
+    }
+
     /**
      * Lists all Page entities.
      *
@@ -30,6 +76,7 @@ class PageController extends Controller
             'pagination' => $entities,
         ));
     }
+
     /**
      * Creates a new Page entity.
      *
@@ -50,7 +97,7 @@ class PageController extends Controller
 
         return $this->render('CarnetsBundle:Page:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -80,11 +127,11 @@ class PageController extends Controller
     public function newAction()
     {
         $entity = new Page();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CarnetsBundle:Page:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -92,7 +139,7 @@ class PageController extends Controller
      * Finds and displays a Page entity.
      *
      */
-    public function showAction($carnet,$page)
+    public function showAction($carnet, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -101,7 +148,7 @@ class PageController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
-        $slugCarnet = array("slug"=>$carnet);
+        $slugCarnet = array("slug" => $carnet);
 
         return $this->render('CarnetsBundle:Default:page.html.twig', array(
             'entity' => $slugCarnet,
@@ -127,19 +174,19 @@ class PageController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CarnetsBundle:Page:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Page entity.
-    *
-    * @param Page $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Page entity.
+     *
+     * @param Page $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Page $entity)
     {
         $form = $this->createForm(new PageType(), $entity, array(
@@ -151,6 +198,7 @@ class PageController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Page entity.
      *
@@ -176,11 +224,12 @@ class PageController extends Controller
         }
 
         return $this->render('CarnetsBundle:Page:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Page entity.
      *
@@ -214,7 +263,6 @@ class PageController extends Controller
             ->setAction($this->generateUrl('admin_page_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

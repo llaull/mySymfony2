@@ -28,3 +28,8 @@ admin_page_delete:
     path:     /{id}/delete
     defaults: { _controller: "CarnetsBundle:Page:delete" }
     methods:  [POST, DELETE, GET]
+
+admin_page_order:
+    path:     /order/edit/
+    defaults: { _controller: "CarnetsBundle:Page:order" }
+    methods:  [POST, PUT]

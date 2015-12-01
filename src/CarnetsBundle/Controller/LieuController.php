@@ -96,26 +96,25 @@ class LieuController extends Controller
     }
 
     /**
-     * Finds and displays a Lieu entity.
+     * Finds and displays a Page entity.
      *
      */
-//    public function showAction($id)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $entity = $em->getRepository('CarnetsBundle:Lieu')->find($id);
-//
-//        if (!$entity) {
-//            throw $this->createNotFoundException('Unable to find Lieu entity.');
-//        }
-//
-//        $deleteForm = $this->createDeleteForm($id);
-//
-//        return $this->render('CarnetsBundle:Default:carnet.html.twig', array(
-//            'entity' => $entity,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
+    public function showAction($carnet, $ville)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('CarnetsBundle:Lieu')->findOneBySlug($ville);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Page entity.');
+        }
+        $slugCarnet = array("slug" => $carnet);
+
+        return $this->render('CarnetsBundle:Default:page.html.twig', array(
+            'entity' => $slugCarnet,
+            'page' => $entity,
+        ));
+    }
 
     /**
      * Displays a form to edit an existing Lieu entity.

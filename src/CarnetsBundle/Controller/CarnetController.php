@@ -26,7 +26,6 @@ class CarnetController extends Controller
         $entities = $em->getRepository('CarnetsBundle:Carnet')->findAll();
 
 
-
         return $this->render('CarnetsBundle:Carnet:index.html.twig', array(
             'pagination' => $entities,
         ));
@@ -46,13 +45,6 @@ class CarnetController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-//            $file = $entity->getImageName();
-//            $fileName = $entity->getTitle().'.'.$file->guessExtension();
-//
-//            $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/brochures';
-//            $file->move($brochuresDir, $fileName);
-//
-//            $entity->setImageName($fileName);
 
             $em->persist($entity);
             $em->flush();
@@ -130,6 +122,14 @@ class CarnetController extends Controller
 
         $entity = $em->getRepository('CarnetsBundle:Carnet')->find($id);
 
+        $entitiesL = $em->getRepository('CarnetsBundle:Lieu')->findBy(
+            array('carnet' => $entity),
+            array('ordre' => 'ASC'));
+
+        $entitiesP = $em->getRepository('CarnetsBundle:Page')->findBy(
+            array('lieu' => $entitiesL),
+            array('ordre' => 'ASC'));
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Carnet entity.');
         }
@@ -139,6 +139,8 @@ class CarnetController extends Controller
 
         return $this->render('CarnetsBundle:Carnet:edit.html.twig', array(
             'entity' => $entity,
+            'lieux' => $entitiesL,
+            'pages' => $entitiesP,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -213,7 +215,8 @@ class CarnetController extends Controller
 
         return $this->redirect($this->generateUrl('admin_carnet'));
     }
-        /**
+
+    /**
      * Creates a form to delete a Carnet entity by id.
      *
      * @param mixed $id The entity id
