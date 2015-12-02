@@ -33,7 +33,9 @@ class LogsRepository extends EntityRepository
         $rq = "
         SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS jour,
                HOUR(temps) AS heure,
-               AVG(`sonde_valeur`) AS moyenne,
+               ROUND(AVG(`sonde_valeur`),2) AS moyenne,
+               ROUND(MAX(`sonde_valeur`),2) AS maxi,
+               ROUND(MIN(`sonde_valeur`),2) AS mini,
                `modules_id`,
                `sonde_id`,
                unit.nom AS sonde_unitee,
