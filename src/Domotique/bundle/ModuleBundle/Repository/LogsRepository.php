@@ -51,7 +51,7 @@ class LogsRepository extends EntityRepository
                  `sonde_id`,
                  `sonde_type`,
                  `sonde_unit`
-        ORDER BY temps ASC
+        ORDER BY jour, heure ASC
         ";
 
 
@@ -70,7 +70,7 @@ class LogsRepository extends EntityRepository
     public function moyenneByModuleBySondesBis($em)
     {
 
-        $rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` FROM domotique__module_logs GROUP BY HOUR(temps) ,`modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` ORDER BY `Day` ASC";
+        $rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS jour, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` FROM domotique__module_logs GROUP BY HOUR(temps) ,`modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` ORDER BY jour, heure ASC";
 
         $connection = $em->getConnection();
         $statement = $connection->prepare($rq);
