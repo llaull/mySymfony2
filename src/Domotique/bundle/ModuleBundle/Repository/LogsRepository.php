@@ -44,6 +44,7 @@ class LogsRepository extends EntityRepository
         FROM domotique__module_logs AS logs
         INNER JOIN domotique__sonde_unit AS unit ON unit.id = logs.sonde_unit
         INNER JOIN domotique__sonde_type AS type ON type.id = logs.sonde_type
+        WHERE temps > DATE_SUB(NOW(), INTERVAL 24 HOUR)
         GROUP BY YEAR(temps),
                  MONTH(temps),
                  DAY(temps),
