@@ -61,8 +61,8 @@
     <!-- New widget -->
     <div class="powerwidget cold-grey" id="morrisbasic" data-widget-editbutton="false" data-widget-deletebutton="false">
         <header>
-            <h2>Morris Chart
-                <small>Morris basic</small>
+            <h2>Temperature
+                <small>du salon</small>
             </h2>
         </header>
         <div class="inner-spacer">
@@ -72,8 +72,8 @@
                 {#<label class="label label-success">Area Chart</label>#}
                 {#<div id="area-chart" ></div>#}
             {#</div>#}
-            <div class="col-sm-10 text-center">
-                <label class="label label-success">Line Chart</label>
+            <div class="col-sm-12 text-center">
+                <label class="label label-success">Salon</label>
                 <div id="line-chart"></div>
             </div>
             {#<div  class="col-sm-6 text-center">#}
@@ -116,16 +116,22 @@
                     console.log(json); // show the info in console
                     config = {
                         data: json,
+//                        hoverCallback: function(index, options, content) {
+//                            var data = options.data[index];
+//                            $(".morris-hover").html('<div>Custom label: ' + data.label + '</div>');
+//                        },
                         xkey: 'heure',
                         ykeys: ['moyenne', 'maxi', 'mini'],
                         labels: ['moyenne', 'maxi', 'mini'],
                         fillOpacity: 0.6,
+                        stacked: true,
                         hideHover: 'auto',
                         behaveLikeLine: true,
                         resize: true,
                         pointFillColors:['#ffffff'],
                         pointStrokeColors: ['black'],
                         lineColors:['gray','red','blue']
+
                     };
 
                     config.element = 'line-chart';
