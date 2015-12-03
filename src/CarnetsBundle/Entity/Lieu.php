@@ -58,7 +58,6 @@ class Lieu
      */
     protected $dateDeparture;
 
-
     /**
      * @var carnet
      *
@@ -66,6 +65,70 @@ class Lieu
      * @ORM\JoinColumn(name="depart_id", referencedColumnName="id", nullable=true)
      */
     protected $departLieu;
+
+
+    /**
+     * @ORM\Column(type="string", length=90)
+     */
+    protected $ville;
+
+    /**
+     * @var carnet
+     *
+     * @ORM\ManyToOne(targetEntity="Carnet")
+     * @ORM\JoinColumn(name="carnet_id", referencedColumnName="id", nullable=false)
+     */
+    private $carnet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=50, unique=true)
+     * @Gedmo\Slug(fields={"ville"}, unique=true)
+     */
+    protected $slug;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $contenu;
+
+    /**
+     * @ORM\Column(type="string",length=200, nullable=true)
+     */
+    protected $image;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param datetime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
 
     /**
      * @return datetime
@@ -115,42 +178,85 @@ class Lieu
         $this->departLieu = $departLieu;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
 
     /**
-     * @ORM\Column(type="string", length=90)
+     * @param mixed $ville
      */
-    protected $ville;
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    }
 
     /**
-     * @var carnet
-     *
-     * @ORM\ManyToOne(targetEntity="Carnet")
-     * @ORM\JoinColumn(name="carnet_id", referencedColumnName="id", nullable=false)
+     * @return carnet
      */
-    private $carnet;
+    public function getCarnet()
+    {
+        return $this->carnet;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=50, unique=true)
-     * @Gedmo\Slug(fields={"ville"}, unique=true)
+     * @param carnet $carnet
      */
-    protected $slug;
+    public function setCarnet($carnet)
+    {
+        $this->carnet = $carnet;
+    }
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @return string
      */
-    protected $contenu;
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
     /**
-     * @ORM\Column(type="string",length=200, nullable=true)
+     * @param string $slug
      */
-    protected $image;
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @return mixed
      */
-    protected $ordre;
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param mixed $contenu
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 
     /**
      * @return mixed
@@ -169,156 +275,70 @@ class Lieu
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return mixed
      */
-    public function getId()
+    public function getLat()
     {
-        return $this->id;
+        return $this->lat;
     }
 
     /**
-     * Set created
-     *
-     * @param \DateTime $created
-     *
-     * @return Lieu
+     * @param mixed $lat
      */
-    public function setCreated($created)
+    public function setLat($lat)
     {
-        $this->created = $created;
-
-        return $this;
+        $this->lat = $lat;
     }
 
     /**
-     * Get created
-     *
-     * @return \DateTime
+     * @return mixed
      */
-    public function getCreated()
+    public function getLng()
     {
-        return $this->created;
+        return $this->lng;
     }
 
     /**
-     * Set ville
-     *
-     * @param string $ville
-     *
-     * @return Lieu
+     * @param mixed $lng
      */
-    public function setVille($ville)
+    public function setLng($lng)
     {
-        $this->ville = $ville;
-
-        return $this;
+        $this->lng = $lng;
     }
 
     /**
-     * Get ville
-     *
-     * @return string
+     * @return mixed
      */
-    public function getVille()
+    public function getUseInMenu()
     {
-        return $this->ville;
+        return $this->useInMenu;
     }
 
     /**
-     * Set carnet
-     *
-     * @param \CarnetsBundle\Entity\Carnet $carnet
-     *
-     * @return Lieu
+     * @param mixed $useInMenu
      */
-    public function setCarnet(\CarnetsBundle\Entity\Carnet $carnet = null)
+    public function setUseInMenu($useInMenu)
     {
-        $this->carnet = $carnet;
-
-        return $this;
+        $this->useInMenu = $useInMenu;
     }
 
     /**
-     * Get carnet
-     *
-     * @return \CarnetsBundle\Entity\Carnet
+     * @ORM\Column(type="integer", nullable=true)
      */
-    public function getCarnet()
-    {
-        return $this->carnet;
-    }
+    protected $ordre;
 
     /**
-     * Get slug
-     *
-     * @return string
+     * @ORM\Column(type="float", nullable=TRUE)
      */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
+    protected $lat;
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Lieu
+     * @ORM\Column(type="float", nullable=TRUE)
      */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
+    protected $lng;
 
     /**
-     * Set contenu
-     *
-     * @param string $contenu
-     *
-     * @return Lieu
+     * @ORM\Column(type="integer", nullable=true)
      */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    /**
-     * Get contenu
-     *
-     * @return string
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Lieu
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
+    protected $useInMenu;
 }
