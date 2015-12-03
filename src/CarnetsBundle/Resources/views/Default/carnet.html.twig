@@ -47,88 +47,39 @@
                 var latlngbounds = new google.maps.LatLngBounds();
                 var infoWindow = new google.maps.InfoWindow();
 
-                var paths = data.path;
-//                console.log(paths);
-                $.each(paths, function (index, record) {
+                //  Parse the Linestring field into an array of LatLngs
+                $.each(data.path, function (index, record) {
+                    mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
+                   // mypathColor.push(record.);
 
-//                    console.log(record);
-
-                    $.each(record, function (index, record) {
-//                        console.log(record);
-                        console.log(index);
-
-                        if(index == "asie") {
-                            console.log(record);
-                            mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
-
-
-                            var marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(record.latitude, record.longitude),
-                                map: map,
-                                title: record.title
-                            });
-
-                            latlngbounds.extend(marker.position);
-                            (function (marker, record) {
-//                        console.log(record);
-                                google.maps.event.addListener(marker, "click", function (e) {
-                                    infoWindow.setContent(record.title);
-                                    infoWindow.open(map, marker);
-                                });
-                            })(marker, record);
-                        }
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(record.latitude, record.longitude),
+                        map: map,
+                        title: record.title
                     });
 
-                    map.setCenter(latlngbounds.getCenter());
-                    map.fitBounds(latlngbounds);
+                    latlngbounds.extend(marker.position);
+                    (function (marker, record) {
+//                        console.log(record);
+                        google.maps.event.addListener(marker, "click", function (e) {
+                            infoWindow.setContent(record.title);
+                            infoWindow.open(map, marker);
+                        });
+                    })(marker, record);
 
-                    var polyline = new google.maps.Polyline({
-                        path: mypath,
-                        strokeColor: '#77bf44',
-                        strokeOpacity: 1.0,
-                        strokeWeight: 3,
-                        geodesic: true
-                    });
-                    polyline.setMap(map);
 
                 });
+                map.setCenter(latlngbounds.getCenter());
+                map.fitBounds(latlngbounds);
 
-
-                //  Parse the Linestring field into an array of LatLngs
-//                $.each(paths, function (index, record) {
-//
-//
-//                    mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
-//
-//
-//                    var marker = new google.maps.Marker({
-//                        position: new google.maps.LatLng(record.latitude, record.longitude),
-//                        map: map,
-//                        title: record.title
-//                    });
-//
-//                    latlngbounds.extend(marker.position);
-//                    (function (marker, record) {
-////                        console.log(record);
-//                        google.maps.event.addListener(marker, "click", function (e) {
-//                            infoWindow.setContent(record.title);
-//                            infoWindow.open(map, marker);
-//                        });
-//                    })(marker, record);
-//
-//
-//                });
-//                map.setCenter(latlngbounds.getCenter());
-//                map.fitBounds(latlngbounds);
-//
-//                var polyline = new google.maps.Polyline({
-//                    path: mypath,
-//                    strokeColor: '#77bf44',
-//                    strokeOpacity: 1.0,
-//                    strokeWeight: 3,
-//                    geodesic: true
-//                });
-//                polyline.setMap(map);
+                var polyline = new google.maps.Polyline({
+                    path: mypath,
+                    strokeColor: '#77bf44',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3,
+                    geodesic: true
+                });
+                polyline.setMap(map);
 
             });
         }

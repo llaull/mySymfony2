@@ -21,9 +21,9 @@
 <div class="container">
 
     <div class="headerImage">
-        {#{% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}#}
-        {#<img src="{{ asset_url }}" alt="header carnet de voyage"/>#}
-        {#{% endimage %}#}
+        {% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}
+        <img src="{{ asset_url }}" alt="header carnet de voyage"/>
+        {% endimage %}
     </div>
 
     {% if entity is defined %}
