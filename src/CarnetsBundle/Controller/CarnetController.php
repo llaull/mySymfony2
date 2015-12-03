@@ -27,16 +27,37 @@ class CarnetController extends Controller
     {
 
         $array = array(
-            array("title"=>"Bordeaux","latitude"=>"44.83059350000001","longitude"=>"-0.7103051999999934"),
-            array("title"=>"Paris","latitude"=>"48.856614","longitude"=>"2.3522219000000177"),
-            array("title"=>"Hong Kong","latitude"=>"22.308047","longitude"=>"113.9184808"),
-            array("title"=>"Hanoï","latitude"=>"21.0277644","longitude"=>"105.83415979999995"),
-            array("title"=>"Nha Trang","latitude"=>"21.0277644","longitude"=>"105.83415979999995"),
-            array("title"=>"Hô-Chi-Minh-Ville","latitude"=>"10.8230989","longitude"=>"106.6296638"),
-            array("title"=>"Bangkok","latitude"=>"13.7563309","longitude"=>"100.50176510000006"),
-            array("title"=>"Phuket","latitude"=>"7.9519331","longitude"=>"98.33808840000006")
-        );
+//            array("title"=>"Bordeaux","latitude"=>"44.83059350000001","longitude"=>"-0.7103051999999934", "color" => "#77bf44"),
+//            array("title"=>"Paris","latitude"=>"48.856614","longitude"=>"2.3522219000000177", "color" => "#77bf44"),
 
+        //exemple
+//        $sua =
+            array("USA"=> array(
+            array("title"=>"Paris","latitude"=>"33.7490","longitude"=>"-84.3880", "color" => "#77bf44"),
+            array("title"=>"Paris","latitude"=>"33.4484","longitude"=>"-112.0740", "color" => "#77bf44"),
+            array("title"=>"Paris","latitude"=>"37.9577","longitude"=>"-121.2908", "color" => "#77bf44")
+            )
+            ),
+        //exemple
+
+//        $asie =
+            array("asie"=> array(
+            array("title"=>"Hong Kong","latitude"=>"22.308047","longitude"=>"113.9184808", "color" => "#77bf44"),
+            array("title"=>"Hanoï","latitude"=>"21.0277644","longitude"=>"105.83415979999995", "color" => "#77bf44"),
+            array("title"=>"Nha Trang","latitude"=>"12.2387911","longitude"=>"109.19674880000002", "color" => "#77bf44"),
+            array("title"=>"Hô-Chi-Minh-Ville","latitude"=>"10.8230989","longitude"=>"106.6296638", "color" => "#77bf44"),
+            array("title"=>"Bangkok","latitude"=>"13.7563309","longitude"=>"100.50176510000006", "color" => "#77bf44"),
+            array("title"=>"Phuket","latitude"=>"7.9519331","longitude"=>"98.33808840000006", "color" => "#77bf44")
+            )
+            )
+    );
+
+//        $array =  json_encode( array_combine( $sua, $asie ) );
+//echo $array;
+//        die(var_dump($array));
+
+//        $array = array_merge($sua, $asie);
+//        die(var_dump($array));
         return new JsonResponse(array('path' => $array));
     }
 
