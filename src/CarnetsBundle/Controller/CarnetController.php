@@ -8,12 +8,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CarnetsBundle\Entity\Carnet;
 use CarnetsBundle\Form\CarnetType;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+
 /**
  * Carnet controller.
  *
  */
 class CarnetController extends Controller
 {
+
+
+    /**
+     * dessine le chemin du voyage
+     *
+     */
+    public function pathAction()
+    {
+
+        $array = array(
+            array("title"=>"Bordeaux","latitude"=>"44.83059350000001","longitude"=>"-0.7103051999999934"),
+            array("title"=>"Paris","latitude"=>"48.856614","longitude"=>"2.3522219000000177"),
+            array("title"=>"Hong Kong","latitude"=>"22.308047","longitude"=>"113.9184808"),
+            array("title"=>"Hanoï","latitude"=>"21.0277644","longitude"=>"105.83415979999995"),
+            array("title"=>"Nha Trang","latitude"=>"21.0277644","longitude"=>"105.83415979999995"),
+            array("title"=>"Hô-Chi-Minh-Ville","latitude"=>"10.8230989","longitude"=>"106.6296638"),
+            array("title"=>"Bangkok","latitude"=>"13.7563309","longitude"=>"100.50176510000006"),
+            array("title"=>"Phuket","latitude"=>"7.9519331","longitude"=>"98.33808840000006")
+        );
+
+        return new JsonResponse(array('path' => $array));
+    }
 
     /**
      * Lists all Carnet entities.

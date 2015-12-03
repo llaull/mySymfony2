@@ -12,4 +12,77 @@
         </ul>
 
     </div>
+    <div class="container-fluid text-center">
+        <div class="row content">
+
+            <div class="col-sm-12">
+
+                <div id="map_canvas"></div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+
+        function initialize() {
+
+
+            var myOptions = {
+//                zoom: 8,
+//                center: new google.maps.LatLng(39.0997, -94.5786),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+            var url = "{{ path ('carnets_de_voy_carte_path')}}";
+
+
+            $.getJSON(url, function (data) {
+                var mypath = new Array();
+                var latlngbounds = new google.maps.LatLngBounds();
+                var infoWindow = new google.maps.InfoWindow();
+
+                //  Parse the Linestring field into an array of LatLngs
+                $.each(data.path, function (index, record) {
+                    mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
+
+
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(record.latitude, record.longitude),
+                        map: map,
+                        title: record.title
+                    });
+
+                    latlngbounds.extend(marker.position);
+                    (function (marker, record) {
+//                        console.log(record);
+                        google.maps.event.addListener(marker, "click", function (e) {
+                            infoWindow.setContent(record.title);
+                            infoWindow.open(map, marker);
+                        });
+                    })(marker, record);
+
+
+                });
+                map.setCenter(latlngbounds.getCenter());
+                map.fitBounds(latlngbounds);
+
+                var polyline = new google.maps.Polyline({
+                    path: mypath,
+                    strokeColor: '#77bf44',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3,
+                    geodesic: true
+                });
+                polyline.setMap(map);
+
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 {% endblock %}

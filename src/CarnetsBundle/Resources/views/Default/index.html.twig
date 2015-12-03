@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>--</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
     {% stylesheets
     '@CarnetsBundle/Resources/public/css/*'
     output='css/compiled/carnet.css' %}
@@ -21,9 +21,9 @@
 <div class="container">
 
     <div class="headerImage">
-        {% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}
-        <img src="{{ asset_url }}" alt="header carnet de voyage"/>
-        {% endimage %}
+        {#{% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}#}
+        {#<img src="{{ asset_url }}" alt="header carnet de voyage"/>#}
+        {#{% endimage %}#}
     </div>
 
     {% if entity is defined %}
@@ -42,8 +42,9 @@
     </footer>
 </div>
 
-{% block javascripts %}{% endblock %}
+
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>
