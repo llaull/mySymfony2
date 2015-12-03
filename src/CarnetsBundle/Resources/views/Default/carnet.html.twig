@@ -43,13 +43,14 @@
 
             $.getJSON(url, function (data) {
                 var mypath = new Array();
+                var mypathColor = new Array();
                 var latlngbounds = new google.maps.LatLngBounds();
                 var infoWindow = new google.maps.InfoWindow();
 
                 //  Parse the Linestring field into an array of LatLngs
                 $.each(data.path, function (index, record) {
                     mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
-
+                   // mypathColor.push(record.);
 
                     var marker = new google.maps.Marker({
                         position: new google.maps.LatLng(record.latitude, record.longitude),
