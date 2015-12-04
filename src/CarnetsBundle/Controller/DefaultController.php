@@ -16,7 +16,7 @@ class DefaultController extends Controller
             ->getRepository('CarnetsBundle:Carnet')
             ->findAll();
 
-        return $this->render('CarnetsBundle:Default:carnet.html.twig', array('entity' => $entity));
+        return $this->render('CarnetsBundle:Default:carnet.html.twig', array('carnets' => $entity));
     }
 
 
