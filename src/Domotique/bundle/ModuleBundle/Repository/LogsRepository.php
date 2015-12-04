@@ -31,19 +31,23 @@ class LogsRepository extends EntityRepository
         //$rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne,`modules_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit` FROM domotique__module_logs GROUP BY HOUR(temps) ,`modules_id` ,`sonde_id`,`sonde_type_id`,`sonde_unit` ORDER BY `Day` ASC";
 //        $rq = "SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS Day, HOUR(temps) AS heure, AVG(`sonde_valeur`) AS moyenne , `modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` FROM domotique__module_logs GROUP BY YEAR(temps), MONTH(temps), DAY(temps), HOUR(temps), `modules_id` ,`sonde_id`,`sonde_type`,`sonde_unit` ORDER BY temps ASC";
         $rq = "
-        SELECT DATE_FORMAT(temps, '%Y-%m-%d') AS jour,
-               HOUR(temps) AS heure,
+        SELECT  DATE_FORMAT(temps, '%Y-%m-%d') AS jour,
+               CONCAT(HOUR(temps),':00') AS heure,
                ROUND(AVG(`sonde_valeur`),2) AS moyenne,
                ROUND(MAX(`sonde_valeur`),2) AS maxi,
                ROUND(MIN(`sonde_valeur`),2) AS mini,
+                CONCAT(DATE_FORMAT(temps, '%Y-%m-%d'),' ',CONCAT(HOUR(temps),':00')) AS l,
                `modules_id`,
                `sonde_id`,
                unit.nom AS sonde_unitee,
                unit.symbole AS sonde_symbole,
-               type.nom AS sondy_type
+               type.nom AS sondy_type,
+               logs.id AS ID,
+               info.emplacement_id
         FROM domotique__module_logs AS logs
         INNER JOIN domotique__sonde_unit AS unit ON unit.id = logs.sonde_unit
         INNER JOIN domotique__sonde_type AS type ON type.id = logs.sonde_type
+        INNER JOIN domotique__module_infos AS info on info.id = logs.modules_id
         WHERE temps > DATE_SUB(NOW(), INTERVAL 24 HOUR)
         AND type.id in (2,3,4)
         GROUP BY YEAR(temps),
@@ -54,7 +58,8 @@ class LogsRepository extends EntityRepository
                  `modules_id`,
                  `sonde_id`,
                  `sonde_type`,
-                 `sonde_unit`
+                 `sonde_unit`,
+                 info.emplacement_id
         ORDER BY jour, heure ASC
         ";
 

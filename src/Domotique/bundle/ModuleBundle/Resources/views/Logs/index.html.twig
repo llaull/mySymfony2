@@ -8,9 +8,10 @@
 
 {% block dynamic_body %}
 
-    <div class="col-md-12 bootstrap-grid">
+<div class="col-md-12 bootstrap-grid">
 
-    <div class="powerwidget cold-grey" id="datatable-filter-column" data-widget-editbutton="false" data-widget-deletebutton="false">
+    <div class="powerwidget cold-grey" id="datatable-filter-column" data-widget-editbutton="false"
+         data-widget-deletebutton="false">
         <header>
             <h2>{{ pageTitle }}
                 <small> logs brut</small>
@@ -69,24 +70,25 @@
             {#<div class="morrischart" id="morris-area">blbl</div>#}
 
             {#<div class="col-sm-6 text-center">#}
-                {#<label class="label label-success">Area Chart</label>#}
-                {#<div id="area-chart" ></div>#}
+            {#<label class="label label-success">Area Chart</label>#}
+            {#<div id="area-chart" ></div>#}
             {#</div>#}
             <div class="col-sm-12 text-center">
                 <label class="label label-success">Salon</label>
+
                 <div id="line-chart"></div>
             </div>
             {#<div  class="col-sm-6 text-center">#}
-                {#<label class="label label-success">Bar Chart</label>#}
-                {#<div id="bar-chart" ></div>#}
+            {#<label class="label label-success">Bar Chart</label>#}
+            {#<div id="bar-chart" ></div>#}
             {#</div>#}
             {#<div class="col-sm-6 text-center">#}
-                {#<label class="label label-success">Bar stacked</label>#}
-                {#<div id="stacked" ></div>#}
+            {#<label class="label label-success">Bar stacked</label>#}
+            {#<div id="stacked" ></div>#}
             {#</div>#}
             {#<div class="col-sm-6 col-sm-offset-3 text-center">#}
-                {#<label class="label label-success">Pie Chart</label>#}
-                {#<div id="pie-chart" ></div>#}
+            {#<label class="label label-success">Pie Chart</label>#}
+            {#<div id="pie-chart" ></div>#}
             {#</div>#}
 
 
@@ -95,83 +97,67 @@
     <!-- /New widget -->
 
 
-{% endblock dynamic_body %}
-        {% block dynamic_js %}
-        {% javascripts
-        '@CommunUserBundle/Resources/public/js/morris/morris.min.js'
-        %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% javascripts
-        '@CommunUserBundle/Resources/public/js/raphael/raphael-min.js'
-        %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+    {% endblock dynamic_body %}
+    {% block dynamic_js %}
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/morris/morris.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
-        <script>
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/raphael/raphael-min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
-            $(document).ready(function () {
 
-                var jsonData = $.getJSON("{{ path('domotique_log_moyen') }}", function(json) {
-                    console.log(json); // show the info in console
-                    config = {
-                        data: json,
+    <script>
+
+        $(document).ready(function () {
+
+            $.getJSON("{{ path('domotique_log_moyen') }}", function (json) {
+
+
+                datas = []
+                $(json).each(function (index, record) {
+                    var data = record.maxi;
+                    var data = record.mini;
+                    datas.push(data);
+                });
+
+                var dataMax = parseInt(Math.max.apply(Math, datas)) + 1;
+                var dataMin = parseInt(Math.min.apply(Math, datas)) - 1;
+
+                config = {
+                    data: json,
 //                        hoverCallback: function(index, options, content) {
 //                            var data = options.data[index];
 //                            $(".morris-hover").html('<div>Custom label: ' + data.label + '</div>');
 //                        },
-                        xkey: 'heure',
-                        ykeys: ['moyenne', 'maxi', 'mini'],
-                        labels: ['moyenne', 'maxi', 'mini'],
-                        fillOpacity: 0.6,
-                        stacked: true,
-                        hideHover: 'auto',
-                        behaveLikeLine: true,
-                        resize: true,
-                        pointFillColors:['#ffffff'],
-                        pointStrokeColors: ['black'],
-                        lineColors:['gray','red','blue']
+                    xkey: 'l',
+                    xLabels: 'hour',
 
-                    };
+                    ymax: dataMax,
+                    ymin: dataMin,
+                    ykeys: ['moyenne', 'maxi', 'mini'],
+                    labels: ['moyenne', 'maxi', 'mini'],
+                    fillOpacity: 0.6,
+                    postUnits: ' °C',
+                    stacked: true,
+                    hideHover: 'auto',
+                    behaveLikeLine: true,
+                    resize: true,
+                    pointFillColors: ['#ffffff'],
+                    pointStrokeColors: ['black'],
+                    lineColors: ['gray', 'red', 'blue'],
+                    yLabelFormat: function (y) {
+                        return y.toFixed(2) + ' °C';
+                    }
+                };
 
-                    config.element = 'line-chart';
-                    Morris.Line(config);
-                });
-//                console.log(jsonData);
-
-//                var data = [
-//                            { y: '2014', a: 50, b: 90},
-//                            { y: '2015', a: 65,  b: 75},
-//                            { y: '2016', a: 50,  b: 50},
-//                            { y: '2017', a: 75,  b: 60},
-//                            { y: '2018', a: 80,  b: 65},
-//                            { y: '2019', a: 90,  b: 70},
-//                            { y: '2020', a: 100, b: 75},
-//                            { y: '2021', a: 115, b: 75},
-//                            { y: '2022', a: 120, b: 85},
-//                            { y: '2023', a: 145, b: 85},
-//                            { y: '2024', a: 160, b: 95}
-//                        ],
-
-//                config.element = 'area-chart';
-//                Morris.Area(config);
-
-//                config.element = 'bar-chart';
-//                Morris.Bar(config);
-//                config.element = 'stacked';
-//                config.stacked = true;
-//                Morris.Bar(config);
-//                Morris.Donut({
-//                    element: 'pie-chart',
-//                    data: [
-//                        {label: "Friends", value: 30},
-//                        {label: "Allies", value: 15},
-//                        {label: "Enemies", value: 45},
-//                        {label: "Neutral", value: 10}
-//                    ]
-//                });
-
-
+                config.element = 'line-chart';
+                Morris.Line(config);
             });
-        </script>
+
+        });
+    </script>
 {% endblock dynamic_js %}
