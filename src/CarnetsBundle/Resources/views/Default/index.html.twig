@@ -42,8 +42,9 @@
     </footer>
 </div>
 
-
-<script src="//code.jquery.com/jquery.min.js"></script>
+{% javascripts '@CommunUserBundle/Resources/public/js/jquery/jquery.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
