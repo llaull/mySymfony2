@@ -59,7 +59,7 @@ class LogsRepository extends EntityRepository
                  `sonde_id`,
                  `sonde_type`,
                  `sonde_unit`,
-                 info.emplacement_id
+               --  info.emplacement_id
         ORDER BY jour, heure ASC
         ";
 
