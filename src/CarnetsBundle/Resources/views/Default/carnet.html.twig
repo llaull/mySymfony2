@@ -1,23 +1,29 @@
 {% extends 'CarnetsBundle:Default:index.html.twig' %}
 {% block body %}
+
     <div class="container">
-        <ul>
-            {% for carnet in entity %}
-                <li>
-                    <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}">
-                        {{ carnet.destination }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+        {% if carnets is defined %}
+            <ul>
+                {% for carnet in carnets %}
+                    <li>
+                        <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}">
+                            {{ carnet.destination }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
     </div>
     <div class="container-fluid text-center">
         <div class="row content">
 
             <div class="col-sm-12">
-
-                <div id="map_canvas"></div>
+                {% if entity is defined %}
+                    <div id="map_canvas"></div>
+                {% else %}
+                    <div id="vmap" class="jqvmap"></div>
+                {% endif %}
             </div>
         </div>
 
@@ -25,40 +31,82 @@
 
 {% endblock %}
 {% block javascripts %}
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.min.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.sampledata.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.world.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.usa.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.europe.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.russia.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     <script type="text/javascript">
 
-        function initialize() {
+        $(document).ready(function () {
+
+            if ($('#vmap').length) {
+
+                $('#vmap').vectorMap({
+                    map: 'world_en',
+                    zoomButtons : false,
+                    zoomOnScroll: false,
+                    backgroundColor: '#fff',
+                    color: '#5bc0de',
+                    borderColor: '#5bc0de',
+                    hoverOpacity: 0.7,
+                    selectedColor: 'red',
+                    showTooltip: true,
+                    values: sample_data,
+                    scaleColors: ['#5bc0de', '#006491'],
+                    normalizeFunction: 'polynomial',
+//                    zoomButtons : false,
+                    onRegionClick: function(element, code, region)
+                    {
+                        var message = 'You clicked "'
+                                + region
+                                + '" which has the code: '
+                                + code.toUpperCase();
+
+                        console.log(message);
+                    }
+                });
+            }
+
+            if ($('#map_canvas').length) {
+
+                function initialize() {
 
 
-            var myOptions = {
+                    var myOptions = {
 //                zoom: 8,
 //                center: new google.maps.LatLng(39.0997, -94.5786),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
 
-            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-            var url = "{{ path ('carnets_de_voy_carte_path')}}";
+                    var url = "{{ path ('carnets_de_voy_carte_path')}}";
 
 
-            $.getJSON(url, function (data) {
-                var mypath = new Array();
-                var mypathColor = new Array();
-                var latlngbounds = new google.maps.LatLngBounds();
-                var infoWindow = new google.maps.InfoWindow();
+                    $.getJSON(url, function (data) {
+                        var mypath = new Array();
+                        var mypathColor = new Array();
+                        var latlngbounds = new google.maps.LatLngBounds();
+                        var infoWindow = new google.maps.InfoWindow();
 
-                //  Parse the Linestring field into an array of LatLngs
-                $.each(data.path, function (index, record) {
-                    mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
+                        //  Parse the Linestring field into an array of LatLngs
+                        $.each(data.path, function (index, record) {
+                            mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
 
-console.log(record.title);
-                    var contentString = '<div id="content">'+
-                            '<div id="siteNotice">'+
-                            '</div>'+
-                            '<h1 id="firstHeading" class="firstHeading">'+ record.title +'</h1>'+
-                            '<div id="bodyContent">'+
-                    record.title
-                    +
+                            console.log(record.title);
+                            var contentString = '<div id="content">' +
+                                    '<div id="siteNotice">' +
+                                    '</div>' +
+                                    '<h1 id="firstHeading" class="firstHeading">' + record.title + '</h1>' +
+                                    '<div id="bodyContent">' +
+                                    record.title
+                                    +
 //                            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
 //                            'sandstone rock formation in the southern part of the '+
 //                            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
@@ -72,42 +120,44 @@ console.log(record.title);
 //                            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
 //                            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
 //                            '(last visited June 22, 2009).</p>'+
-                            '</div>'+
-                            +'</div>';
+                                    '</div>' + +'</div>';
 
 
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(record.latitude, record.longitude),
-                        map: map,
-                        title: record.title
-                    });
+                            var marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(record.latitude, record.longitude),
+                                map: map,
+                                title: record.title
+                            });
 
-                    latlngbounds.extend(marker.position);
-                    (function (marker, record) {
+                            latlngbounds.extend(marker.position);
+                            (function (marker, record) {
 //                        console.log(record);
-                        google.maps.event.addListener(marker, "click", function (e) {
-                            infoWindow.setContent(contentString);
-                            infoWindow.open(map, marker);
+                                google.maps.event.addListener(marker, "click", function (e) {
+                                    infoWindow.setContent(contentString);
+                                    infoWindow.open(map, marker);
+                                });
+                            })(marker, record);
+
+
                         });
-                    })(marker, record);
+                        map.setCenter(latlngbounds.getCenter());
+                        map.fitBounds(latlngbounds);
 
+                        var polyline = new google.maps.Polyline({
+                            path: mypath,
+                            strokeColor: '#77bf44',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 3,
+                            geodesic: true
+                        });
+                        polyline.setMap(map);
 
-                });
-                map.setCenter(latlngbounds.getCenter());
-                map.fitBounds(latlngbounds);
+                    });
+                }
 
-                var polyline = new google.maps.Polyline({
-                    path: mypath,
-                    strokeColor: '#77bf44',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 3,
-                    geodesic: true
-                });
-                polyline.setMap(map);
+                google.maps.event.addDomListener(window, 'load', initialize);
 
-            });
-        }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
+            }
+        });
     </script>
 {% endblock %}
