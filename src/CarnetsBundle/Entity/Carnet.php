@@ -201,7 +201,7 @@ class Carnet
     protected $contenu;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true))
      *
     */
     protected $imageName;
