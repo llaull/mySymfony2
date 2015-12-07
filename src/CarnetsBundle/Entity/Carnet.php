@@ -12,10 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="CarnetBundle\Entity\Carnet")
  * @ORM\Entity
  * @ORM\Table(name="carnet2voyage__carnets")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="CarnetsBundle\Repository\CarnetRepository")
  */
 class Carnet
 {

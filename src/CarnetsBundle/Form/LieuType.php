@@ -5,7 +5,6 @@ namespace CarnetsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class LieuType extends AbstractType
 {
@@ -34,7 +33,13 @@ class LieuType extends AbstractType
                     'attr' => array('class' => 'date'),
                 )
             )
-            ->add('departLieu')
+
+            ->add('lat',null,array('read_only' => true))
+            ->add('lng',null,array('read_only' => true))
+            ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
+            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
+
+
         ;
 
 

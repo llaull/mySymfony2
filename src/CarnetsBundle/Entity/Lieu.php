@@ -47,24 +47,16 @@ class Lieu
     /**
      * @var datetime $dateArrived
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $dateArrived;
 
     /**
      * @var datetime $dateDeparture
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $dateDeparture;
-
-    /**
-     * @var carnet
-     *
-     * @ORM\ManyToOne(targetEntity="Lieu")
-     * @ORM\JoinColumn(name="depart_id", referencedColumnName="id", nullable=true)
-     */
-    protected $departLieu;
 
 
     /**
@@ -160,22 +152,6 @@ class Lieu
     public function setDateDeparture($dateDeparture)
     {
         $this->dateDeparture = $dateDeparture;
-    }
-
-    /**
-     * @return carnet
-     */
-    public function getDepartLieu()
-    {
-        return $this->departLieu;
-    }
-
-    /**
-     * @param carnet $departLieu
-     */
-    public function setDepartLieu($departLieu)
-    {
-        $this->departLieu = $departLieu;
     }
 
     /**
@@ -323,22 +299,43 @@ class Lieu
     }
 
     /**
+     * @return mixed
+     */
+    public function getUseInPath()
+    {
+        return $this->useInPath;
+    }
+
+    /**
+     * @param mixed $useInPath
+     */
+    public function setUseInPath($useInPath)
+    {
+        $this->useInPath = $useInPath;
+    }
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $ordre;
 
     /**
-     * @ORM\Column(type="float", nullable=TRUE)
+     * @ORM\Column(type="string", nullable=TRUE)
      */
     protected $lat;
 
     /**
-     * @ORM\Column(type="float", nullable=TRUE)
+     * @ORM\Column(type="string", nullable=TRUE)
      */
     protected $lng;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $useInMenu;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $useInPath;
 }

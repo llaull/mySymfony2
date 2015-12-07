@@ -97,9 +97,9 @@
 
                         //  Parse the Linestring field into an array of LatLngs
                         $.each(data.path, function (index, record) {
-                            mypath.push(new google.maps.LatLng(record.latitude, record.longitude));
+                            mypath.push(new google.maps.LatLng(record.lat, record.lng));
 
-                            console.log(record.title);
+                            console.log(record.ville);
                             var contentString = '<div id="content">' +
                                     '<div id="siteNotice">' +
                                     '</div>' +
@@ -124,9 +124,9 @@
 
 
                             var marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(record.latitude, record.longitude),
+                                position: new google.maps.LatLng(record.lat, record.lng),
                                 map: map,
-                                title: record.title
+                                title: record.ville
                             });
 
                             latlngbounds.extend(marker.position);
