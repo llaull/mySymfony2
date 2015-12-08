@@ -105,6 +105,7 @@ ivory_ck_editor:
     default_config:    my_custom_config
     configs:
         my_custom_config:
+            forcePasteAsPlainText: true
             toolbar:                    full
             filebrowserBrowseRoute:     elfinder
             filebrowserBrowseRouteParameters:
