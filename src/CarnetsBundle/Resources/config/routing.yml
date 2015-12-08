@@ -16,7 +16,7 @@ carnets_de_voy_homepage:
     defaults: { _controller: CarnetsBundle:Default:index }
 
 carnets_de_voy_carte_path:
-    path:     /carnet/path
+    path:     /carnet/path/{slug}
     defaults: { _controller: CarnetsBundle:Carnet:path }
 
 
