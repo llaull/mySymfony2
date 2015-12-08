@@ -16,6 +16,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li><a title="les carnets" href="{{ path('carnets_de_voy_homepage') }}"><i class="fa fa-globe"></i><p>Les carnets</p></a></li>
+                <li><a title="accueil {{ carnet.title }}" href="{{ path('carnets_de_voy_destination',{'slug':carnet.slug}) }}"><i class="entypo-map"></i><p>accueil {{ carnet.title }}</p></a></li>
                 {% for l in lieu %}
                     {% set ville = l.ville|split(',') %}
                     <li class="dropdown">

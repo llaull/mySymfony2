@@ -31,16 +31,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {#{{ dump(pagination) }}#}
                     {% for entity in pagination %}
                         <tr {% if loop.index is odd %}class="info"{% endif %}>
-                            <td class="col-md-4">{{ entity.title }}</td>
+                            <td class="col-md-4">{{ entity.carnet }}</td>
                             <td class="col-md-3">{{ entity.destination }}</td>
                             <td class="col-md-3">{{ entity.ville }}</td>
                             <td class="col-md-2">
                                 <div class="btn-group">
                                     <a class="btn btn-default btn-sm" role="button"
-                                       href="{{ path('admin_lieu_show', { 'id': entity.id }) }}">view</a>
+                                       href="{{ path('carnets_de_voy_ville', { 'carnet': entity.carnetSlug, 'ville': entity.villeSlug}) }}">view</a>
                                     <a class="btn btn-warning btn-sm" role="button"
                                        href="{{ path('admin_lieu_edit', { 'id': entity.id }) }}">edit</a>
                                     <a class="btn btn-danger btn-sm modal-delete" role="button"
@@ -52,9 +51,6 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <div class="navigation">
-                    {{ knp_pagination_render(pagination) }}
-                </div>
             </div>
         </div>
     </div>

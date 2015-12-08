@@ -13,7 +13,9 @@ class LieuRepository extends EntityRepository
         $fields = array(
             'l.id AS id',
             'l.ville',
-            'c.title',
+            'l.slug AS villeSlug',
+            'c.title AS carnet',
+            'c.slug AS carnetSlug',
             'c.destination');
 
         $query = $this->getEntityManager()->createQueryBuilder();

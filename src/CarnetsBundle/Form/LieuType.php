@@ -33,19 +33,19 @@ class LieuType extends AbstractType
                     'attr' => array('class' => 'date'),
                 )
             )
-
-            ->add('lat',null,array('read_only' => true))
-            ->add('lng',null,array('read_only' => true))
             ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
-            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
-
-
-        ;
+            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'));
 
 
         $builder->add('contenu', 'ckeditor', array(
             'label' => 'Contenu',
         ));
+
+        $builder
+            ->add('lat', null, array('read_only' => true))
+            ->add('lng', null, array('read_only' => true)
+             );
+
     }
 
     /**

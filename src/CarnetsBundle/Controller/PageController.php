@@ -71,7 +71,6 @@ class PageController extends Controller
 
         $entities = $em->getRepository('CarnetsBundle:Page')->findAll();
 
-
         return $this->render('CarnetsBundle:Page:index.html.twig', array(
             'pagination' => $entities,
         ));

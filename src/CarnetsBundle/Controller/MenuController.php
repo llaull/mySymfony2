@@ -28,6 +28,7 @@ class MenuController extends Controller {
             array('ordre' => 'ASC'));
 
         return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:menu.html.twig', array(
+            'carnet' => $entity,
             'lieu' => $lieux,
             'page' => $pages,
         ));
