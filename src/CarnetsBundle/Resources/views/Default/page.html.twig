@@ -7,9 +7,9 @@
                 {{ page.contenu | raw }}
             </div>
             <div class="col-sm-3 sidenav">
-                {% image '@CarnetsBundle/Resources/public/images/ban_projet.png' %}
-                <img src="{{ asset_url }}" alt="sidenav"/>
-                {% endimage %}
+
+                <a data-pin-do="embedUser" data-pin-lang="fr" data-pin-board-width="230" data-pin-scale-height="300" data-pin-scale-width="60" href="https://www.pinterest.com/{{ pinterest_account }}/{{ pinterest_board }}/"></a>
+                <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
             </div>
         </div>
     </div>
