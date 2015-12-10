@@ -7,13 +7,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CarnetsBundle\Entity\Lieu;
 use CarnetsBundle\Form\LieuType;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Lieu controller.
  *
  */
 class LieuController extends Controller
 {
+
+    /**
+     * Lists all lieu by carnet id
+     *
+     */
+    public function getCarnetAction(Request $request)
+    {
+        $data = $request->request->get('data');
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('CarnetsBundle:Lieu')->findByCarnet($data);
+
+        return new JsonResponse(array('lieu' => $entities));
+    }
 
     /**
      * Lists all Lieu entities.

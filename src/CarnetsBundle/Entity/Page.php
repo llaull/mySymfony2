@@ -82,6 +82,27 @@ class Page
     protected $ordre;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $carnet;
+
+    /**
+     * @return mixed
+     */
+    public function getCarnet()
+    {
+        return $this->carnet;
+    }
+
+    /**
+     * @param mixed $carnet
+     */
+    public function setCarnet($carnet)
+    {
+        $this->carnet = $carnet;
+    }
+
+    /**
      * @return mixed
      */
     public function getOrdre()

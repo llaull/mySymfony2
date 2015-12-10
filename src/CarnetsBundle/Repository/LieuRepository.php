@@ -28,4 +28,23 @@ class LieuRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByCarnet($lieuId){
+        $fields = array(
+            'l.id AS id',
+            'l.ville',
+            'l.slug AS villeSlug'
+           );
+
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query
+            ->select($fields)
+            ->from('CarnetsBundle:Lieu', 'l')
+            ->where('l.carnet = '.$lieuId.'');
+
+        return $query
+            ->getQuery()
+            ->getResult();
+    }
+
 }
