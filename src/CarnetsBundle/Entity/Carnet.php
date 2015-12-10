@@ -44,6 +44,14 @@ class Carnet
     protected $created;
 
     /**
+     * @var datetime $depart
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $depart;
+
+
+    /**
      * @ORM\Column(type="string", length=90, nullable=false)
      */
     protected $title;
@@ -204,6 +212,22 @@ class Carnet
      *
     */
     protected $imageName;
+
+    /**
+     * @return datetime
+     */
+    public function getDepart()
+    {
+        return $this->depart;
+    }
+
+    /**
+     * @param datetime $depart
+     */
+    public function setDepart($depart)
+    {
+        $this->depart = $depart;
+    }
 
 
 }
