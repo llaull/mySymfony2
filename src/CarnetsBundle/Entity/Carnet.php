@@ -22,6 +22,7 @@ class Carnet
     public function __construct()
     {
         $this->created = new \DateTime();
+        $this->depart = new \DateTime();
     }
 
     public function __toString()
@@ -229,5 +230,24 @@ class Carnet
         $this->depart = $depart;
     }
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $actived;
 
+    /**
+     * @return mixed
+     */
+    public function getActived()
+    {
+        return $this->actived;
+    }
+
+    /**
+     * @param mixed $actived
+     */
+    public function setActived($actived)
+    {
+        $this->actived = $actived;
+    }
 }
