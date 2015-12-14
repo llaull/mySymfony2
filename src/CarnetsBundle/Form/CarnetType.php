@@ -17,7 +17,16 @@ class CarnetType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('destination')
+            ->add('destination', 'text', array('required' => true))
+            ->add('depart', 'date', array(
+                    'widget' => 'single_text',
+                    'input' => 'datetime',
+                    'format' => 'dd/MM/yyyy',
+                    'required' => true,
+                    'attr' => array('class' => 'date'),
+                )
+            )
+
 //            ->add('imageName')
 //            ->add('imageName','elfinder', array('instance'=>'form', 'enable'=>true))
 //            ->add('imageName', 'file', array('label' => 'Brochure (PDF file)', 'data_class' => 'Doctrine\ORM\GridFSFile'))
@@ -33,8 +42,11 @@ class CarnetType extends AbstractType
 //                    ))
 //            )
         ;
+        $builder
+            ->add('actived', 'checkbox', array('required' => false, 'label' => 'Afficher dans l\'accueil'));
 
-        $builder->add('contenu', 'ckeditor', array(
+        $builder
+            ->add('contenu', 'ckeditor', array(
             'label' => 'Contenu',
         ));
 
