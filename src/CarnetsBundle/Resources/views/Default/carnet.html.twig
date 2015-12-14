@@ -83,8 +83,6 @@
 
 
                     var myOptions = {
-//                zoom: 8,
-//                center: new google.maps.LatLng(39.0997, -94.5786),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
 
@@ -104,6 +102,10 @@
                         //  Parse the Linestring field into an array of LatLngs
                         $.each(data.path, function (index, record) {
                             mypath.push(new google.maps.LatLng(record.lat, record.lng));
+
+
+                            var dataLenght = Object.keys(data.path).length;
+
 
                             var html = "<b>" + record.ville + "</b> <br/>"
                                     + "<table style=\"width: 100%;\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">"
@@ -128,10 +130,20 @@
 
                             latlngbounds.extend(marker.position);
                             (function (marker, record) {
-//                        console.log(record);
                                 google.maps.event.addListener(marker, "click", function (e) {
                                     infoWindow.setContent(html);
                                     infoWindow.open(map, marker);
+                                });
+
+                                //set minimal zoom
+                                google.maps.event.addListener(map, "idle", function () {
+                                    // if (map.getZoom() > 11) map.setZoom(11);
+                                });
+
+                                google.maps.event.addListener(map, 'zoom_changed', function () {
+//                                    infowindow.setContent('Zoom: ' + map.getZoom());
+//                                    map.setZoom(null);
+                                    console.log(map.getZoom());
                                 });
                             })(marker, record);
 
