@@ -39,7 +39,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                {#{{ dump(pagination) }}#}
                 {% for entity in pagination %}
                     <tr {% if loop.index is odd %}class="default"{% endif %}>
                         <td>{% if entity.temps %}{{ entity.temps|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -67,30 +66,12 @@
             </h2>
         </header>
         <div class="inner-spacer">
-            {#<div class="morrischart" id="morris-area">blbl</div>#}
 
-            {#<div class="col-sm-6 text-center">#}
-            {#<label class="label label-success">Area Chart</label>#}
-            {#<div id="area-chart" ></div>#}
-            {#</div>#}
             <div class="col-sm-12 text-center">
                 <label class="label label-success">Salon</label>
 
                 <div id="line-chart"></div>
             </div>
-            {#<div  class="col-sm-6 text-center">#}
-            {#<label class="label label-success">Bar Chart</label>#}
-            {#<div id="bar-chart" ></div>#}
-            {#</div>#}
-            {#<div class="col-sm-6 text-center">#}
-            {#<label class="label label-success">Bar stacked</label>#}
-            {#<div id="stacked" ></div>#}
-            {#</div>#}
-            {#<div class="col-sm-6 col-sm-offset-3 text-center">#}
-            {#<label class="label label-success">Pie Chart</label>#}
-            {#<div id="pie-chart" ></div>#}
-            {#</div>#}
-
 
         </div>
     </div>
@@ -98,6 +79,7 @@
 
 
     {% endblock dynamic_body %}
+
     {% block dynamic_js %}
     {% javascripts
     '@CommunUserBundle/Resources/public/js/morris/morris.min.js' %}
@@ -124,9 +106,11 @@
                     datas.push(data);
                 });
 
-                var dataMax = parseInt(Math.max.apply(Math, datas)) + 1;
-                var dataMin = parseInt(Math.min.apply(Math, datas)) - 1;
+                var dataMax = parseInt(Math.max.apply(Math, datas)).toFixed() + 1;
+                var dataMin = parseInt(Math.min.apply(Math, datas)).toFixed() - 1;
 
+                console.log("max : " + dataMax);
+                console.log("min : " + dataMin);
                 config = {
                     data: json,
 //                        hoverCallback: function(index, options, content) {
@@ -139,7 +123,7 @@
                     ymax: dataMax,
                     ymin: dataMin,
                     ykeys: ['moyenne', 'maxi', 'mini'],
-                    labels: ['moyenne', 'maxi', 'mini'],
+                    labels: ['moyenne', 'maxi', 'min.i'],
                     fillOpacity: 0.6,
                     postUnits: ' °C',
                     stacked: true,
