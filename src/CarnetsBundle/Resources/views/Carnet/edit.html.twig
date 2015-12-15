@@ -6,6 +6,7 @@
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% trans_default_domain "app" %}
 {% block dynamic_body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <div class="col-md-12 bootstrap-grid">
         <!-- New widget -->
@@ -58,17 +59,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6  bootstrap-grid">
-            <div class="powerwidget" id="widget-update-header" data-widget-editbutton="false"
-                 data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
-                <header>
-                    <h2>Widget Title</h2>
-                </header>
-                <div>
-                    <!-- content goes here -->
-                </div>
-            </div>
-        </div>
+        {#<div class="col-md-6  bootstrap-grid">#}
+            {#<div class="powerwidget" id="widget-update-header" data-widget-editbutton="false"#}
+                 {#data-widget-deletebutton="false" data-widget-fullscreenbutton="false">#}
+                {#<header>#}
+                    {#<h2>Widget Title</h2>#}
+                {#</header>#}
+                {#<div>#}
+                    {#<!-- content goes here -->#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
     </div>
 
 {% endblock %}
@@ -83,6 +84,18 @@
     <script>
 
         $(document).ready(function () {
+
+//            $('#carnetsbundle_carnet_imageName').on("click",function() {
+//                console.log("clik");
+//                var childWin = window.open("/mySomfony/web/app_dev.php/elfinder/form?id=page_elfinder", "popupWindow", "height=450, width=900");
+//            });
+//            function setValue(value, element_id) {
+//                console.log(">- ");
+//                console.log(value);
+//                console.log(">- ");
+//                console.log(element_id);
+//                $('[data-type="elfinder-input-field"]' + (element_id ? '[id="'+ element_id +'"]': '')).val(value).change();
+//            }
 
             var updateOutput = function () {
                 var i = 0;

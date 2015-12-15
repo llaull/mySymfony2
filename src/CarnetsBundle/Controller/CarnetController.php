@@ -212,7 +212,6 @@ class CarnetController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
             return $this->redirect($this->generateUrl('admin_carnet_edit', array('id' => $id)));
         }
 
