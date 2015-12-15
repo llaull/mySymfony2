@@ -14,7 +14,7 @@
              data-widget-deletebutton="false">
             <header>
                 <h2>Information
-                    <small>sur le carnet</small>
+                    <small> sur le carnet</small>
                 </h2>
             </header>
             <div class="inner-spacer">
@@ -29,8 +29,9 @@
              data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
             <header>
                 <h2>header</h2>
+                <small> du carnet</small>
             </header>
-            <div>
+            <div class="container" style="text-align: center">
                 <img src="{{ entity.imageHeader }}" alt="header carnet de voyage"/>
             </div>
         </div>
@@ -44,7 +45,7 @@
                  data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
                 <header>
                     <h2>Ordonner
-                        <small>le menu</small>
+                        <small> le menu</small>
                     </h2>
                 </header>
                 <div class="inner-spacer">
@@ -72,24 +73,6 @@
                 </div>
             </div>
         </div>
-        {#<div class="col-md-6 bootstrap-grid" id="powerwidgets">#}
-            {#<div class="powerwidget green" id="most-form-elements" data-widget-editbutton="false"#}
-                 {#data-widget-deletebutton="false" data-widget-fullscreenbutton="false">#}
-                {#<header>#}
-                    {#<h2>Preview#}
-                        {#<small>header</small>#}
-                    {#</h2>#}
-                {#</header>#}
-                {#<div class="inner-spacer">#}
-                    {#<div>#}
-                       {#! image !#}
-                        {#&#123;&#35;{{ dump(entity) }}&#35;&#125;#}
-                        {#<img src="{{ entity.imageHeader }}" alt="header carnet de voyage"/>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-
     </div>
 
 {% endblock %}

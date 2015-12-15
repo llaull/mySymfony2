@@ -19,53 +19,89 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Carnet
 {
 
-    public function __construct()
-    {
-        $this->created = new \DateTime();
-        $this->depart = new \DateTime();
-    }
-
-    public function __toString()
-    {
-        return $this->title;
-    }
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
     /**
      * @var datetime $created
      *
      * @ORM\Column(type="datetime")
      */
     protected $created;
-
     /**
      * @var datetime $depart
      *
      * @ORM\Column(type="datetime")
      */
     protected $depart;
-
-
     /**
      * @ORM\Column(type="string", length=90, nullable=false)
      */
     protected $title;
-
     /**
      * @ORM\Column(type="string", length=90,nullable=true)
      */
     protected $description;
-
     /**
      * @ORM\Column(type="string", length=90,nullable=true)
      */
     protected $destination;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=50, unique=true)
+     * @Gedmo\Slug(fields={"title"}, unique=true)
+     */
+    protected $slug;
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $contenu;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"/mySomfony/web/uploads/151c1ec.png"}))
+     *
+     */
+    protected $imageHeader;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $actived;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     */
+    protected $pinterestLink;
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->depart = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPinterestLink()
+    {
+        return $this->pinterestLink;
+    }
+
+    /**
+     * @param mixed $pinterestLink
+     */
+    public function setPinterestLink($pinterestLink)
+    {
+        $this->pinterestLink = $pinterestLink;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     /**
      * @return mixed
@@ -180,25 +216,6 @@ class Carnet
     }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=50, unique=true)
-     * @Gedmo\Slug(fields={"title"}, unique=true)
-     */
-    protected $slug;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    protected $contenu;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"/mySomfony/web/uploads/151c1ec.png"}))
-     *
-    */
-    protected $imageHeader;
-
-    /**
      * @return mixed
      */
     public function getImageHeader()
@@ -229,11 +246,6 @@ class Carnet
     {
         $this->depart = $depart;
     }
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $actived;
 
     /**
      * @return mixed
