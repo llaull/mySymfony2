@@ -21,7 +21,7 @@ class CarnetType extends AbstractType
 
             ->add('destination', 'text', array('required' => true))
 
-            ->add('imageName', 'elfinder', array(
+            ->add('imageHeader', 'elfinder', array(
                 'instance' => 'form',
                 'label' => 'header du carnet',
 //                'enable' => true,

@@ -180,22 +180,6 @@ class Carnet
     }
 
     /**
-     * @return mixed
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
-    }
-
-    /**
-     * @param mixed $imageName
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-    }
-
-    /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=50, unique=true)
@@ -209,10 +193,26 @@ class Carnet
     protected $contenu;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true))
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"/mySomfony/web/uploads/151c1ec.png"}))
      *
     */
-    protected $imageName;
+    protected $imageHeader;
+
+    /**
+     * @return mixed
+     */
+    public function getImageHeader()
+    {
+        return $this->imageHeader;
+    }
+
+    /**
+     * @param mixed $imageHeader
+     */
+    public function setImageHeader($imageHeader)
+    {
+        $this->imageHeader = $imageHeader;
+    }
 
     /**
      * @return datetime
