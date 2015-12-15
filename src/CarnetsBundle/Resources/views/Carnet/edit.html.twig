@@ -24,9 +24,22 @@
         <!-- End .powerwidget -->
     </div>
 
+    <div class="col-md-12 bootstrap-grid">
+        <div class="powerwidget" id="widget-update-header" data-widget-editbutton="false"
+             data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+            <header>
+                <h2>header</h2>
+            </header>
+            <div>
+                <img src="{{ entity.imageHeader }}" alt="header carnet de voyage"/>
+            </div>
+        </div>
+    </div>
+
+
     <!-- New widget -->
-    <div class="row col-md-12 bootstrap-grid" id="powerwidgets">
-        <div class="col-md-6  bootstrap-grid">
+    <div class="row col-md-12">
+        <div class="col-md-6 bootstrap-grid" id="powerwidgets">
             <div class="powerwidget green" id="most-form-elements" data-widget-editbutton="false"
                  data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
                 <header>
@@ -59,17 +72,24 @@
                 </div>
             </div>
         </div>
-        {#<div class="col-md-6  bootstrap-grid">#}
-            {#<div class="powerwidget" id="widget-update-header" data-widget-editbutton="false"#}
+        {#<div class="col-md-6 bootstrap-grid" id="powerwidgets">#}
+            {#<div class="powerwidget green" id="most-form-elements" data-widget-editbutton="false"#}
                  {#data-widget-deletebutton="false" data-widget-fullscreenbutton="false">#}
                 {#<header>#}
-                    {#<h2>Widget Title</h2>#}
+                    {#<h2>Preview#}
+                        {#<small>header</small>#}
+                    {#</h2>#}
                 {#</header>#}
-                {#<div>#}
-                    {#<!-- content goes here -->#}
+                {#<div class="inner-spacer">#}
+                    {#<div>#}
+                       {#! image !#}
+                        {#&#123;&#35;{{ dump(entity) }}&#35;&#125;#}
+                        {#<img src="{{ entity.imageHeader }}" alt="header carnet de voyage"/>#}
+                    {#</div>#}
                 {#</div>#}
             {#</div>#}
         {#</div>#}
+
     </div>
 
 {% endblock %}
@@ -84,18 +104,6 @@
     <script>
 
         $(document).ready(function () {
-
-//            $('#carnetsbundle_carnet_imageName').on("click",function() {
-//                console.log("clik");
-//                var childWin = window.open("/mySomfony/web/app_dev.php/elfinder/form?id=page_elfinder", "popupWindow", "height=450, width=900");
-//            });
-//            function setValue(value, element_id) {
-//                console.log(">- ");
-//                console.log(value);
-//                console.log(">- ");
-//                console.log(element_id);
-//                $('[data-type="elfinder-input-field"]' + (element_id ? '[id="'+ element_id +'"]': '')).val(value).change();
-//            }
 
             var updateOutput = function () {
                 var i = 0;
