@@ -1,5 +1,7 @@
 {% if entity is defined %}
 {% set carnetActuel = entity.slug %}
+{% set metaTitle = entity.title %}
+{% set header = entity.imageHeader %}
 {% endif %}
 <!DOCTYPE html>
 <html>
@@ -7,7 +9,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if entity is defined %}{{ carnetActuel }}{% else %}Accueil{% endif %} - carnet de voyage</title>
+    <title>{% if entity is defined %}{{ metaTitle }}{% else %}Accueil{% endif %} - carnet de voyage</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/entypo.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}">
@@ -26,9 +28,9 @@
 <div class="container">
 
     <div class="headerImage">
-        {% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}
-        <img src="{{ asset_url }}" alt="header carnet de voyage"/>
-        {% endimage %}
+        {#{% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}#}
+        <img src="{{ header }}" alt="header carnet de voyage"/>
+        {#{% endimage %}#}
     </div>
     {% if entity is defined %}
         {% if entity.slug is defined %}
