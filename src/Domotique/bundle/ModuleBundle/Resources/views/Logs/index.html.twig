@@ -99,12 +99,14 @@
             $.getJSON("{{ path('domotique_log_moyen') }}", function (json) {
 
 
-                datas = []
+                datas = [];
                 $(json).each(function (index, record) {
                     var data = record.maxi;
                     var data = record.mini;
                     datas.push(data);
                 });
+
+                console.log(datas);
 
                 var dataMax = parseInt(Math.max.apply(Math, datas)).toFixed() + 1;
                 var dataMin = parseInt(Math.min.apply(Math, datas)).toFixed() - 1;
