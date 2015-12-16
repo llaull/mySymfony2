@@ -20,46 +20,45 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Page
 {
 
-    public function __construct()
-    {
-        $this->lieu = new ArrayCollection();
-        $this->created = new \DateTime();
-    }
-
-    public function __toString()
-    {
-        return $this->titre;
-    }
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
     /**
      * @var datetime $created
      *
      * @ORM\Column(type="datetime")
      */
     protected $created;
-
     /**
      * @ORM\Column(type="string", length=90)
      */
     protected $titre;
-
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     protected $contenu;
-
     /**
      * @ORM\Column(type="string",length=200, nullable=true)
      */
     protected $image;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=50, unique=true)
+     * @Gedmo\Slug(fields={"titre"}, unique=true)
+     */
+    protected $slug;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $ordre;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $carnet;
     /**
      * @var LieuPage
      *
@@ -68,23 +67,16 @@ class Page
      */
     private $lieu;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=50, unique=true)
-     * @Gedmo\Slug(fields={"titre"}, unique=true)
-     */
-    protected $slug;
+    public function __construct()
+    {
+        //$this->lieu = new ArrayCollection();
+        $this->created = new \DateTime();
+    }
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $ordre;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $carnet;
+    public function __toString()
+    {
+        return $this->titre;
+    }
 
     /**
      * @return mixed
@@ -129,6 +121,16 @@ class Page
     }
 
     /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
      * Set created
      *
      * @param \DateTime $created
@@ -143,13 +145,13 @@ class Page
     }
 
     /**
-     * Get created
+     * Get titre
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getCreated()
+    public function getTitre()
     {
-        return $this->created;
+        return $this->titre;
     }
 
     /**
@@ -167,13 +169,13 @@ class Page
     }
 
     /**
-     * Get titre
+     * Get contenu
      *
      * @return string
      */
-    public function getTitre()
+    public function getContenu()
     {
-        return $this->titre;
+        return $this->contenu;
     }
 
     /**
@@ -191,13 +193,13 @@ class Page
     }
 
     /**
-     * Get contenu
+     * Get lieu
      *
-     * @return string
+     * @return \CarnetsBundle\Entity\Lieu
      */
-    public function getContenu()
+    public function getLieu()
     {
-        return $this->contenu;
+        return $this->lieu;
     }
 
     /**
@@ -215,16 +217,6 @@ class Page
     }
 
     /**
-     * Get lieu
-     *
-     * @return \CarnetsBundle\Entity\Lieu
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
-
-    /**
      * Get slug
      *
      * @return string
@@ -235,15 +227,15 @@ class Page
     }
 
     /**
-     * Set image
+     * Set slug
      *
-     * @param string $image
+     * @param string $slug
      *
      * @return Page
      */
-    public function setImage($image)
+    public function setSlug($slug)
     {
-        $this->image = $image;
+        $this->slug = $slug;
 
         return $this;
     }
@@ -259,15 +251,15 @@ class Page
     }
 
     /**
-     * Set slug
+     * Set image
      *
-     * @param string $slug
+     * @param string $image
      *
      * @return Page
      */
-    public function setSlug($slug)
+    public function setImage($image)
     {
-        $this->slug = $slug;
+        $this->image = $image;
 
         return $this;
     }

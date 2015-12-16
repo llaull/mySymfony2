@@ -15,7 +15,9 @@ class PageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre');
+            ->add('titre')
+//            ->add('lieu')
+        ;
 
         $builder->add('carnet', 'entity', array(
             'label' => 'carnet',
@@ -25,14 +27,23 @@ class PageType extends AbstractType
             'empty_value' => 'All',
             'required' => true,
         ));
-
-        $builder->add('lieu', 'choice', array(
-            'choices' => array(
-                'selectionne un carnet' => null,
-            ),
-            'choices_as_values' => true,
+        $builder->add('lieu', 'entity', array(
+            'label' => 'lieu',
+            'attr' => array('class' => 'input-block-level'),
+            'class' => 'CarnetsBundle:Lieu',
+            'property' => 'ville',
+            'empty_value' => 'All',
             'required' => true,
         ));
+
+//        $builder->add('lieu', 'choice', array(
+//            'choices' => array(
+//                'selectionne un carnet' => null,
+//            ),
+////            'choices_as_values' => true,
+////            'required' => true,
+//        ));
+
 
 
         $builder->add('contenu', 'ckeditor', array(

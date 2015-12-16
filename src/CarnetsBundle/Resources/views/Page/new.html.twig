@@ -48,6 +48,7 @@
                     success: function (json) {
                         if (json != '') {
                             $.each(json.lieu, function (i, value) {
+                                console.log(value);
                                 $('#carnetsbundle_page_lieu').append($('<option>').text(value.ville).attr('value', value.id));
                             });
                         }
