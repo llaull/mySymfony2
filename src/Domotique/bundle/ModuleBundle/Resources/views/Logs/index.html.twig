@@ -108,6 +108,7 @@
 
                 console.log(datas);
 
+                var dataMaxNoBug = parseInt(Math.max.apply(Math, datas)) + 1;
                 var dataMax = parseInt(Math.max.apply(Math, datas)).toFixed() + 1;
                 var dataMin = parseInt(Math.min.apply(Math, datas)).toFixed() - 1;
 
@@ -122,7 +123,7 @@
                     xkey: 'l',
                     xLabels: 'hour',
 
-                    ymax: dataMax,
+                    ymax: dataMaxNoBug,
                     ymin: dataMin,
                     ykeys: ['moyenne', 'maxi', 'mini'],
                     labels: ['moyenne', 'maxi', 'min.i'],
