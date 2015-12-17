@@ -26,12 +26,13 @@
 <body>
 
 <div class="container">
-
+    {% if header is defined %}
     <div class="headerImage">
         {#{% image '@CarnetsBundle/Resources/public/images/header_cdv.png' %}#}
         <img src="{{ header }}" alt="header carnet de voyage"/>
         {#{% endimage %}#}
     </div>
+    {% endif %}
     {% if entity is defined %}
         {% if entity.slug is defined %}
             {% block nav %}{{ render(controller('CarnetsBundle:Menu:menu', {'carnet':entity.slug})) }}{% endblock %}
