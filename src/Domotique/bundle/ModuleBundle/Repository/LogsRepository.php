@@ -22,6 +22,46 @@ class LogsRepository extends EntityRepository
             ->getResult();
     }
 
+/*
+ * value max ok
+ *
+SELECT a.id,
+       a.sonde_valeur,
+       temps,
+       DATE_FORMAT(a.temps, '%Y-%m-%d') AS jour,
+       CONCAT(HOUR(a.temps),':00') AS heure
+FROM domotique__module_logs a
+INNER JOIN
+  (SELECT id,
+          MAX(sonde_valeur) sonde_valeur_max
+   FROM domotique__module_logs
+   GROUP BY id) b ON a.id = b.id
+AND a.sonde_valeur = b.sonde_valeur_max
+GROUP BY YEAR(a.temps),
+         MONTH(a.temps),
+         DAY(a.temps),
+         HOUR(a.temps)
+ORDER BY temps DESC
+*/
+
+    public function nettoyageLogsModule($em)
+    {
+        $rqMax = "SELECT a.id FROM domotique__module_logs a INNER JOIN (SELECT id, MAX(sonde_valeur) sonde_valeur_max FROM domotique__module_logs GROUP BY id) b ON a.id = b.id AND a.sonde_valeur = b.sonde_valeur_max GROUP BY YEAR(a.temps), MONTH(a.temps), DAY(a.temps), HOUR(a.temps)";
+        $rqMin = "SELECT a.id FROM domotique__module_logs a INNER JOIN (SELECT id, MAX(sonde_valeur) sonde_valeur_max FROM domotique__module_logs GROUP BY id) b ON a.id = b.id AND a.sonde_valeur = b.sonde_valeur_max GROUP BY YEAR(a.temps), MONTH(a.temps), DAY(a.temps), HOUR(a.temps)";
+
+        $connection = $em->getConnection();
+        $statement = $connection->prepare($rqMax);
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        $connection = $em->getConnection();
+        $statement = $connection->prepare($rqMin);
+        $statement->execute();
+        $resultXs = $statement->fetchAll();
+
+        die(var_dump($results));
+
+    }
     /*
      *
      */
