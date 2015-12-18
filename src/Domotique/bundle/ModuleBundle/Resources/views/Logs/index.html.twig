@@ -99,21 +99,20 @@
             $.getJSON("{{ path('domotique_log_moyen') }}", function (json) {
 
 
-                datas = [];
+                dataMax = [];
+                dataMin = [];
                 $(json).each(function (index, record) {
-                    var data = record.maxi;
-                    var data = record.mini;
-                    datas.push(data);
+                    var max = record.maxi;
+                    var min = record.mini;
+
+                    dataMax.push(max);
+                    dataMin.push(min);
                 });
 
-                console.log(datas);
 
-                var dataMaxNoBug = parseInt(Math.max.apply(Math, datas)) + 1;
-                var dataMax = parseInt(Math.max.apply(Math, datas)).toFixed() + 1;
-                var dataMin = parseInt(Math.min.apply(Math, datas)).toFixed() - 1;
+                var dataMaxX = parseInt(Math.max.apply(Math, dataMax)) + 1;
+                var dataMinX = parseInt(Math.min.apply(Math, dataMin)).toFixed() - 1;
 
-                console.log("max : " + dataMax);
-                console.log("min : " + dataMin);
                 config = {
                     data: json,
 //                        hoverCallback: function(index, options, content) {
@@ -123,8 +122,8 @@
                     xkey: 'l',
                     xLabels: 'hour',
 
-                    ymax: dataMaxNoBug,
-                    ymin: dataMin,
+                    ymax: dataMaxX,
+                    ymin: dataMinX,
                     ykeys: ['moyenne', 'maxi', 'mini'],
                     labels: ['moyenne', 'maxi', 'min.i'],
                     fillOpacity: 0.6,
