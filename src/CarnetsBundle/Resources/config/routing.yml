@@ -1,3 +1,7 @@
+carnets_admin_general_texte:
+    resource: "@CarnetsBundle/Resources/config/routing/generaltexte.yml"
+    prefix:   /admin/general/texte
+
 carnets_admin_page:
     resource: "@CarnetsBundle/Resources/config/routing/page.yml"
     prefix:   /admin/page

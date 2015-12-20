@@ -1,0 +1,30 @@
+admin_general_texte:
+    path:     /
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:index" }
+
+admin_general_texte_show:
+    path:     /{id}/show
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:show" }
+
+admin_general_texte_new:
+    path:     /new
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:new" }
+
+admin_general_texte_create:
+    path:     /create
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:create" }
+    methods:  POST
+
+admin_general_texte_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:edit" }
+
+admin_general_texte_update:
+    path:     /{id}/update
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:update" }
+    methods:  [POST, PUT]
+
+admin_general_texte_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:delete" }
+    methods:  [POST, DELETE]
