@@ -20,7 +20,7 @@ class MenuController extends Controller {
         }
 
         $lieux = $em->getRepository('CarnetsBundle:Lieu')->findBy(
-            array('carnet' => $entity),
+            array('carnet' => $entity, 'useInMenu' => "1"),
             array('ordre' => 'ASC'));
 
         $pages = $em->getRepository('CarnetsBundle:Page')->findBy(

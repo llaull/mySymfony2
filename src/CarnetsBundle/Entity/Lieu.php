@@ -19,6 +19,77 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Lieu
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+    /**
+     * @var datetime $created
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+    /**
+     * @var datetime $dateArrived
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $dateArrived;
+    /**
+     * @var datetime $dateDeparture
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $dateDeparture;
+    /**
+     * @ORM\Column(type="string", length=90)
+     */
+    protected $ville;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=50, unique=true)
+     * @Gedmo\Slug(fields={"ville"}, unique=true)
+     */
+    protected $slug;
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $contenu;
+    /**
+     * @ORM\Column(type="string",length=200, nullable=true)
+     */
+    protected $image;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $ordre;
+    /**
+     * @ORM\Column(type="string", nullable=TRUE)
+     */
+    protected $lat;
+    /**
+     * @ORM\Column(type="string", nullable=TRUE)
+     */
+    protected $lng;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $useInMenu;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $useInPath;
+    /**
+     * @var carnet
+     *
+     * @ORM\ManyToOne(targetEntity="Carnet")
+     * @ORM\JoinColumn(name="carnet_id", referencedColumnName="id", nullable=false)
+     */
+    private $carnet;
+
     public function __construct()
     {
         $this->carnet = new ArrayCollection();
@@ -29,66 +100,6 @@ class Lieu
     {
         return $this->ville;
     }
-
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    protected $id;
-
-    /**
-     * @var datetime $created
-     *
-     * @ORM\Column(type="datetime")
-     */
-    protected $created;
-
-    /**
-     * @var datetime $dateArrived
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $dateArrived;
-
-    /**
-     * @var datetime $dateDeparture
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $dateDeparture;
-
-
-    /**
-     * @ORM\Column(type="string", length=90)
-     */
-    protected $ville;
-
-    /**
-     * @var carnet
-     *
-     * @ORM\ManyToOne(targetEntity="Carnet")
-     * @ORM\JoinColumn(name="carnet_id", referencedColumnName="id", nullable=false)
-     */
-    private $carnet;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=50, unique=true)
-     * @Gedmo\Slug(fields={"ville"}, unique=true)
-     */
-    protected $slug;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    protected $contenu;
-
-    /**
-     * @ORM\Column(type="string",length=200, nullable=true)
-     */
-    protected $image;
 
     /**
      * @return mixed
@@ -313,29 +324,4 @@ class Lieu
     {
         $this->useInPath = $useInPath;
     }
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $ordre;
-
-    /**
-     * @ORM\Column(type="string", nullable=TRUE)
-     */
-    protected $lat;
-
-    /**
-     * @ORM\Column(type="string", nullable=TRUE)
-     */
-    protected $lng;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $useInMenu;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $useInPath;
 }

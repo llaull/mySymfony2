@@ -44,26 +44,23 @@
             $box.bind("change", function () {
 
                 var selectedValue = $(this).find(".colorInput").val();
-                var modAdresse = $(this).find(".modAdresse").val();
+                var moduleID = $(this).find(".moduleID").val();
+                console.log(selectedValue);
+                var dataJson = '[' + '{"module":"' + moduleID + '"},' + '{"path":"color"},' + '{"color":"' + selectedValue + '"}' + ']';
 
-                ajax(modAdresse, '/color/', selectedValue);
-
-
-            });
-
-            /*
-             function Ajax
-             */
-            function ajax($route, $type, $data) {
+                // ajax
                 $.ajax({
-                    type: "GET",
-                    //dataType: 'json',
-                    url: 'http://' + $route + $type + $data,
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(data + " <-> " + textStatus + " <-> " + jqXHR);
+                    data: 'data=' + dataJson,
+                    cache: false,
+                    type: 'POST',
+                    url: '{{ path ('domotique_module_set_color') }}',
+                    success: function (data) {
+                        console.log(data)
                     }
                 });
-            }
+                //end ajax
+
+            });
         });
     </script>
 {% endblock %}

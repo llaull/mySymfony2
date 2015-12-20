@@ -1,0 +1,215 @@
+{% extends 'CarnetsBundle:Default:index.html.twig' %}
+{% block body %}
+
+    <!-- TOP-BANER -->
+    <div class="top-baner">
+        <div class="swiper-container main-slider-3" data-autoplay="0" data-loop="0" data-speed="900" data-center="0"
+             data-slides-per-view="1">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide active" data-val="0">
+                    <div class="clip"><img src="{{ entity.imageHeader }}" alt="">
+
+                        <div class="bg bg-bg-chrome act"
+                             style="background-image:url('../../{{ entity.imageHeader }}')"></div>
+                    </div>
+                    <div class="vertical-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="main-title style-2 left">
+                                        <h1>{{ entity.title }}</h1>
+                                        <p class="color-white-light">{{ entity.description|slice(0, 220)|raw }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination pagination-left-2 poin-style-1"></div>
+        </div>
+    </div>
+
+    <!-- google maps -->
+    <div class="main-wraper bg-grey-2 padd-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <div class="second-title">
+                        <h4 class="subtitle color-blue-2 underline">Itinéraire</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="map_canvas"></div>
+        </div>
+    </div>
+
+    <!--les etapes-->
+    <div class="main-wraper bg-grey-2 padd-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <div class="second-title">
+                        <h4 class="subtitle color-blue-2 underline">étapes</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for l in lieux %}
+                    {% set ville = l.ville|split(',') %}
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="hotel-item style-3">
+                            <div class="radius-top" style="max-height: 220px">
+                                <img src="{{ l.image }}" alt="">
+                            </div>
+                            <div class="title">
+                                <div class="date"> du <strong>{{ l.dateArrived|date("m/d/Y") }}</strong> au
+                                    <strong>{{ l.dateDeparture|date("m/d/Y") }}</strong></div>
+                                <h4><b>{{ ville[0] }}</b></h4>
+
+
+                                <p class="f-14">{{ l.contenu|slice(0, 120)|raw }}</p>
+                                <a href="{{ path('carnets_de_voy_ville',{'carnet':l.carnetSlug,'ville': l.villeSlug }) }}"
+                                   class="c-button transparent color-grey-3 hv-o">
+                                    {% image '@CarnetsBundle/Resources/public/images/flag_icon_grey.png'
+                                    output='/images/flag_icon_grey.png' %}
+                                    <img src="{{ asset_url }}"/>
+                                    {% endimage %}
+                                    découvrir</a>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+    {% include "CarnetsBundle:Default:footer.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@CarnetsBundle/Resources/public/js/idangerous.swiper.min.js'
+    '@CarnetsBundle/Resources/public/js/landing.js'
+    '@CarnetsBundle/Resources/public/js/all.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.min.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.sampledata.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.world.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.usa.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.europe.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.russia.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+
+            if ($('#map_canvas').length) {
+
+                function dateFr(mysqlDate) {
+                    var d = mysqlDate.slice(0, 10).split('-');
+
+                    return d[2] + '/' + d[1] + '/' + d[0];
+                }
+
+                function initialize() {
+
+
+                    var myOptions = {
+                        scrollwheel: false,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+                    {% if entity is defined %}
+
+                    var url = "{{ path ('carnets_de_voy_carte_path',{'slug': carnetActuel})}}";
+                    {% endif %}
+
+                    $.getJSON(url, function (data) {
+                        var mypath = new Array();
+                        var mypathColor = new Array();
+                        var latlngbounds = new google.maps.LatLngBounds();
+                        var infoWindow = new google.maps.InfoWindow();
+
+                        //  Parse the Linestring field into an array of LatLngs
+                        $.each(data.path, function (index, record) {
+                            mypath.push(new google.maps.LatLng(record.lat, record.lng));
+
+
+                            var dataLenght = Object.keys(data.path).length;
+
+
+                            var html = "<b>" + record.ville + "</b> <br/>"
+                                    + "<table style=\"width: 100%;\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">"
+                                    + "<tbody>"
+                                    + "<tr>"
+                                    + "<td>" + "arrivé" + "</td>"
+                                    + "<td>" + dateFr(record.date_arrived) + "</td>"
+                                    + "</tr>"
+                                    + "<tr>"
+                                    + "<td>" + "départ" + "</td>"
+                                    + "<td>" + dateFr(record.date_departure) + "</td>"
+                                    + "</tr>"
+                                    + "</tbody>"
+                                    + "</table>"
+                                    + "découvrir";
+
+                            var marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(record.lat, record.lng),
+                                map: map,
+                                title: record.ville
+                            });
+
+                            latlngbounds.extend(marker.position);
+                            (function (marker, record) {
+                                google.maps.event.addListener(marker, "click", function (e) {
+                                    infoWindow.setContent(html);
+                                    infoWindow.open(map, marker);
+                                });
+
+                                //set minimal zoom
+                                google.maps.event.addListener(map, "idle", function () {
+                                    // if (map.getZoom() > 11) map.setZoom(11);
+                                });
+
+                                google.maps.event.addListener(map, 'zoom_changed', function () {
+//                                    infowindow.setContent('Zoom: ' + map.getZoom());
+//                                    map.setZoom(null);
+                                    console.log(map.getZoom());
+                                });
+                            })(marker, record);
+
+
+                        });
+                        map.setCenter(latlngbounds.getCenter());
+                        map.fitBounds(latlngbounds);
+
+                        var polyline = new google.maps.Polyline({
+                            path: mypath,
+                            strokeColor: '#77bf44',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 3,
+                            geodesic: true
+                        });
+                        polyline.setMap(map);
+
+                    });
+                }
+
+                google.maps.event.addDomListener(window, 'load', initialize);
+
+            }
+        });
+    </script>
+{% endblock %}

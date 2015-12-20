@@ -142,15 +142,17 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $carnetInfos = $em->getRepository('CarnetsBundle:Carnet')->findOneBySlug($carnet);
+
         $entity = $em->getRepository('CarnetsBundle:Page')->findOneBySlug($page);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
-        $slugCarnet = array("slug" => $carnet);
+        //$slugCarnet = array("slug" => $carnet);
 
         return $this->render('CarnetsBundle:Default:page.html.twig', array(
-            'entity' => $slugCarnet,
+            'entity' => $carnetInfos,
             'page' => $entity,
         ));
     }

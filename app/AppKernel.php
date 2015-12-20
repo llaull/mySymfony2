@@ -2,8 +2,14 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+
+// setting the default time zone for 1and1 server
+date_default_timezone_set('Europe/Paris');
+
 class AppKernel extends Kernel
 {
+
+
     public function registerBundles()
     {
         $bundles = array(

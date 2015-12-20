@@ -1,7 +1,8 @@
 {% if entity is defined %}
+    {{ dump(entity) }}
+
     {% set carnetActuel = entity.slug %}
     {% set metaTitle = entity.title %}
-    {% set metaDescription = entity.title %}
     {% set header = entity.imageHeader %}
 
     {% if entity.pinterestLink is defined %}
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
     {% stylesheets
-    '@CarnetsBundle/Resources/public/css/style.css'
+    '@CarnetsBundle/Resources/public/css/*'
     output='css/compiled/carnet.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
     {% endstylesheets %}
@@ -29,10 +30,14 @@
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
-<body data-color="theme-7">
+<body>
 
-<div>
-
+<div class="container">
+    {% if header is defined %}
+        <div class="headerImage">
+            <img src="{{ header }}" alt="header carnet de voyage"/>
+        </div>
+    {% endif %}
     {% if entity is defined %}
         {% if entity.slug is defined %}
             {% block nav %}{{ render(controller('CarnetsBundle:Menu:menu', {'carnet':entity.slug})) }}{% endblock %}
@@ -41,7 +46,14 @@
 
     {% block body %}{% endblock %}
 
+    <footer class="container-fluid text-center">
+        <p>Carnet de voyage de Marine et Laurent pendant 22 jours en Asie</p>
 
+        <p>Site réalisé par Laurent, globe rouleur et Marine, accompagnatrice de rêve</p>
+
+        <p>llovem.eu 2013-{{ "now"|date("Y") }} - tout droit réservé sur les images et textes</p>
+        {#<p>   Avec la supervision de web-setup.com</p>#}
+    </footer>
 </div>
 
 {% javascripts '@CommunUserBundle/Resources/public/js/jquery/jquery.min.js' %}

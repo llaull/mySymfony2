@@ -134,8 +134,12 @@ class CarnetController extends Controller
             throw $this->createNotFoundException('Unable to find Carnet entity.');
         }
 
-        return $this->render('CarnetsBundle:Default:carnet.html.twig', array(
+        $lieux = $em->getRepository('CarnetsBundle:Lieu')
+            ->findByCarnet($entity->getId());
+
+        return $this->render('CarnetsBundle:Default:accueilCarnet.html.twig', array(
             'entity' => $entity,
+            'lieux' => $lieux
         ));
     }
 

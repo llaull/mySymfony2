@@ -29,18 +29,24 @@ class LieuRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findByCarnet($lieuId){
+    public function findByCarnet($carnetId){
         $fields = array(
             'l.id AS id',
             'l.ville',
-            'l.slug AS villeSlug'
+            'l.slug AS villeSlug',
+            'l.dateArrived',
+            'l.dateDeparture',
+            'l.image',
+            'l.contenu',
+            'c.slug AS carnetSlug'
            );
 
         $query = $this->getEntityManager()->createQueryBuilder();
         $query
             ->select($fields)
             ->from('CarnetsBundle:Lieu', 'l')
-            ->where('l.carnet = '.$lieuId.'');
+            ->leftjoin('l.carnet', 'c')
+            ->where('l.carnet = '.$carnetId.' AND l.useInMenu = 1');
 
         return $query
             ->getQuery()

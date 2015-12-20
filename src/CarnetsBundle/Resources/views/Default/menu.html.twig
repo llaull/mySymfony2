@@ -1,52 +1,50 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default" role="navigation">
+<header class="color-1 hovered menu-3">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            {#<a class="navbar-brand" href="index.html">Carnet de voyage</a>#}
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a title="les carnets" href="{{ path('carnets_de_voy_homepage') }}"><i class="fa fa-globe"></i><p>Les carnets</p></a></li>
-                <li><a title="accueil {{ carnet.title }}" href="{{ path('carnets_de_voy_destination',{'slug':carnet.slug}) }}"><i class="entypo-map"></i><p>accueil {{ carnet.title }}</p></a></li>
-                {% for l in lieu %}
-                    {% set ville = l.ville|split(',') %}
-                    <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">{{ ville[0] }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ path('carnets_de_voy_ville',{'carnet':l.carnet.slug,'ville': l.slug }) }}">
-                                    Découvrir</a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            {% for p in page %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="nav">
+                    <a href="{{ path('carnets_de_voy_homepage') }}" class="logo">
 
-                                {% if p.lieu.ville==l.ville %}
+                        {% image '@CarnetsBundle/Resources/public/images/Logo_cdv.png'
+                        output='/images/logo.png' %}
+                        <img src="{{ asset_url }}" />
+                        {% endimage %}
+
+                    </a>
+
+                    <div class="nav-menu-icon">
+                        <a href="#"><i></i></a>
+                    </div>
+                    <nav class="menu">
+                        <ul>
+                            <li class="type-1 active">
+                                <a href="{{ path('carnets_de_voy_destination',{'slug':carnet.slug}) }}">X</a>
+                                </li>
+                            {% for l in lieu %}
+                            {% set ville = l.ville|split(',') %}
+                            <li class="type-1 active">
+                                <a href="{{ path('carnets_de_voy_ville',{'carnet':l.carnet.slug,'ville': l.slug }) }}">{{ ville[0] }}<span class="fa fa-angle-down"></span></a>
+                                <ul class="dropmenu">
                                     <li>
-                                        <a href="{{ path('carnets_de_voy_page',{'carnet':l.carnet.slug,'ville': l.slug, 'page': p.slug }) }}">
-                                            {{ p.titre }}</a>
+                                        <a href="{{ path('carnets_de_voy_ville',{'carnet':l.carnet.slug,'ville': l.slug }) }}">
+                                            Découvrir</a>
                                     </li>
-                                {% endif %}
+                                    {% for p in page %}
+
+                                        {% if p.lieu.ville==l.ville %}
+                                            <li>
+                                                <a href="{{ path('carnets_de_voy_page',{'carnet':l.carnet.slug,'ville': l.slug, 'page': p.slug }) }}"> {{ p.titre }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
                             {% endfor %}
                         </ul>
-                    </li>
+                    </nav>
 
-                {% endfor %}
-
-            </ul>
+                </div>
+            </div>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
-</nav>
+</header>

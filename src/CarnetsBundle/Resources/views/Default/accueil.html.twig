@@ -1,0 +1,181 @@
+{% extends 'CarnetsBundle:Default:index.html.twig' %}
+{% block body %}
+    <div class="container">
+        {% if carnets is defined %}
+            <ul>
+                {% for carnet in carnets %}
+                    <li>
+                        <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}">
+                            {{ carnet.destination }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+    <div class="container-fluid text-center">
+        <div class="row content">
+
+            <div class="col-sm-12">
+                {% if entity is defined %}
+                    <div id="map_canvas"></div>
+
+                    <a data-pin-do="embedBoard" data-pin-lang="fr" data-pin-board-width="980"
+                       data-pin-scale-height="80"
+                       data-pin-scale-width="80"
+                       href="https://www.pinterest.com/{{ pinterest_account }}/{{ pinterest_board }}/"></a>
+                    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+
+
+                {% else %}
+                    <div id="vmap" class="jqvmap"></div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.min.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.sampledata.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.world.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.usa.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.europe.js'
+    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.russia.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            if ($('#vmap').length) {
+
+                $('#vmap').vectorMap({
+                    map: 'world_en',
+                    zoomButtons: false,
+                    zoomOnScroll: false,
+                    backgroundColor: '#fff',
+                    color: '#5bc0de',
+                    borderColor: '#5bc0de',
+                    hoverOpacity: 0.7,
+                    selectedColor: 'red',
+                    showTooltip: true,
+                    values: sample_data,
+                    scaleColors: ['#5bc0de', '#006491'],
+                    normalizeFunction: 'polynomial',
+//                    zoomButtons : false,
+                    onRegionClick: function (element, code, region) {
+                        var message = 'You clicked "'
+                                + region
+                                + '" which has the code: '
+                                + code.toUpperCase();
+
+                        console.log(message);
+                    }
+                });
+            }
+
+            if ($('#map_canvas').length) {
+
+                function dateFr(mysqlDate) {
+                    var d = mysqlDate.slice(0, 10).split('-');
+
+                    return d[2] + '/' + d[1] + '/' + d[0];
+                }
+
+                function initialize() {
+
+
+                    var myOptions = {
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+                    {% if entity is defined %}
+
+                    var url = "{{ path ('carnets_de_voy_carte_path',{'slug': carnetActuel})}}";
+                    {% endif %}
+
+                    $.getJSON(url, function (data) {
+                        var mypath = new Array();
+                        var mypathColor = new Array();
+                        var latlngbounds = new google.maps.LatLngBounds();
+                        var infoWindow = new google.maps.InfoWindow();
+
+                        //  Parse the Linestring field into an array of LatLngs
+                        $.each(data.path, function (index, record) {
+                            mypath.push(new google.maps.LatLng(record.lat, record.lng));
+
+
+                            var dataLenght = Object.keys(data.path).length;
+
+
+                            var html = "<b>" + record.ville + "</b> <br/>"
+                                    + "<table style=\"width: 100%;\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">"
+                                    + "<tbody>"
+                                    + "<tr>"
+                                    + "<td>" + "arrivé" + "</td>"
+                                    + "<td>" + dateFr(record.date_arrived) + "</td>"
+                                    + "</tr>"
+                                    + "<tr>"
+                                    + "<td>" + "départ" + "</td>"
+                                    + "<td>" + dateFr(record.date_departure) + "</td>"
+                                    + "</tr>"
+                                    + "</tbody>"
+                                    + "</table>"
+                                    + "découvrir";
+
+                            var marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(record.lat, record.lng),
+                                map: map,
+                                title: record.ville
+                            });
+
+                            latlngbounds.extend(marker.position);
+                            (function (marker, record) {
+                                google.maps.event.addListener(marker, "click", function (e) {
+                                    infoWindow.setContent(html);
+                                    infoWindow.open(map, marker);
+                                });
+
+                                //set minimal zoom
+                                google.maps.event.addListener(map, "idle", function () {
+                                    // if (map.getZoom() > 11) map.setZoom(11);
+                                });
+
+                                google.maps.event.addListener(map, 'zoom_changed', function () {
+//                                    infowindow.setContent('Zoom: ' + map.getZoom());
+//                                    map.setZoom(null);
+                                    console.log(map.getZoom());
+                                });
+                            })(marker, record);
+
+
+                        });
+                        map.setCenter(latlngbounds.getCenter());
+                        map.fitBounds(latlngbounds);
+
+                        var polyline = new google.maps.Polyline({
+                            path: mypath,
+                            strokeColor: '#77bf44',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 3,
+                            geodesic: true
+                        });
+                        polyline.setMap(map);
+
+                    });
+                }
+
+                google.maps.event.addDomListener(window, 'load', initialize);
+
+            }
+        });
+    </script>
+{% endblock %}

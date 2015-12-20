@@ -7,10 +7,16 @@
                 {{ page.contenu | raw }}
             </div>
             <div class="col-sm-3 sidenav">
-
-                <a data-pin-do="embedBoard" data-pin-lang="fr" data-pin-board-width="230" data-pin-scale-height="300" data-pin-scale-width="60" href="https://www.pinterest.com/{{ pinterest_account }}/{{ pinterest_board }}/"></a>
-                <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+                {% if pinterest_board is not null %}
+                    <a data-pin-do="embedBoard" data-pin-lang="fr" data-pin-board-width="230"
+                       data-pin-scale-height="300"
+                       data-pin-scale-width="60"
+                       href="https://www.pinterest.com/{{ pinterest_account }}/{{ pinterest_board }}/"></a>
+                    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+                {% endif %}
             </div>
         </div>
     </div>
+
+    {% include "CarnetsBundle:Default:footer.html.twig" %}
 {% endblock %}

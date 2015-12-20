@@ -34,8 +34,16 @@ class LieuType extends AbstractType
                 )
             )
             ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
-            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'));
+            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
 
+            ->add('image', 'elfinder', array(
+                'instance' => 'form',
+                'label' => 'header du carnet',
+//                'enable' => true,
+                'required' => true,
+//                'mapped' => false,
+                'attr' => array('class' => 'form-control')
+            ));
 
         $builder->add('contenu', 'ckeditor', array(
             'label' => 'Contenu',
@@ -44,7 +52,7 @@ class LieuType extends AbstractType
         $builder
             ->add('lat', null, array('read_only' => true))
             ->add('lng', null, array('read_only' => true)
-             );
+            );
 
     }
 

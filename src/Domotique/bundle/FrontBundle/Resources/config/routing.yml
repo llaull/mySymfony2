@@ -6,7 +6,3 @@ domobox_homepage:
 domotique_module_set_color:
     path:     /domobox/module/set/
     defaults: { _controller: DomotiquebundleFrontBundle:Default:getModuleColor }
-
-domotique_module_set_curl:
-    path:     /domoboxkljsjhkl
-    defaults: { _controller: DomotiquebundleFrontBundle:Default:proxy }

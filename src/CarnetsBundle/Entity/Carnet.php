@@ -42,7 +42,7 @@ class Carnet
      */
     protected $title;
     /**
-     * @ORM\Column(type="string", length=90,nullable=true)
+     * @ORM\Column(type="string", length=190,nullable=true)
      */
     protected $description;
     /**
