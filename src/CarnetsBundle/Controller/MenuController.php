@@ -7,7 +7,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MenuController extends Controller {
 
-    function menuAction($carnet = null)
+    function menuAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $links = $em->getRepository('CarnetsBundle:GeneralTexte')->findBy(
+            array('useInMenu' => "1"),
+            array('title' => 'ASC'));
+
+        if (!$links) {
+            throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
+        }
+
+        return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:menu.html.twig', array(
+            'links' => $links
+        ));
+    }
+
+    /**
+     * @param null $carnet
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    function carnetMenuAction($carnet = null)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -26,13 +47,16 @@ class MenuController extends Controller {
             array('lieu' => $lieux),
             array('ordre' => 'ASC'));
 
-        return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:menu.html.twig', array(
+        return $this->container->get('templating')->renderResponse('CarnetsBundle:Carnet:menu.html.twig', array(
             'carnet' => $entity,
             'lieu' => $lieux,
             'page' => $pages,
         ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     function footerAction()
     {
         $em = $this->getDoctrine()->getManager();

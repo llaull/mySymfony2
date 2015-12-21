@@ -91,21 +91,17 @@ class GeneralTexteController extends Controller
      * Finds and displays a GeneralTexte entity.
      *
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('CarnetsBundle:GeneralTexte')->find($id);
+        $entity = $em->getRepository('CarnetsBundle:GeneralTexte')->findOneBySlug($slug);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('CarnetsBundle:GeneralTexte:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entity'      => $entity
         ));
     }
 
