@@ -9,7 +9,13 @@
             <div class="login-block">
                 <form action="{{ path("fos_user_security_check") }}" method="post" id="login-form" class="orb-form">
                     <header>
-                        <div class="image-block"><img src="images/logo.png" alt="User"/></div>
+                        <div class="image-block">
+                            {% image '@CommunUserBundle/Resources/public/images/logo.png'
+                            output='/images/orb-logo.png' %}
+                            <img alt="" class="User" src="{{ asset_url }}"/>
+                            {% endimage %}
+
+                        </div>
                         Login to ORB
                         <small>Have no account? &#8212; <a href="{{ path('fos_user_registration_register') }}">Register</a></small>
                     </header>
