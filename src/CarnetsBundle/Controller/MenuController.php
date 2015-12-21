@@ -4,7 +4,6 @@
 namespace CarnetsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use CarnetsBundle\Entity\Carnet;
 
 class MenuController extends Controller {
 
@@ -31,6 +30,24 @@ class MenuController extends Controller {
             'carnet' => $entity,
             'lieu' => $lieux,
             'page' => $pages,
+        ));
+    }
+
+    function footerAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $links = $em->getRepository('CarnetsBundle:GeneralTexte')->findBy(
+            array('useInMenu' => "1"),
+            array('title' => 'ASC'));
+
+        if (!$links) {
+            throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
+        }
+
+        return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:footer.html.twig', array(
+            'links' => $links
+
         ));
     }
 }

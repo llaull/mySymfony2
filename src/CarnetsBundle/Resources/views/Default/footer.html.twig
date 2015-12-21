@@ -83,15 +83,12 @@
                         <h6>Contact Info</h6>
 
                         <div class="contact-info">
-                            <div class="contact-line color-grey-3"><i class="fa fa-map-marker"></i><span>Aenean vulputate porttitor</span>
+                            <div class="contact-line color-grey-3"><i class="fa fa-map-marker"></i><span>titel</span>
                             </div>
-                            <div class="contact-line color-grey-3"><i class="fa fa-phone"></i><a href="tel:93123456789">+93
-                                    123 456 789</a></div>
-                            <div class="contact-line color-grey-3"><i class="fa fa-envelope-o"></i><a href="mailto:">letstravel@mail.com</a>
+                            <div class="contact-line color-grey-3"><i class="fa fa-envelope-o"></i><a href="mailto:">contact@llovem.eu</a>
                             </div>
-                            <div class="contact-line color-grey-3"><i class="fa fa-globe"></i><a href="#">let’s_travel@world.com</a>
+                            <div class="contact-line color-grey-3"><i class="fa fa-globe"></i><a href="#">carnet-de-voyage@llovem.eu</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -105,12 +102,9 @@
                             <span>&copy; 2015 All rights reserved. LET'STRAVEL</span>
                         </div>
                         <ul>
-                            <li><a class="link-aqua" href="#">Privacy Policy </a></li>
-                            <li><a class="link-aqua" href="#">About Us</a></li>
-                            <li><a class="link-aqua" href="#">Support </a></li>
-                            <li><a class="link-aqua" href="#">FAQ</a></li>
-                            <li><a class="link-aqua" href="#">Blog</a></li>
-                            <li><a class="link-aqua" href="#"> Forum</a></li>
+                            {% for l in links %}
+                                <li><a class="link-aqua" href="#">{{ l.title }} </a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

@@ -17,6 +17,11 @@ class GeneralTexteType extends AbstractType
         $builder
             ->add('title')
         ;
+        $builder
+            ->add('useInMenu', 'checkbox', array(
+                'required' => false,
+                'label' => 'Afficher'
+            ));
 
         $builder->add('contenu', 'ckeditor', array(
             'label' => 'Contenu',

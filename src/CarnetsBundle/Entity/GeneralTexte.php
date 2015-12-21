@@ -51,11 +51,51 @@ class GeneralTexte
      * @ORM\Column(type="text", nullable=true)
      */
     protected $contenu;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $useInMenu;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $ordre;
 
     public function __construct()
     {
         $this->created = new \DateTime();
         $this->modified = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * @param mixed $ordre
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUseInMenu()
+    {
+        return $this->useInMenu;
+    }
+
+    /**
+     * @param mixed $useInMenu
+     */
+    public function setUseInMenu($useInMenu)
+    {
+        $this->useInMenu = $useInMenu;
     }
 
     /**
