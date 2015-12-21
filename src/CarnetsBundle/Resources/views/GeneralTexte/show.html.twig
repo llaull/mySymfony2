@@ -1,9 +1,17 @@
-{% extends '::base.html.twig' %}
+{% extends 'CarnetsBundle:Default:index.html.twig' %}
+{% block body %}
+    <div class="container-fluid text-center">
+        <div class="row content">
 
-{% block body -%}
+            <div class="col-sm-9 text-left">
+                {{ GeneralTexte.title }}
 
-                <td>{{ entity.title }}</td>
 
-                <td>{{ entity.contenu }}</td>
+                {{ GeneralTexte.contenu | raw }}
+
+            </div>
+
+        </div>
+    </div>
 
 {% endblock %}

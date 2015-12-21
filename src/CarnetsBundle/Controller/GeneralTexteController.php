@@ -29,6 +29,7 @@ class GeneralTexteController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new GeneralTexte entity.
      *
@@ -49,7 +50,7 @@ class GeneralTexteController extends Controller
 
         return $this->render('CarnetsBundle:GeneralTexte:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -79,11 +80,11 @@ class GeneralTexteController extends Controller
     public function newAction()
     {
         $entity = new GeneralTexte();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CarnetsBundle:GeneralTexte:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -94,6 +95,7 @@ class GeneralTexteController extends Controller
     public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('CarnetsBundle:GeneralTexte')->findOneBySlug($slug);
 
         if (!$entity) {
@@ -101,7 +103,7 @@ class GeneralTexteController extends Controller
         }
 
         return $this->render('CarnetsBundle:GeneralTexte:show.html.twig', array(
-            'entity'      => $entity
+            'GeneralTexte' => $entity
         ));
     }
 
@@ -123,19 +125,19 @@ class GeneralTexteController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CarnetsBundle:GeneralTexte:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a GeneralTexte entity.
-    *
-    * @param GeneralTexte $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a GeneralTexte entity.
+     *
+     * @param GeneralTexte $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(GeneralTexte $entity)
     {
         $form = $this->createForm(new GeneralTexteType(), $entity, array(
@@ -147,6 +149,7 @@ class GeneralTexteController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing GeneralTexte entity.
      *
@@ -172,11 +175,12 @@ class GeneralTexteController extends Controller
         }
 
         return $this->render('CarnetsBundle:GeneralTexte:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a GeneralTexte entity.
      *
@@ -214,7 +218,6 @@ class GeneralTexteController extends Controller
             ->setAction($this->generateUrl('admin_general_texte_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

@@ -17,7 +17,8 @@
 
                 <ul>
                     <li>
-                        <a class="btn btn-success btn-sm" role="button" href="{{ path('admin_general_texte_new') }}">New</a>
+                        <a class="btn btn-success btn-sm" role="button"
+                           href="{{ path('admin_general_texte_new') }}">New</a>
                     </li>
                 </ul>
 
@@ -34,15 +35,13 @@
                         <tr>
                             <td>{% if entity.modified %}{{ entity.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
                             <td>{{ entity.title }}</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('admin_general_texte_show', { 'id': entity.id }) }}">show</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('admin_general_texte_edit', { 'id': entity.id }) }}">edit</a>
-                                    </li>
-                                </ul>
+                            <td class="col-md-2">
+                                <div class="btn-group">
+                                    <a class="btn btn-default btn-sm" role="button"
+                                       href="{{ path('general_texte_show', { 'slug': entity.slug}) }}">view</a>
+                                    <a class="btn btn-warning btn-sm" role="button"
+                                       href="{{ path('admin_general_texte_edit', { 'id': entity.id }) }}">edit</a>
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}

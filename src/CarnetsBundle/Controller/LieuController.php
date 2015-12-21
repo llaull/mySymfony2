@@ -119,7 +119,7 @@ class LieuController extends Controller
         }
        // $slugCarnet = array("slug" => $carnet);
 
-        return $this->render('CarnetsBundle:Default:page.html.twig', array(
+        return $this->render('CarnetsBundle:Page:show.html.twig', array(
             'entity' => $carnetInfos,
             'page' => $entity,
         ));
