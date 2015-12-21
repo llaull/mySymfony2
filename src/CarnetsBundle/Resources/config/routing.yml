@@ -15,14 +15,16 @@ carnets_admin_carnet:
     prefix:   /admin/carnet
 
 
+#
+#     cote front office
+#
+general_texte_show:
+    path:     /{slug}.html
+    defaults: { _controller: "CarnetsBundle:GeneralTexte:show" }
+
 carnets_de_voy_homepage:
-    path:     /carnets
+    path:     /nos-voyages
     defaults: { _controller: CarnetsBundle:Default:index }
-
-carnets_de_voy_carte_path:
-    path:     /carnet/path/{slug}
-    defaults: { _controller: CarnetsBundle:Carnet:path }
-
 
 carnets_de_voy_destination:
     path:     /carnet/{slug}
@@ -36,6 +38,13 @@ carnets_de_voy_page:
     path:     /carnet/{carnet}/{ville}/{page}.html
     defaults: { _controller: CarnetsBundle:Page:show }
 
+#
+#     AJAX
+#
 carnets_de_voy_twitter:
     path:     /twitter
     defaults: { _controller: CarnetsBundle:Twitter:index }
+
+carnets_de_voy_carte_path:
+    path:     /carnet/path/{slug}
+    defaults: { _controller: CarnetsBundle:Carnet:path }

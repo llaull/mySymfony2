@@ -33,11 +33,15 @@
 
 <div>
 
-    {% if entity is defined %}
-        {% if entity.slug is defined %}
-            {% block nav %}{{ render(controller('CarnetsBundle:Menu:menu', {'carnet':entity.slug})) }}{% endblock %}
+    {% block nav %}
+        {% if entity is defined %}
+            {% if entity.slug is defined %}
+                {{ render(controller('CarnetsBundle:Menu:carnetMenu', {'carnet':entity.slug})) }}
+            {% endif %}
+        {% else %}
+            {{ render(controller('CarnetsBundle:Menu:menu')) }}
         {% endif %}
-    {% endif %}
+    {% endblock %}
 
     {% block body %}{% endblock %}
 

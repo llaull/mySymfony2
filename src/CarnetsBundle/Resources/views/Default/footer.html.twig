@@ -6,7 +6,12 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-block">
-                        <img src="img/theme-1/logo.png" alt="" class="logo-footer">
+
+                        {% image '@CarnetsBundle/Resources/public/images/Logo_cdv.png'
+                        output='/images/carnet-de-voyage.png' %}
+                        <img alt="" class="logo-footer" src="{{ asset_url }}"/>
+                        {% endimage %}
+
 
                         <div class="f_text color-grey-7">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore magna aliqua. Ut aliquip ex ea commodo consequat.
@@ -103,7 +108,7 @@
                         </div>
                         <ul>
                             {% for l in links %}
-                                <li><a class="link-aqua" href="#">{{ l.title }} </a></li>
+                                <li><a class="link-aqua" href="{{ path('general_texte_show',{'slug':l.slug}) }}">{{ l.title }} </a></li>
                             {% endfor %}
                         </ul>
                     </div>
