@@ -15,6 +15,34 @@ use CarnetsBundle\Form\GeneralTexteType;
 class GeneralTexteController extends Controller
 {
 
+    public function orderAction(Request $request)
+    {
+
+        $data = $request->request->get('data');
+        $params = json_decode($data);
+        $em = $this->getDoctrine()->getManager();
+
+        //met tout a null
+        $q = $em->createQuery('update CarnetsBundle:GeneralTexte c set c.ordre = 1');
+        $q->execute();
+
+
+        foreach ($params as $v) {
+                $em = $this->getDoctrine()->getManager();
+
+                $entity = $em->getRepository('CarnetsBundle:GeneralTexte')->find($v->id);
+
+                if (!$entity) {
+                    throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
+                }
+
+                $entity->setOrdre($v->order);
+                $em->flush();
+        }
+        die();
+
+    }
+
     /**
      * Lists all GeneralTexte entities.
      *

@@ -63,7 +63,7 @@ class MenuController extends Controller {
 
         $links = $em->getRepository('CarnetsBundle:GeneralTexte')->findBy(
             array('useInMenu' => "1"),
-            array('title' => 'ASC'));
+            array('ordre' => 'ASC'));
 
         if (!$links) {
             throw $this->createNotFoundException('Unable to find GeneralTexte entity.');

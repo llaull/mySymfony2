@@ -29,7 +29,6 @@ class PageController extends Controller
         $q = $em->createQuery('update CarnetsBundle:Page c set c.ordre = 1');
         $q->execute();
 
-        var_dump($params);
 
         foreach ($params as $v) {
             if ($v->type != "lieu") {

@@ -51,4 +51,85 @@
         </div>
     </div>
 
+
+    <!-- New widget -->
+    <div class="row col-md-12">
+        <div class="col-md-6 bootstrap-grid" id="powerwidgets">
+            <div class="powerwidget green" id="most-form-elements" data-widget-editbutton="false"
+                 data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+                <header>
+                    <h2>Ordonner
+                        <small> le menu</small>
+                    </h2>
+                </header>
+                <div class="inner-spacer">
+                    <div class="dd" id="nestable">
+                        <ul class="dd-list" id="nestableLieu">
+                            {% for entity in entities %}
+                                <li class="dd-item" id="{{ entity.id }}" title="lieu">
+                                    <div class="dd-handle">{{ entity.title }}</div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock dynamic_body %}
+{% block dynamic_js %}
+
+    {% javascripts
+    '@CommunUserBundle/Resources/public/js/nestable-lists/jquery.nestable.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script>
+
+        $(document).ready(function () {
+
+            var updateOutput = function () {
+                var i = 0;
+                var array = jQuery('#nestable li').map(function () {
+                    return '{"id":"' + this.id + '", "type":"' + this.title + '","order":"' + ++i + '"}';
+                }).get();
+                var order = '[' + array.join(',') + ']';
+//                console.log(order);
+
+                $.ajax({
+                    data: 'data=' + order,
+                    cache: false,
+                    type: 'POST',
+                    url: "{{ path ('admin_general_texte_order')}}",
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            };
+
+            if ($('#nestable').length) {
+                $('#nestable').nestable({
+                    group: 1,
+                    maxDepth: 2
+
+                }).on('change', updateOutput);
+            }
+
+            if ($('#nestable-menu').length) {
+                $('#nestable-menu').on('click', function (e) {
+                    var target = $(e.target),
+                            action = target.data('action');
+                    if (action === 'expand-all') {
+                        $('.dd').nestable('expandAll');
+                    }
+                    if (action === 'collapse-all') {
+                        $('.dd').nestable('collapseAll');
+                    }
+                });
+            }
+
+
+        });
+    </script>
+{% endblock dynamic_js %}
