@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MenuController extends Controller {
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     function menuAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -65,12 +68,18 @@ class MenuController extends Controller {
             array('useInMenu' => "1"),
             array('ordre' => 'ASC'));
 
+        $footerTexte = $em->getRepository('CarnetsBundle:GeneralTexte')->findByTitle("footer");
+
         if (!$links) {
             throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
         }
+        if (!$footerTexte) {
+            $footerTexte = array(array("contenu" => "footer à remplir"));
+        }
 
         return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:footer.html.twig', array(
-            'links' => $links
+            'links' => $links,
+            'footerTexte' => current($footerTexte)
 
         ));
     }

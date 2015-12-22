@@ -66,9 +66,11 @@
                     <div class="dd" id="nestable">
                         <ul class="dd-list" id="nestableLieu">
                             {% for entity in entities %}
-                                <li class="dd-item" id="{{ entity.id }}" title="lieu">
-                                    <div class="dd-handle">{{ entity.title }}</div>
-                                </li>
+                                {% if entity.useInMenu==1 %}
+                                    <li class="dd-item" id="{{ entity.id }}" title="lieu">
+                                        <div class="dd-handle">{{ entity.title }}</div>
+                                    </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </div>
@@ -94,7 +96,6 @@
                     return '{"id":"' + this.id + '", "type":"' + this.title + '","order":"' + ++i + '"}';
                 }).get();
                 var order = '[' + array.join(',') + ']';
-//                console.log(order);
 
                 $.ajax({
                     data: 'data=' + order,

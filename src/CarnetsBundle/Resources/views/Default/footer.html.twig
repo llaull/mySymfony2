@@ -1,5 +1,4 @@
 {% block footer %}
-
     <!-- FOOTER -->
     <footer class="bg-dark type-2">
         <div class="container">
@@ -13,8 +12,8 @@
                         {% endimage %}
 
 
-                        <div class="f_text color-grey-7">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore magna aliqua. Ut aliquip ex ea commodo consequat.
+                        <div class="f_text color-grey-7">
+                            {{ footerTexte.contenu | raw }}
                         </div>
                         <div class="footer-share">
                             <a href="#"><span class="fa fa-facebook"></span></a>
