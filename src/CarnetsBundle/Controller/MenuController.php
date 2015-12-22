@@ -5,7 +5,8 @@ namespace CarnetsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class MenuController extends Controller {
+class MenuController extends Controller
+{
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
@@ -70,16 +71,21 @@ class MenuController extends Controller {
 
         $footerTexte = $em->getRepository('CarnetsBundle:GeneralTexte')->findByTitle("footer");
 
+        $tagLieu = $em->getRepository('CarnetsBundle:Lieu')->tagAll();
+
         if (!$links) {
             throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
         }
+
         if (!$footerTexte) {
             $footerTexte = array(array("contenu" => "footer à remplir"));
         }
 
+//        die(var_dump($tagLieu));
         return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:footer.html.twig', array(
             'links' => $links,
-            'footerTexte' => current($footerTexte)
+            'footerTexte' => current($footerTexte),
+            'tag' => $tagLieu,
 
         ));
     }

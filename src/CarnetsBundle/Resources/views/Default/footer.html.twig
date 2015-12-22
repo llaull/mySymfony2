@@ -1,4 +1,7 @@
+
 {% block footer %}
+
+    {#{{ dump() }}#}
     <!-- FOOTER -->
     <footer class="bg-dark type-2">
         <div class="container">
@@ -71,15 +74,10 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-block">
                         <h6>Tags:</h6>
-                        <a href="#" class="tags-b">flights</a>
-                        <a href="#" class="tags-b">traveling</a>
-                        <a href="#" class="tags-b">sale</a>
-                        <a href="#" class="tags-b">cruises</a>
-                        <a href="#" class="tags-b">cars</a>
-                        <a href="#" class="tags-b">hotels</a>
-                        <a href="#" class="tags-b">tours</a>
-                        <a href="#" class="tags-b">booking</a>
-                        <a href="#" class="tags-b">countries</a>
+                        {% for t in tag %}
+                            {% set ville = t.ville|split(',') %}
+                            <span class="tags-b">{{ ville[0] }}</span>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -107,7 +105,8 @@
                         </div>
                         <ul>
                             {% for l in links %}
-                                <li><a class="link-aqua" href="{{ path('general_texte_show',{'slug':l.slug}) }}">{{ l.title }} </a></li>
+                                <li><a class="link-aqua"
+                                       href="{{ path('general_texte_show',{'slug':l.slug}) }}">{{ l.title }} </a></li>
                             {% endfor %}
                         </ul>
                     </div>
