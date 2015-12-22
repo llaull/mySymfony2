@@ -23,7 +23,7 @@ admin_general_texte_update:
 admin_general_texte_delete:
     path:     /{id}/delete
     defaults: { _controller: "CarnetsBundle:GeneralTexte:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]
 
 admin_general_texte_order:
     path:     /order/edit/
