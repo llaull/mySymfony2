@@ -2,7 +2,7 @@
 /web/bundles
 /web/assets
 /web/uploads
-/app/config/parameters.yml
+#/app/config/parameters.yml
 /app/bootstrap.php.cache
 /app/logs
 /app/cache
