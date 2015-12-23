@@ -1,0 +1,23 @@
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: n
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host:
+    mailer_user: null
+    mailer_password: null
+    secret:
+    ext_proxy:
+    kazer_id:
+    mon_mail:
+    oauth_access_token:
+    oauth_access_token_secret:
+    consumer_key:
+    consumer_secret:
+    twitter_account:
+    tweet_limit: 2
+    pinterest_account:
+    pinterest_board:
+    domain:
