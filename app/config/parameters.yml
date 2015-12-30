@@ -1,23 +1,23 @@
 parameters:
     database_host: localhost
     database_port: null
-    database_name: n
+    database_name: symfonyllm
     database_user: root
     database_password: null
     mailer_transport: smtp
-    mailer_host:
+    mailer_host: 10.85.42.229
     mailer_user: null
     mailer_password: null
-    secret:
-    ext_proxy:
-    kazer_id:
-    mon_mail:
-    oauth_access_token:
-    oauth_access_token_secret:
-    consumer_key:
-    consumer_secret:
-    twitter_account:
+    secret: 664c93a12f29e282094736af4ce49fbc7e7a6739
+    ext_proxy: fr-proxy.groupinfra.com:3128
+    kazer_id: h1b8bzfz3npye
+    mon_mail: laurent.hazard@cgi.com
+    oauth_access_token: 919513532-zDKJFkxxl0sUDRneVAODQBKYRLRU9WD6OtjDNcyO
+    oauth_access_token_secret: HplPNptaTi0ABUcbD4Zlpre5wmy2MLTctMnmS9l32peOu
+    consumer_key: WESgXKpJsY6hXjj80mT5hWZwp
+    consumer_secret: P5SLONRd9JsAwzqK1R6DLrCiVX8fwhNtWyAMrb3QLyKHJUJAm9
+    twitter_account: llovem33
     tweet_limit: 2
-    pinterest_account:
-    pinterest_board:
-    domain:
+    pinterest_account: llovem0760
+    pinterest_board: venise-globe-roulette
+    domain: llovem.eu

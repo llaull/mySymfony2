@@ -4,6 +4,7 @@ namespace ProgrammeTvBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use ProgrammeTvBundle\Entity\Channel;
 use ProgrammeTvBundle\Form\ChannelType;
@@ -246,18 +247,14 @@ class ChannelController extends Controller
         $params = json_decode($data);
         $em = $this->getDoctrine()->getManager();
 
-//        var_dump($params);
-
         // met toutes les chaines avec null pour l'ordre
         $q = $em->createQuery('update ProgrammeTvBundle:Channel c set c.ordre = null');
         $q->execute();
 
+        $em = $this->getDoctrine()->getManager();
+
         //met tout les chaines dans l'odre
         foreach ($params as $v) {
-            //echo $v->id .'</br>';
-
-
-            $em = $this->getDoctrine()->getManager();
 
             $entity = $em->getRepository('ProgrammeTvBundle:Channel')->find($v->id);
 
@@ -267,20 +264,12 @@ class ChannelController extends Controller
             }
 
             $entity->setOrdre($v->order);
-            $em->flush();
-
-
         }
+        $em->flush();
 
-        die();
+        return new JsonResponse(array('result' => "ok"));
 
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $entities = $em->getRepository('ProgrammeTvBundle:Channel')->findAll();
-//
-//        return $this->render('ProgrammeTvBundle:Channel:order.html.twig', array(
-//            'entities' => $entities, 'debug' => $isAjax
-//        ));
+
     }
 
 }

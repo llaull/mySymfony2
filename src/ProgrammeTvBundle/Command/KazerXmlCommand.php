@@ -84,7 +84,7 @@ class KazerXmlCommand extends ContainerAwareCommand
                 if ($programmeDebut->format('Y-m-d') == $today) {
 
                     //si le programme commence à 20 et est plus long que 40min (pour eviter la meteo)
-                    if (($programmeDebut->format('H') >= '20') AND ($value->length > 40)) {
+                    if (($programmeDebut->format('H') >= '20') && ($value->length > 40)) {
 
                         $this->programmes($em,$programmeDebut, $programmeFin, $value['channel'], $value->title, $value->{'sub-title'}, $value->desc, $value->category,$output);
                     }
