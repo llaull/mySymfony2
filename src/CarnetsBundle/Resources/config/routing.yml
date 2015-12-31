@@ -26,6 +26,10 @@ carnets_de_voy_homepage:
     path:     /nos-voyages
     defaults: { _controller: CarnetsBundle:Default:index }
 
+carnets_de_voy_lieux_visite:
+    path:     /nos-lieux
+    defaults: { _controller: CarnetsBundle:Default:allLieu }
+
 carnets_de_voy_destination:
     path:     /carnet/{slug}
     defaults: { _controller: CarnetsBundle:Carnet:show }

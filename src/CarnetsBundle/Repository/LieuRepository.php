@@ -9,6 +9,26 @@ class LieuRepository extends EntityRepository
 {
 
     /**
+     * return les coordonnees des lieux pour la carte de la premier page
+     * @return array
+     */
+    public function allCoordonnee()
+    {
+        $fields = array(
+            'L.id, L.lat, L.lng, L.ville');
+
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query
+            ->select($fields)
+            ->from('CarnetsBundle:Lieu', 'L');
+
+        return $query
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * return des lieux avec une limit et en random
      * @return array
      */
     public function tagAll()
@@ -23,11 +43,14 @@ class LieuRepository extends EntityRepository
             WHERE q.id >= :rand AND q.useInPath = 1
             ORDER BY q.id ASC
             ')
-            ->setParameter('rand',rand(0,$max))
+            ->setParameter('rand', rand(0, $max))
             ->setMaxResults(10)
             ->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function findAll()
     {
         $fields = array(
@@ -49,7 +72,13 @@ class LieuRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findByCarnet($carnetId){
+    /**
+     * return les lieux selon l'id du carnet
+     * @param $carnetId
+     * @return array
+     */
+    public function findByCarnet($carnetId)
+    {
         $fields = array(
             'l.id AS id',
             'l.ville',
@@ -59,14 +88,14 @@ class LieuRepository extends EntityRepository
             'l.image',
             'l.contenu',
             'c.slug AS carnetSlug'
-           );
+        );
 
         $query = $this->getEntityManager()->createQueryBuilder();
         $query
             ->select($fields)
             ->from('CarnetsBundle:Lieu', 'l')
             ->leftjoin('l.carnet', 'c')
-            ->where('l.carnet = '.$carnetId.' AND l.useInMenu = 1');
+            ->where('l.carnet = ' . $carnetId . ' AND l.useInMenu = 1');
 
         return $query
             ->getQuery()
