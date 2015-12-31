@@ -38,11 +38,11 @@ class Carnet
      */
     protected $depart;
     /**
-     * @ORM\Column(type="string", length=90, nullable=false)
+     * @ORM\Column(type="string", length=19, nullable=false)
      */
     protected $title;
     /**
-     * @ORM\Column(type="string", length=19,nullable=true)
+     * @ORM\Column(type="string", length=90,nullable=true)
      */
     protected $description;
     /**
