@@ -22,37 +22,44 @@
 
     <div class="main-wraper hotel-items">
         <div class="container">
-            <div class="row">
-                {% if carnets is defined %}
-                    {% for carnet in carnets %}
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="hotel-item style-7">
-                                <div class="radius-top">
-                                    <img src="img/home_10/tour_1.jpg" alt="">
-                                </div>
-                                <div class="title">
-                                    <h5><strong class="color-red-3">{{ carnet.destination }}</strong></h5>
+            {% if carnets is defined %}
+                {% for row in carnets|batch(3) %}
+                    <div clas="row">
+                        {% for carnet in row %}
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="hotel-item style-6">
+                                    <div class="radius-top">
+                                        <img src="{{ carnet.imageHeader }}" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <h5><strong class="color-red-3">{{ carnet.title }}</strong></h5>
+                                        <h4>{{ carnet.destination }}</h4>
 
-                                    <div class="clearfix">
-                                        <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}"
-                                           class="c-button b-40 color-grey-3 hv-o fr"><img
-                                                    src="img/flag_icon_grey.png"
-                                                    alt="">view
-                                            more</a>
+                                        <p>{{ carnet.description }}</p>
+
+                                        <div class="clearfix">
+                                            <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}"
+                                               class="c-button b-40 color-grey-3 hv-o fr">{% image '@CarnetsBundle/Resources/public/images/flag_icon_grey.png'
+                                                output='/images/flag_icon_grey.png' %}
+                                                <img src="{{ asset_url }}"/>
+                                                {% endimage %}
+                                                découvrir</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
         </div>
     </div>
 
 {% endblock %}
-{% block javascripts %}
-    {% javascripts
-    '@CarnetsBundle/Resources/public/js/map.js' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
+    {% block javascripts %}
+        {% javascripts
+        '@CarnetsBundle/Resources/public/js/map.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}

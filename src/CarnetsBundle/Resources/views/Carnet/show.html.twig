@@ -18,6 +18,7 @@
                                 <div class="col-xs-12">
                                     <div class="main-title style-2 left">
                                         <h1>{{ entity.title }}</h1>
+
                                         <p class="color-white-light">{{ entity.description|slice(0, 220)|raw }}</p>
                                     </div>
                                 </div>
@@ -54,34 +55,37 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                {% for l in lieux %}
-                    {% set ville = l.ville|split(',') %}
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="hotel-item style-3">
-                            <div class="radius-top" style="max-height: 220px">
-                                <img src="{{ l.image }}" alt="">
-                            </div>
-                            <div class="title">
-                                <div class="date"> du <strong>{{ l.dateArrived|date("m/d/Y") }}</strong> au
-                                    <strong>{{ l.dateDeparture|date("m/d/Y") }}</strong></div>
-                                <h4><b>{{ ville[0] }}</b></h4>
 
+            {% for row in lieux|batch(3) %}
+                <div clas="row">
+                    {% for l in row %}
+                        {% set ville = l.ville|split(',') %}
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="hotel-item style-3">
+                                <div class="radius-top" style="max-height: 220px">
+                                    <img src="{{ l.image }}" alt="">
+                                </div>
+                                <div class="title">
+                                    <div class="date"> du <strong>{{ l.dateArrived|date("m/d/Y") }}</strong> au
+                                        <strong>{{ l.dateDeparture|date("m/d/Y") }}</strong></div>
+                                    <h4><b>{{ ville[0] }}</b></h4>
 
-                                <p class="f-14">{{ l.contenu|slice(0, 120)|raw }}</p>
-                                <a href="{{ path('carnets_de_voy_ville',{'carnet':entity.slug,'ville': l.slug }) }}"
-                                   class="c-button transparent color-grey-3 hv-o">
-                                    {% image '@CarnetsBundle/Resources/public/images/flag_icon_grey.png'
-                                    output='/images/flag_icon_grey.png' %}
-                                    <img src="{{ asset_url }}"/>
-                                    {% endimage %}
-                                    découvrir</a>
+                                    {#<p class="f-14">&nbsp;{{ l.contenu|slice(0, 120)|raw }}</p>#}
+                                    <a href="{{ path('carnets_de_voy_ville',{'carnet':entity.slug,'ville': l.slug }) }}"
+                                       class="c-button transparent color-grey-3 hv-o">
+                                        {% image '@CarnetsBundle/Resources/public/images/flag_icon_grey.png'
+                                        output='/images/flag_icon_grey.png' %}
+                                        <img src="{{ asset_url }}"/>
+                                        {% endimage %}
+                                        découvrir</a>
+                                </div>
                             </div>
+
                         </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
 
-                    </div>
-                {% endfor %}
-            </div>
         </div>
     </div>
 {% endblock %}
@@ -93,21 +97,10 @@
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {% javascripts
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.min.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.sampledata.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.world.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.usa.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.europe.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.russia.js' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 
     <script type="text/javascript">
 
-
         $(document).ready(function () {
-
 
             if ($('#map_canvas').length) {
 
