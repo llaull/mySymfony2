@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CarnetsBundle\Entity\Carnet;
-use CarnetsBundle\Form\CarnetType;
+use CarnetsBundle\Form\Type\CarnetType;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 

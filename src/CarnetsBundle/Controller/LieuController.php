@@ -4,10 +4,10 @@ namespace CarnetsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use CarnetsBundle\Entity\Lieu;
-use CarnetsBundle\Form\LieuType;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use CarnetsBundle\Form\Type\LieuType;
 /**
  * Lieu controller.
  *

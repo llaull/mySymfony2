@@ -59,9 +59,15 @@ class Lieu
      */
     protected $contenu;
     /**
-     * @ORM\Column(type="string",length=200, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"http://placehold.it/600x600"}))
+     *
      */
-    protected $image;
+    protected $imageAccueil;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"http://placehold.it/600x600"}))
+     *
+     */
+    protected $imageHeader;
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -94,6 +100,38 @@ class Lieu
     {
         $this->carnet = new ArrayCollection();
         $this->created = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageAccueil()
+    {
+        return $this->imageAccueil;
+    }
+
+    /**
+     * @param mixed $imageAccueil
+     */
+    public function setImageAccueil($imageAccueil)
+    {
+        $this->imageAccueil = $imageAccueil;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageHeader()
+    {
+        return $this->imageHeader;
+    }
+
+    /**
+     * @param mixed $imageHeader
+     */
+    public function setImageHeader($imageHeader)
+    {
+        $this->imageHeader = $imageHeader;
     }
 
     public function __toString()
@@ -227,22 +265,6 @@ class Lieu
     public function setContenu($contenu)
     {
         $this->contenu = $contenu;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
     }
 
     /**

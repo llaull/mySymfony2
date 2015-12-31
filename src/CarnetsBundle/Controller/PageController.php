@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CarnetsBundle\Entity\Page;
-use CarnetsBundle\Form\PageType;
+use CarnetsBundle\Form\Type\PageType;
 
 /**
  * Page controller.

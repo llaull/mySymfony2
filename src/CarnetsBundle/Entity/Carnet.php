@@ -61,7 +61,12 @@ class Carnet
      */
     protected $contenu;
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"/mySomfony/web/uploads/151c1ec.png"}))
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"http://placehold.it/600x600"}))
+     *
+     */
+    protected $imageAccueil;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"http://placehold.it/600x600"}))
      *
      */
     protected $imageHeader;
@@ -69,7 +74,6 @@ class Carnet
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $actived;
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
@@ -80,6 +84,22 @@ class Carnet
     {
         $this->created = new \DateTime();
         $this->depart = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageAccueil()
+    {
+        return $this->imageAccueil;
+    }
+
+    /**
+     * @param mixed $imageAccueil
+     */
+    public function setImageAccueil($imageAccueil)
+    {
+        $this->imageAccueil = $imageAccueil;
     }
 
     /**

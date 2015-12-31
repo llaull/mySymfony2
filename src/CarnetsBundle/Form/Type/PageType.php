@@ -1,6 +1,6 @@
 <?php
 
-namespace CarnetsBundle\Form;
+namespace CarnetsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

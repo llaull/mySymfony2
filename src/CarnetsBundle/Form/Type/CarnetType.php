@@ -1,6 +1,6 @@
 <?php
 
-namespace CarnetsBundle\Form;
+namespace CarnetsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,39 +16,42 @@ class CarnetType extends AbstractType
     {
         $builder
             ->add('title')
-
             ->add('description')
+            ->add('destination', 'text', array('required' => true));
 
-            ->add('destination', 'text', array('required' => true))
+        $builder->add('depart', 'date', array(
+            'widget' => 'single_text',
+            'input' => 'datetime',
+            'format' => 'dd/MM/yyyy',
+            'required' => true,
+            'attr' => array('class' => 'date')
+        ));
 
-            ->add('pinterestLink', 'text', array('required' => false))
+        $builder
+            ->add('contenu', 'ckeditor', array(
+                'label' => 'Contenu',
+            ));
 
+        $builder->add('pinterestLink', 'text', array('required' => false));
+
+        $builder->add('imageAccueil', 'elfinder', array(
+            'instance' => 'form',
+            'label' => 'image de l\'accueil',
+            'required' => true,
+            'attr' => array('class' => 'form-control')
+        ))
             ->add('imageHeader', 'elfinder', array(
                 'instance' => 'form',
                 'label' => 'header du carnet',
-//                'enable' => true,
-                'required' => false,
-//                'mapped' => false,
-                'attr' => array('class' => 'form-control')
-            ))
-
-            ->add('depart', 'date', array(
-                'widget' => 'single_text',
-                'input' => 'datetime',
-                'format' => 'dd/MM/yyyy',
                 'required' => true,
-                'attr' => array('class' => 'date')
+                'attr' => array('class' => 'form-control')
             ));
+
 
         $builder
             ->add('actived', 'checkbox', array(
                 'required' => false,
                 'label' => 'Afficher dans l\'accueil'
-            ));
-
-        $builder
-            ->add('contenu', 'ckeditor', array(
-                'label' => 'Contenu',
             ));
     }
 

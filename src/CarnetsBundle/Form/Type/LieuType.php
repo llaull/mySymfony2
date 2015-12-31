@@ -1,6 +1,6 @@
 <?php
 
-namespace CarnetsBundle\Form;
+namespace CarnetsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +15,6 @@ class LieuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('created')
             ->add('ville')
             ->add('carnet')
             ->add('dateArrived')
@@ -32,22 +31,27 @@ class LieuType extends AbstractType
                     'format' => 'dd/MM/yyyy',
                     'attr' => array('class' => 'date'),
                 )
-            )
-            ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
-            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
-
-            ->add('image', 'elfinder', array(
-                'instance' => 'form',
-                'label' => 'header du carnet',
-//                'enable' => true,
-                'required' => true,
-//                'mapped' => false,
-                'attr' => array('class' => 'form-control')
-            ));
+            );
 
         $builder->add('contenu', 'ckeditor', array(
             'label' => 'Contenu',
         ));
+
+        $builder->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
+            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'));
+
+        $builder->add('imageAccueil', 'elfinder', array(
+            'instance' => 'form',
+            'label' => 'image de l\'accueil',
+            'required' => true,
+            'attr' => array('class' => 'form-control')
+        ))
+            ->add('imageHeader', 'elfinder', array(
+                'instance' => 'form',
+                'label' => 'header du carnet',
+                'required' => true,
+                'attr' => array('class' => 'form-control')
+            ));
 
         $builder
             ->add('lat', null, array('read_only' => true))

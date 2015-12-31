@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CarnetsBundle\Entity\GeneralTexte;
-use CarnetsBundle\Form\GeneralTexteType;
+use CarnetsBundle\Form\Type\GeneralTexteType;
 
 /**
  * GeneralTexte controller.
