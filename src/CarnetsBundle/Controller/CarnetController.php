@@ -23,8 +23,6 @@ class CarnetController extends Controller
      * dessine le chemin du voyage
      *
      */
-
-
     public function pathAction($slug)
     {
 

@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use ProgrammeTvBundle\Entity\Channel;
-use ProgrammeTvBundle\Form\ChannelType;
+use ProgrammeTvBundle\Form\Type\ChannelType;
 
 /**
  * Channel controller.
