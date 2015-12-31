@@ -1,69 +1,58 @@
 {% extends 'CarnetsBundle:Default:index.html.twig' %}
 {% block body %}
     big acceuil
-    <div id="vmap" class="jqvmap"></div>
 
+    {% image '@CarnetsBundle/Resources/public/images/marker_2.png'
+    output='/images/marker_2.png' %}
+    <img src="{{ asset_url }}"/>
+    {% endimage %}
 
-    <div class="container">
-        {% if carnets is defined %}
-            <ul>
-                {% for carnet in carnets %}
-                    <li>
-                        <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}">
-                            {{ carnet.destination }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="top-baner header2-baner">
+        <div id="map-canvas" class="style-1" data-lat="39.3968485" data-lng="3.4163545" data-zoom="2"
+             data-style="2"></div>
+        {% if lieux is defined %}
+            {% for l in lieux %}
+                <div class="addresses-block">
+                    <a data-lat="{{ l.lat }}" data-lng="{{ l.lng }}" data-string="{{ l.ville }}"></a>
+                </div>
+            {% endfor %}
         {% endif %}
 
     </div>
 
+    <div class="main-wraper hotel-items">
+        <div class="container">
+            <div class="row">
+                {% if carnets is defined %}
+                    {% for carnet in carnets %}
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="hotel-item style-7">
+                                <div class="radius-top">
+                                    <img src="img/home_10/tour_1.jpg" alt="">
+                                </div>
+                                <div class="title">
+                                    <h5><strong class="color-red-3">{{ carnet.destination }}</strong></h5>
+
+                                    <div class="clearfix">
+                                        <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}"
+                                           class="c-button b-40 color-grey-3 hv-o fr"><img
+                                                    src="img/flag_icon_grey.png"
+                                                    alt="">view
+                                            more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 {% block javascripts %}
     {% javascripts
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.min.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.sampledata.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.world.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.usa.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.europe.js'
-    '@CommunUserBundle/Resources/public/js/vector-map/jquery.vmap.russia.js' %}
+    '@CarnetsBundle/Resources/public/js/map.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            if ($('#vmap').length) {
-
-                $('#vmap').vectorMap({
-                    map: 'world_en',
-                    zoomButtons: false,
-                    zoomOnScroll: false,
-                    backgroundColor: '#fff',
-                    color: '#5bc0de',
-                    borderColor: '#5bc0de',
-                    hoverOpacity: 0.7,
-                    selectedColor: 'red',
-                    showTooltip: true,
-                    values: sample_data,
-                    scaleColors: ['#5bc0de', '#006491'],
-                    normalizeFunction: 'polynomial',
-//                    zoomButtons : false,
-                    onRegionClick: function (element, code, region) {
-                        var message = 'You clicked "'
-                                + region
-                                + '" which has the code: '
-                                + code.toUpperCase();
-
-                        console.log(message);
-                    }
-                });
-            }
-
-
-        });
-    </script>
 {% endblock %}

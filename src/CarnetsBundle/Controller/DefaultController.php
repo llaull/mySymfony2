@@ -7,22 +7,24 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
+    /**
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
     public function indexAction()
     {
-        $entity = $this->getDoctrine()
-            ->getRepository('CarnetsBundle:Carnet')
-            ->findAllActived();
-
-        return $this->render('CarnetsBundle:Default:accueil.html.twig', array('carnets' => $entity));
-    }
-
-
-    public function allLieuAction()
-    {
-        $entities = $this->getDoctrine()
+        //les lieux visites
+        $lieux = $this->getDoctrine()
             ->getRepository('CarnetsBundle:Lieu')
             ->allCoordonnee();
 
-        return new JsonResponse(array('lieux' => $entities));
+        //les carnets
+        $carnets = $this->getDoctrine()
+            ->getRepository('CarnetsBundle:Carnet')
+            ->findAllActived();
+
+        return $this->render('CarnetsBundle:Default:accueil.html.twig', array('carnets' => $carnets, 'lieux' => $lieux));
     }
+
 }

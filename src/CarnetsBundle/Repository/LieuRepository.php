@@ -20,7 +20,8 @@ class LieuRepository extends EntityRepository
         $query = $this->getEntityManager()->createQueryBuilder();
         $query
             ->select($fields)
-            ->from('CarnetsBundle:Lieu', 'L');
+            ->from('CarnetsBundle:Lieu', 'L')
+            ->where('L.useInPath = 1');
 
         return $query
             ->getQuery()
