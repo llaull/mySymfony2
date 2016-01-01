@@ -18,6 +18,8 @@ class LieuType extends AbstractType
             ->add('ville')
             ->add('carnet')
             ->add('dateArrived')
+            ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
+            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
             ->add('dateArrived', 'date', array(
                     'widget' => 'single_text',
                     'input' => 'datetime',
@@ -35,8 +37,7 @@ class LieuType extends AbstractType
             ->add('contenu', 'ckeditor', array(
                 'label' => 'Contenu',
             ))
-            ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
-            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
+
             ->add('imageAccueil', 'elfinder', array(
                 'instance' => 'form',
                 'label' => 'image de l\'accueil',
