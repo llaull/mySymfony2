@@ -31,29 +31,24 @@ class LieuType extends AbstractType
                     'format' => 'dd/MM/yyyy',
                     'attr' => array('class' => 'date'),
                 )
-            );
-
-        $builder->add('contenu', 'ckeditor', array(
-            'label' => 'Contenu',
-        ));
-
-        $builder->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
-            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'));
-
-        $builder->add('imageAccueil', 'elfinder', array(
-            'instance' => 'form',
-            'label' => 'image de l\'accueil',
-            'required' => true,
-            'attr' => array('class' => 'form-control')
-        ))
+            )
+            ->add('contenu', 'ckeditor', array(
+                'label' => 'Contenu',
+            ))
+            ->add('useInMenu', 'checkbox', array('required' => false, 'label' => 'afficher dans le menu'))
+            ->add('useInPath', 'checkbox', array('required' => false, 'label' => 'afficher sur la carte'))
+            ->add('imageAccueil', 'elfinder', array(
+                'instance' => 'form',
+                'label' => 'image de l\'accueil',
+                'required' => false,
+                'attr' => array('class' => 'form-control')
+            ))
             ->add('imageHeader', 'elfinder', array(
                 'instance' => 'form',
                 'label' => 'header du carnet',
-                'required' => true,
+                'required' => false,
                 'attr' => array('class' => 'form-control')
-            ));
-
-        $builder
+            ))
             ->add('lat', null, array('read_only' => true))
             ->add('lng', null, array('read_only' => true)
             );
