@@ -11,12 +11,10 @@
 
         function initMap() {
 
-
             var input = document.getElementById('carnetsbundle_lieu_ville');
             new google.maps.places.SearchBox(input);
 
             var geocoder = new google.maps.Geocoder();
-            console.log('->' + geocoder);
 
             document.getElementById('carnetsbundle_lieu_useInPath').addEventListener('click', function() {
                 geocodeAddress(geocoder);
