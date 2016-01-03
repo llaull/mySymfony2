@@ -135,6 +135,7 @@ fm_elfinder:
             editor: ckeditor # other options are tinymce, tinymce4, form, custom and simple
             fullscreen: true # defaults true, applies to simple and ckeditor editors
             theme: smoothness # jquery theme
+            extraPlugins: 'pastebase64'
             include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
             connector:
                 debug: false # defaults to false
