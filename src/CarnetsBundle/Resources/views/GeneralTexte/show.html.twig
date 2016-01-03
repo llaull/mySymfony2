@@ -55,7 +55,24 @@
         </div>
     </div>
 
+{#
+    <div class="detail-content-block">
 
+        <!-- un onglet -->
+        <div class="accordion style-2">
+            <div class="acc-panel">
+                <div class="acc-title"><span class="acc-icon"></span>titre d'un onglet</div>
+                <div class="acc-body">
+
+                    <p style="text-align:justify">texte</p>
+
+                </div>
+            </div>
+        </div>
+        <!-- fin un onglet -->
+
+    </div>
+#}
 
 
 {% endblock %}
@@ -63,8 +80,32 @@
 {% block javascripts %}
     {% javascripts
     '@CarnetsBundle/Resources/public/js/all.js'
-    '@CarnetsBundle/Resources/public/js/isotope.pkgd.min.js'
-    %}
+    '@CarnetsBundle/Resources/public/js/isotope.pkgd.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <script type="text/javascript">
+        console.log('A');
+        $(document).ready(function () {
+            if ($('#accordion').length) {
+                console.log('Z');
+
+                var input = $('#accordion').html();
+                var lines = input.split('<ol><li>');
+                var output = '';
+                $.each(lines, function(key, line) {
+                    console.log("->");
+                    //console.log(lines);
+                    //console.log(key);
+                    //console.log(line);
+                    var parts = line.split('<p>');
+                    console.log(parts[0]);
+                   // output += '<span>' + parts[0] + ' ' + parts[1] + '</span><span>' + parts[2] + '</span>\n';
+                });
+               // $(output).appendTo('body');
+
+            }
+
+        });
+    </script>
 {% endblock %}
