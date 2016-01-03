@@ -1,17 +1,70 @@
 {% extends 'CarnetsBundle:Default:index.html.twig' %}
 {% block body %}
-    <div class="container-fluid text-center">
-        <div class="row content">
 
-            <div class="col-sm-9 text-left">
-                {{ GeneralTexte.title }}
+    <!-- INNER-BANNER -->
+    <div class="inner-banner style-6 background-block" style="background-color: #5f5f5f">
 
+        <div class="vertical-align">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-8 col-md-offset-2">
+                        <ul class="banner-breadcrumb color-white clearfix">
+                            <li><a class="link-blue-2" href="{{ path('carnets_de_voy_homepage') }}">home</a> /</li>
+                            <li><span>{{ GeneralTexte.title }}</span></li>
 
-                {{ GeneralTexte.contenu | raw }}
-
+                        </ul>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 
+    <div class="detail-wrapper">
+        <div class="container">
+            <div class="detail-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8">
+                        <h2 class="detail-title color-dark-2">
+                            {{ GeneralTexte.title }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row padd-90">
+                <div class="col-xs-12 col-md-8">
+                    <div class="detail-content color-1">
+
+                        <div class="detail-content-block">
+
+                            {{ GeneralTexte.contenu | raw }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="right-sidebar">
+                        <div class="detail-block bg-dr-blue">
+                            <div class="details-desc">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    '@CarnetsBundle/Resources/public/js/all.js'
+    '@CarnetsBundle/Resources/public/js/isotope.pkgd.min.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
