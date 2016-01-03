@@ -18,7 +18,9 @@
 
                     <nav class="menu">
                         <ul>
-
+                            <li class="type-1 active">
+                                <a href="{{ path('carnets_de_voy_destination',{'slug':carnet.slug}) }}">Nos voyages</a>
+                            </li>
                             {% for l in links %}
                                 <li class="type-1 active">
                                     <a href="{{ path('general_texte_show',{'slug':l.slug}) }}">{{ l.title }}
