@@ -86,7 +86,7 @@ class LieuRepository extends EntityRepository
             'l.slug AS villeSlug',
             'l.dateArrived',
             'l.dateDeparture',
-            'l.image',
+            'l.imageHeader',
             'l.contenu',
             'c.slug AS carnetSlug'
         );
