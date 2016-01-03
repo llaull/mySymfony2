@@ -1,10 +1,5 @@
 <?php
-/* run
-*  php app/console doctrine:schema:update --force
-*  php app/console doctrine:generate:entities AlertBundle/Entity/
-*  php app/console generate:doctrine:crud
-// $this->date = new \DateTime();
-*/
+
 
 namespace CarnetsBundle\Entity;
 
@@ -89,6 +84,11 @@ class Lieu
      */
     protected $useInPath;
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     */
+    protected $pinterestLink;
+    /**
      * @var carnet
      *
      * @ORM\ManyToOne(targetEntity="Carnet")
@@ -100,6 +100,22 @@ class Lieu
     {
         $this->carnet = new ArrayCollection();
         $this->created = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPinterestLink()
+    {
+        return $this->pinterestLink;
+    }
+
+    /**
+     * @param mixed $pinterestLink
+     */
+    public function setPinterestLink($pinterestLink)
+    {
+        $this->pinterestLink = $pinterestLink;
     }
 
     /**
