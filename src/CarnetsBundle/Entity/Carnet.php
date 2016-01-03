@@ -1,10 +1,5 @@
 <?php
-/* run
-*  php app/console doctrine:schema:update --force
-*  php app/console doctrine:generate:entities CarnetBundle/Entity/
-*  php app/console generate:doctrine:crud
-// $this->date = new \DateTime();
-*/
+
 
 namespace CarnetsBundle\Entity;
 
@@ -74,11 +69,7 @@ class Carnet
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $actived;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     */
-    protected $pinterestLink;
+
 
     public function __construct()
     {
@@ -100,22 +91,6 @@ class Carnet
     public function setImageAccueil($imageAccueil)
     {
         $this->imageAccueil = $imageAccueil;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPinterestLink()
-    {
-        return $this->pinterestLink;
-    }
-
-    /**
-     * @param mixed $pinterestLink
-     */
-    public function setPinterestLink($pinterestLink)
-    {
-        $this->pinterestLink = $pinterestLink;
     }
 
     public function __toString()
