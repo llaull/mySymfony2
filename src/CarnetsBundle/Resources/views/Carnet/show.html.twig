@@ -1,33 +1,22 @@
 {% extends 'CarnetsBundle:Default:index.html.twig' %}
 {% block body %}
 
-    <!-- TOP-BANER -->
-    <div class="top-baner">
-        <div class="swiper-container main-slider-3" data-autoplay="0" data-loop="0" data-speed="900" data-center="0"
-             data-slides-per-view="1">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide active" data-val="0">
-                    <div class="clip"><img src="{{ entity.imageHeader }}" alt="">
+    <!-- INNER-BANNER -->
+    <div class="inner-banner style-6 background-block" style="background-image:url('../../{{ entity.imageHeader }}')">
 
-                        <div class="bg bg-bg-chrome act"
-                             style="background-image:url('../../{{ entity.imageHeader }}')"></div>
-                    </div>
-                    <div class="vertical-bottom">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="main-title style-2 left">
-                                        <h1>{{ entity.title }}</h1>
+        <div class="vertical-align">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-8 col-md-offset-2">
+                        <ul class="banner-breadcrumb color-white clearfix">
 
-                                        <p class="color-white-light">{{ entity.description|slice(0, 220)|raw }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <h1>{{ entity.title }}</h1>
+                            <p class="color-white-light">{{ entity.description|slice(0, 220)|raw }}</p>
+
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="pagination pagination-left-2 poin-style-1"></div>
         </div>
     </div>
 
