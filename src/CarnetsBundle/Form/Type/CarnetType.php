@@ -32,7 +32,6 @@ class CarnetType extends AbstractType
                 'label' => 'Contenu',
             ));
 
-        $builder->add('pinterestLink', 'text', array('required' => false));
 
         $builder->add('imageAccueil', 'elfinder', array(
             'instance' => 'form',

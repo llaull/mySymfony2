@@ -48,6 +48,7 @@ class LieuType extends AbstractType
                 'required' => false,
                 'attr' => array('class' => 'form-control')
             ))
+            ->add('pinterestLink', 'text', array('required' => false))
             ->add('lat', null, array('read_only' => true))
             ->add('lng', null, array('read_only' => true)
             );
