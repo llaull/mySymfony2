@@ -35,6 +35,12 @@ class BlogArticle
      */
     protected $modified;
     /**
+     * @var datetime $publied
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $publied;
+    /**
      * @ORM\Column(type="string", length=90)
      */
     protected $title;
@@ -52,6 +58,165 @@ class BlogArticle
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    protected $useInMenu;
+    protected $actived;
+    /**
+     * @var category
+     *
+     * @ORM\ManyToOne(targetEntity="BlogCategory")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    protected $category;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+        $this->created = new \DateTime();
+        $this->modified = new \DateTime();
+        $this->publied = new \DateTime();
+    }
+
+    /**
+     * @return category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param category $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param mixed $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    /**
+     * @param datetime $modified
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getPublied()
+    {
+        return $this->publied;
+    }
+
+    /**
+     * @param datetime $publied
+     */
+    public function setPublied($publied)
+    {
+        $this->publied = $publied;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param mixed $contenu
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActived()
+    {
+        return $this->actived;
+    }
+
+    /**
+     * @param mixed $actived
+     */
+    public function setActived($actived)
+    {
+        $this->actived = $actived;
+    }
 
 }

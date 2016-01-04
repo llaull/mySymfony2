@@ -1,11 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: laurent
- * Date: 20/12/2015
- * Time: 21:31
+ * User: moi
+ * Date: 03/01/2016
+ * Time: 19:39
  */
-
 namespace CarnetsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,9 +12,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="carnet2voyage__generalTexte")
+ * @ORM\Table(name="carnet2voyage__blogCategory")
  */
-class GeneralTexte
+class BlogCategory
 {
     /**
      * @ORM\Id
@@ -46,18 +45,6 @@ class GeneralTexte
      * @Gedmo\Slug(fields={"title"}, unique=true)
      */
     protected $slug;
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    protected $contenu;
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $useInMenu;
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $ordre;
 
     public function __construct()
     {
@@ -65,36 +52,9 @@ class GeneralTexte
         $this->modified = new \DateTime();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrdre()
+    public function __toString()
     {
-        return $this->ordre;
-    }
-
-    /**
-     * @param mixed $ordre
-     */
-    public function setOrdre($ordre)
-    {
-        $this->ordre = $ordre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUseInMenu()
-    {
-        return $this->useInMenu;
-    }
-
-    /**
-     * @param mixed $useInMenu
-     */
-    public function setUseInMenu($useInMenu)
-    {
-        $this->useInMenu = $useInMenu;
+        return $this->title;
     }
 
     /**
@@ -176,22 +136,5 @@ class GeneralTexte
     {
         $this->slug = $slug;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
-    }
-
-    /**
-     * @param mixed $contenu
-     */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
-    }
-
 
 }
