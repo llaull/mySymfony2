@@ -11,8 +11,6 @@ before_script:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
   - php app/console doctrine:schema:update --force
-  - php app/console doctrine:fixtures:load
-  - y
 
 script: phpunit --coverage-text
 
