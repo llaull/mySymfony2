@@ -70,7 +70,6 @@ class CarnetController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-
             $em->persist($entity);
             $em->flush();
 

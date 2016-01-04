@@ -15,14 +15,20 @@ class BlogArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('created')
-            ->add('modified')
-            ->add('publied')
-            ->add('title')
-            ->add('slug')
-            ->add('contenu')
-            ->add('actived')
             ->add('category')
+            ->add('publied', 'date', array(
+                    'widget' => 'single_text',
+                    'input' => 'datetime',
+                    'format' => 'dd/MM/yyyy',
+                    'attr' => array('class' => 'date'),
+                )
+            )
+            ->add('title')
+            ->add('contenu', 'ckeditor', array(
+                'label' => 'Contenu',
+            ))
+            ->add('actived')
+
         ;
     }
     

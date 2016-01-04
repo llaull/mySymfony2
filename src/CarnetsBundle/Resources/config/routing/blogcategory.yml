@@ -3,7 +3,7 @@ admin_carnet_blog_category:
     defaults: { _controller: "CarnetsBundle:BlogCategory:index" }
 
 admin_carnet_blog_category_show:
-    path:     /{id}/show
+    path:     /{slug}/show
     defaults: { _controller: "CarnetsBundle:BlogCategory:show" }
 
 admin_carnet_blog_category_new:
@@ -27,4 +27,4 @@ admin_carnet_blog_category_update:
 admin_carnet_blog_category_delete:
     path:     /{id}/delete
     defaults: { _controller: "CarnetsBundle:BlogCategory:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE, GET]

@@ -62,6 +62,10 @@ class BlogComment
     {
         $this->created = new \DateTime();
     }
+    public function __toString()
+    {
+        return $this->authorName;
+    }
 
     /**
      * @return arcticle

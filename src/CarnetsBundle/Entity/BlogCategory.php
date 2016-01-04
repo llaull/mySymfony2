@@ -51,7 +51,10 @@ class BlogCategory
         $this->created = new \DateTime();
         $this->modified = new \DateTime();
     }
-
+    public function __toString()
+    {
+        return $this->title;
+    }
     /**
      * @return mixed
      */
