@@ -1,6 +1,10 @@
 parameters:
     database_user: travis
     database_password: ~
+    mailer_transport: smtp
+    mailer_host:
+    mailer_user: null
+    mailer_password: null
     secret: d767cb298c96549dae4a8ee718661441c7f9451c
     ext_proxy:
     kazer_id:
