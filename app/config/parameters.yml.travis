@@ -2,3 +2,15 @@ parameters:
     database_user: travis
     database_password: ~
     secret: d767cb298c96549dae4a8ee718661441c7f9451c
+    ext_proxy:
+    kazer_id:
+    mon_mail:
+    oauth_access_token:
+    oauth_access_token_secret:
+    consumer_key:
+    consumer_secret:
+    twitter_account:
+    tweet_limit: 2
+    pinterest_account:
+    pinterest_board:
+    domain:
