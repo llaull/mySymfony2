@@ -52,11 +52,6 @@ class BlogCategory
         $this->modified = new \DateTime();
     }
 
-    public function __toString()
-    {
-        return $this->title;
-    }
-
     /**
      * @return mixed
      */
@@ -136,5 +131,6 @@ class BlogCategory
     {
         $this->slug = $slug;
     }
+
 
 }
