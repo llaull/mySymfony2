@@ -1,3 +1,15 @@
+carnets_admin_carnet_blog_comment:
+    resource: "@CarnetsBundle/Resources/config/routing/blogcomment.yml"
+    prefix:   /admin/carnet/blog/comment
+
+carnets_admin_carnet_blog_category:
+    resource: "@CarnetsBundle/Resources/config/routing/blogcategory.yml"
+    prefix:   /admin/carnet/blog/category
+
+carnets_admin_carnet_blog_article:
+    resource: "@CarnetsBundle/Resources/config/routing/blogarticle.yml"
+    prefix:   /admin/carnet/blog/article
+
 carnets_admin_general_texte:
     resource: "@CarnetsBundle/Resources/config/routing/generaltexte.yml"
     prefix:   /admin/general/texte

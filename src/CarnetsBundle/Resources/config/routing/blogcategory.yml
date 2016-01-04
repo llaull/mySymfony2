@@ -1,0 +1,30 @@
+admin_carnet_blog_category:
+    path:     /
+    defaults: { _controller: "CarnetsBundle:BlogCategory:index" }
+
+admin_carnet_blog_category_show:
+    path:     /{id}/show
+    defaults: { _controller: "CarnetsBundle:BlogCategory:show" }
+
+admin_carnet_blog_category_new:
+    path:     /new
+    defaults: { _controller: "CarnetsBundle:BlogCategory:new" }
+
+admin_carnet_blog_category_create:
+    path:     /create
+    defaults: { _controller: "CarnetsBundle:BlogCategory:create" }
+    methods:  POST
+
+admin_carnet_blog_category_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CarnetsBundle:BlogCategory:edit" }
+
+admin_carnet_blog_category_update:
+    path:     /{id}/update
+    defaults: { _controller: "CarnetsBundle:BlogCategory:update" }
+    methods:  [POST, PUT]
+
+admin_carnet_blog_category_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CarnetsBundle:BlogCategory:delete" }
+    methods:  [POST, DELETE]
