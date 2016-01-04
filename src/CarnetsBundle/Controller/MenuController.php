@@ -81,7 +81,6 @@ class MenuController extends Controller
             $footerTexte = array(array("contenu" => "footer à remplir"));
         }
 
-//        die(var_dump($tagLieu));
         return $this->container->get('templating')->renderResponse('CarnetsBundle:Default:footer.html.twig', array(
             'links' => $links,
             'footerTexte' => current($footerTexte),

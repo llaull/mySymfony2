@@ -4,6 +4,7 @@ namespace CarnetsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use CarnetsBundle\Entity\Page;
 use CarnetsBundle\Form\Type\PageType;
@@ -30,9 +31,9 @@ class PageController extends Controller
         $q->execute();
 
 
+        $em = $this->getDoctrine()->getManager();
         foreach ($params as $v) {
             if ($v->type != "lieu") {
-                $em = $this->getDoctrine()->getManager();
 
                 $entity = $em->getRepository('CarnetsBundle:Page')->find($v->id);
 
@@ -41,9 +42,8 @@ class PageController extends Controller
                 }
 
                 $entity->setOrdre($v->order);
-                $em->flush();
+
             } else {
-                $em = $this->getDoctrine()->getManager();
 
                 $entity = $em->getRepository('CarnetsBundle:Lieu')->find($v->id);
 
@@ -52,11 +52,11 @@ class PageController extends Controller
                 }
 
                 $entity->setOrdre($v->order);
-                $em->flush();
             }
 
         }
-        die();
+        $em->flush();
+        return new JsonResponse(array('result' => "ok"));
 
     }
 
@@ -148,7 +148,6 @@ class PageController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
-        //$slugCarnet = array("slug" => $carnet);
 
         return $this->render('CarnetsBundle:Page:show.html.twig', array(
             'entity' => $carnetInfos,

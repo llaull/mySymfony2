@@ -3,7 +3,6 @@
 namespace CarnetsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
 
 class LieuRepository extends EntityRepository
 {

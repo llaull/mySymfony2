@@ -9,7 +9,6 @@
 namespace CarnetsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -69,7 +68,6 @@ class Page
 
     public function __construct()
     {
-        //$this->lieu = new ArrayCollection();
         $this->created = new \DateTime();
     }
 

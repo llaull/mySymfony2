@@ -59,7 +59,6 @@ class LieuController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_lieu'));
-           // return $this->redirect($this->generateUrl('admin_lieu_new'));
         }
 
         return $this->render('CarnetsBundle:Lieu:new.html.twig', array(
@@ -117,7 +116,6 @@ class LieuController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
-       // $slugCarnet = array("slug" => $carnet);
 
         return $this->render('CarnetsBundle:Page:show.html.twig', array(
             'entity' => $carnetInfos,
@@ -142,7 +140,6 @@ class LieuController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-//        die(var_dump($entity));
 
         return $this->render('CarnetsBundle:Lieu:edit.html.twig', array(
             'entity' => $entity,

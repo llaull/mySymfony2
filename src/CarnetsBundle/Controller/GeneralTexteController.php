@@ -4,6 +4,7 @@ namespace CarnetsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use CarnetsBundle\Entity\GeneralTexte;
 use CarnetsBundle\Form\Type\GeneralTexteType;
@@ -27,19 +28,19 @@ class GeneralTexteController extends Controller
         $q->execute();
 
 
+        $em = $this->getDoctrine()->getManager();
         foreach ($params as $v) {
-                $em = $this->getDoctrine()->getManager();
 
-                $entity = $em->getRepository('CarnetsBundle:GeneralTexte')->find($v->id);
+            $entity = $em->getRepository('CarnetsBundle:GeneralTexte')->find($v->id);
 
-                if (!$entity) {
-                    throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
-                }
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find GeneralTexte entity.');
+            }
 
-                $entity->setOrdre($v->order);
-                $em->flush();
+            $entity->setOrdre($v->order);
         }
-        die();
+        $em->flush();
+        return new JsonResponse(array('result' => "ok"));
 
     }
 
