@@ -14,6 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity
  * @ORM\Table(name="carnet2voyage__blogArticle")
+ * @ORM\Entity(repositoryClass="CarnetsBundle\Repository\BlogRepository")
  */
 class BlogArticle
 {
@@ -68,6 +69,21 @@ class BlogArticle
      */
     protected $category;
 
+    /**
+     * @var \Commun\UserBundle\Entity\user
+     *
+     * @ORM\ManyToOne(targetEntity="Commun\UserBundle\Entity\user")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="autor_id", referencedColumnName="id")
+     * })
+     */
+    protected $autor;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true, options={"default":"http://placehold.it/600x600"}))
+     *
+     */
+    protected $image;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -75,6 +91,39 @@ class BlogArticle
         $this->modified = new \DateTime();
         $this->publied = new \DateTime();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return \Commun\UserBundle\Entity\user
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * @param \Commun\UserBundle\Entity\user $autor
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+    }
+
     public function __toString()
     {
         return $this->title;

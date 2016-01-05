@@ -50,6 +50,9 @@ carnets_de_voy_page:
     path:     /carnet/{carnet}/{ville}/{page}.html
     defaults: { _controller: CarnetsBundle:Page:show }
 
+carnets_de_voy_blog:
+    path:     /carnet/le-lounge/
+    defaults: { _controller: CarnetsBundle:Default:indexBlog }
 #
 #     AJAX
 #
