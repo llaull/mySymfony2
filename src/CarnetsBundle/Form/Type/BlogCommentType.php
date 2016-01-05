@@ -15,13 +15,10 @@ class BlogCommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('created')
             ->add('authorName')
             ->add('authorMail')
             ->add('contenu')
-            ->add('publied')
             ->add('arcticle')
-            ->add('reply')
         ;
     }
     

@@ -29,6 +29,7 @@ class BlogArticleController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new BlogArticle entity.
      *
@@ -49,7 +50,7 @@ class BlogArticleController extends Controller
 
         return $this->render('CarnetsBundle:BlogArticle:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -79,11 +80,11 @@ class BlogArticleController extends Controller
     public function newAction()
     {
         $entity = new BlogArticle();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CarnetsBundle:BlogArticle:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -101,8 +102,15 @@ class BlogArticleController extends Controller
             throw $this->createNotFoundException('Unable to find BlogArticle entity.');
         }
 
+        $entities = $this->getDoctrine()->getRepository('CarnetsBundle:BlogArticle');
+        $category = $entities->findCategoyWithInfo($em);
+
+        $comment = $em->getRepository('CarnetsBundle:BlogComment')->findByArcticle($entity);
+
         return $this->render('CarnetsBundle:BlogArticle:show.html.twig', array(
-            'article'      => $entity
+            'article' => current($entity),
+            'category' => $category,
+            'comment' => $comment
 
         ));
     }
@@ -125,19 +133,19 @@ class BlogArticleController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CarnetsBundle:BlogArticle:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a BlogArticle entity.
-    *
-    * @param BlogArticle $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a BlogArticle entity.
+     *
+     * @param BlogArticle $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(BlogArticle $entity)
     {
         $form = $this->createForm(new BlogArticleType(), $entity, array(
@@ -149,6 +157,7 @@ class BlogArticleController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing BlogArticle entity.
      *
@@ -174,11 +183,12 @@ class BlogArticleController extends Controller
         }
 
         return $this->render('CarnetsBundle:BlogArticle:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a BlogArticle entity.
      *
@@ -216,7 +226,6 @@ class BlogArticleController extends Controller
             ->setAction($this->generateUrl('admin_carnet_blog_article_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

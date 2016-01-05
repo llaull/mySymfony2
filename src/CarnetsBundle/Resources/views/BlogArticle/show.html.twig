@@ -1,6 +1,178 @@
 {% extends 'CarnetsBundle:Default:index.html.twig' %}
 
     {% block body %}
+        <!-- INNER-BANNER -->
+        <div class="inner-banner style-6">
+            <div class="inner-banner style-6 background-block" style="background-color: #5f5f5f">
+                <div class="vertical-align">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8 col-md-offset-2">
+                                <ul class="banner-breadcrumb color-white clearfix">
+                                    <li><a class="link-blue-2" href="#">home</a> /</li>
+                                    <li><a class="link-blue-2" href="#">blog</a> /</li>
+                                    <li><span>blog detail</span></li>
+                                </ul>
+                                <h2 class="color-white">blog</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- BLOG -->
+        <div class="detail-wrapper">
+            <div class="container">
+                <div class="row padd-90">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="detail-header style-2">
+                            <h2 class="detail-title color-dark-2">{{ article.title }}</h2>
+
+                            <div class="tour-info-line clearfix">
+                                <div class="tour-info fl">
+                                    <i class="fa fa-calendar"></i>
+                                    <span class="font-style-2 color-dark-2">{{ article.publied|date('d-m-Y') }}</span>
+                                </div>
+                                <div class="tour-info fl">
+                                    <i class="entypo entypo-user"></i>
+                                    <span class="font-style-2 color-dark-2">By {{ article.autor.username }}</span>
+                                </div>
+                                <div class="tour-info fl">
+                                    <i class="fa fa-comments-o"></i>
+                                    <span class="font-style-2 color-dark-2">
+                                     {#{% transchoice article.commentNb %}#}
+                                      {#{0} pas de commentaire|{1} un commentaire|]1,Inf[  %count% commentaires#}
+                                     {#{% endtranschoice %}#}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-content">
+                            <div class="detail-content-block">
+                              {{ article.contenu | raw }}
+
+
+                                {#<div class="share clearfix">#}
+                                    {#<div class="share-title color-dark-2">share:</div>#}
+                                    {#<ul>#}
+                                        {#<li class="color-fb"><a href=""><i class="fa fa-facebook"></i>facebook<span#}
+                                                        {#class="color-fb-2">12</span></a></li>#}
+                                        {#<li class="color-tw"><a href=""><i class="fa fa-twitter"></i>twitter<span#}
+                                                        {#class="color-tw-2">27</span></a></li>#}
+                                        {#<li class="color-gg"><a href=""><i class="fa fa-google-plus"></i>google +<span#}
+                                                        {#class="color-gg-2">51</span></a></li>#}
+                                        {#<li class="color-pin"><a href=""><i class="fa fa-pinterest"></i>pinterest<span#}
+                                                        {#class="color-pin-2">70</span></a></li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            </div>
+                        </div>
+
+                        <div class="additional-block">
+                            <h4 class="additional-title">comments <span class="color-dr-blue-2">(4)</span></h4>
+                            <ul class="comments-block">
+                                {% for com in comment %}
+        {% if com.reply is null %}
+            <li class="comment-entry clearfix">
+
+            <div class="comment-content clearfix">
+                <div class="tour-info-line">
+                    <div class="tour-info">
+                        <i class="fa fa-calendar"></i>
+                        <span class="font-style-2 color-dark-2">{{ com.publied|date('d-m-Y h:m:s') }}</span>
+                    </div>
+                    <div class="tour-info">
+                        <i class="entypo entypo-user"></i>
+                        <span class="font-style-2 color-dark-2">By {{ com.authorName }}</span>
+                    </div>
+                </div>
+                <div class="comment-text color-grey">{{ com.contenu | raw }}
+                </div>
+                <a class="comment-reply c-button b-26 bg-dr-blue-2 hv-dr-blue-2-o" href="#">Reply</a>
+            </div>
+        {% else %}
+
+            <ul class="comments-block">
+                <li class="comment-entry clearfix">
+
+                    <div class="comment-content clearfix">
+                        <div class="tour-info-line">
+                            <div class="tour-info">
+                                <i class="fa fa-calendar"></i>
+                                <span class="font-style-2 color-dark-2">{{ com.publied|date('d-m-Y h:m:s') }}</span>
+                            </div>
+                            <div class="tour-info">
+                                <i class="entypo entypo-user"></i>
+                                <span class="font-style-2 color-dark-2">By {{ com.authorName }}</span>
+                            </div>
+                        </div>
+                        <div class="comment-text color-grey">{{ com.contenu | raw }}
+                        </div>
+                        <a class="comment-reply c-button b-26 bg-dr-blue-2 hv-dr-blue-2-o"
+                           href="#">Reply</a>
+                    </div>
+                </li>
+            </ul>
+        {% endif %}
+        </li>
+    {% endfor %}
+                            </ul>
+                            {{ render(controller('CarnetsBundle:BlogComment:new', {'article':article.id})) }}
+                            {#<form>#}
+                                {#<div class="row">#}
+                                    {#<div class="col-xs-12 col-sm-6">#}
+                                        {#<div class="form-block type-2 clearfix">#}
+                                            {#<div class="input-style-1 b-50 brd-0 type-2 color-3">#}
+                                                {#<input type="text" required="" placeholder="Enter your name">#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                    {#<div class="col-xs-12 col-sm-6">#}
+                                        {#<div class="form-block type-2 clearfix">#}
+                                            {#<div class="input-style-1 b-50 brd-0 type-2 color-3">#}
+                                                {#<input type="text" required="" placeholder="Enter your email">#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                    {#<div class="col-xs-12">#}
+                                        {#<div class="form-block type-2 clearfix">#}
+                                            {#<textarea class="area-style-1 type-2 color-3" required=""#}
+                                                      {#placeholder="Write a comment..."></textarea>#}
+                                        {#</div>#}
+                                        {#<input type="submit" class="c-button b-40 fr bg-dr-blue-2 hv-dr-blue-2-o"#}
+                                               {#value="post comment">#}
+                                    {#</div>#}
+
+                                {#</div>#}
+                            {#</form>#}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="right-sidebar">
+                            <div class="sidebar-block type-2">
+                                <h4 class="sidebar-title color-dark-2">categories</h4>
+                                <ul class="sidebar-category color-5">
+                                    <li>
+                                        <a href="#">all <span class="fr">(125)</span></a>
+                                    </li>
+                                    {% for categories in category %}
+        <li>
+            <a href="#">{{ categories.title }} <span class="fr">({{ categories.articleNb }})</span></a>
+        </li>
+    {% endfor %}
+                                </ul>
+                            </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         {{ dump() }}
     {% endblock %}

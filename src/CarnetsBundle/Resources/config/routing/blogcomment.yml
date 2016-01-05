@@ -7,7 +7,7 @@ admin_carnet_blog_comment_show:
     defaults: { _controller: "CarnetsBundle:BlogComment:show" }
 
 admin_carnet_blog_comment_new:
-    path:     /new
+    path:     /{article}/new
     defaults: { _controller: "CarnetsBundle:BlogComment:new" }
 
 admin_carnet_blog_comment_create:

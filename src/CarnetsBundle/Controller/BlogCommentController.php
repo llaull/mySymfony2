@@ -76,9 +76,15 @@ class BlogCommentController extends Controller
      * Displays a form to create a new BlogComment entity.
      *
      */
-    public function newAction()
+    public function newAction($article)
     {
+        $em = $this->getDoctrine()->getManager();
+        $articleCurrent = $em->getRepository('CarnetsBundle:BlogArticle')->findById($article);
+
+
+//        var_dump($articleCurrent);
         $entity = new BlogComment();
+        $entity->setArcticle($articleCurrent);
         $form   = $this->createCreateForm($entity);
 
         return $this->render('CarnetsBundle:BlogComment:new.html.twig', array(
