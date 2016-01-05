@@ -3970,7 +3970,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .comments-block .tour-info img { vertical-align: middle; }
 
-.comments-block .comment-content { position: relative; margin-left: 113px; margin-bottom: 50px; padding: 17px 30px 20px 30px; background: #f8f8f8; -moz-border-radius: 3px; border-radius: 3px; }
+.comments-block .comment-content { position: relative; /*margin-left: 113px; */margin-bottom: 50px; padding: 17px 30px 20px 30px; background: #f8f8f8; -moz-border-radius: 3px; border-radius: 3px; }
 
 .comments-block .comment-content:before { content: ''; display: block; position: absolute; top: 22px; left: -16px; width: 0; height: 0; border-style: solid; border-width: 11.5px 16px 11.5px 0; border-color: transparent #f8f8f8 transparent transparent; }
 

@@ -32,7 +32,7 @@ class BlogComment
      */
     protected $authorName;
     /**
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string", length=190,nullable=true)
      */
     protected $authorMail;
     /**

@@ -16,9 +16,11 @@ class BlogCommentType extends AbstractType
     {
         $builder
             ->add('authorName')
-            ->add('authorMail')
+            ->add('authorMail',null, array('required' => false))
             ->add('contenu')
             ->add('arcticle')
+//            ->add('arcticle',null,array( 'attr'=>array('style'=>'display:none;')) )
+            ->add('reply')
         ;
     }
     

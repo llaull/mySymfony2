@@ -42,9 +42,9 @@
                                 <div class="tour-info fl">
                                     <i class="fa fa-comments-o"></i>
                                     <span class="font-style-2 color-dark-2">
-                                     {#{% transchoice article.commentNb %}#}
-                                      {#{0} pas de commentaire|{1} un commentaire|]1,Inf[  %count% commentaires#}
-                                     {#{% endtranschoice %}#}
+                                     {% transchoice comment|length %}
+                                      {0} pas de commentaire|{1} un commentaire|]1,Inf[  %count% commentaires
+                                     {% endtranschoice %}
                                     </span>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="additional-block">
-                            <h4 class="additional-title">comments <span class="color-dr-blue-2">(4)</span></h4>
+                            <h4 class="additional-title">comments <span class="color-dr-blue-2">({{ comment|length }})</span></h4>
                             <ul class="comments-block">
                                 {% for com in comment %}
         {% if com.reply is null %}
@@ -90,7 +90,7 @@
                 </div>
                 <div class="comment-text color-grey">{{ com.contenu | raw }}
                 </div>
-                <a class="comment-reply c-button b-26 bg-dr-blue-2 hv-dr-blue-2-o" href="#">Reply</a>
+                <a class="comment-reply c-button b-26 bg-dr-blue-2 hv-dr-blue-2-o" data-commentId="{{ com.id }}" href="#">Reply</a>
             </div>
         {% else %}
 
@@ -120,33 +120,7 @@
     {% endfor %}
                             </ul>
                             {{ render(controller('CarnetsBundle:BlogComment:new', {'article':article.id})) }}
-                            {#<form>#}
-                                {#<div class="row">#}
-                                    {#<div class="col-xs-12 col-sm-6">#}
-                                        {#<div class="form-block type-2 clearfix">#}
-                                            {#<div class="input-style-1 b-50 brd-0 type-2 color-3">#}
-                                                {#<input type="text" required="" placeholder="Enter your name">#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                    {#</div>#}
-                                    {#<div class="col-xs-12 col-sm-6">#}
-                                        {#<div class="form-block type-2 clearfix">#}
-                                            {#<div class="input-style-1 b-50 brd-0 type-2 color-3">#}
-                                                {#<input type="text" required="" placeholder="Enter your email">#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                    {#</div>#}
-                                    {#<div class="col-xs-12">#}
-                                        {#<div class="form-block type-2 clearfix">#}
-                                            {#<textarea class="area-style-1 type-2 color-3" required=""#}
-                                                      {#placeholder="Write a comment..."></textarea>#}
-                                        {#</div>#}
-                                        {#<input type="submit" class="c-button b-40 fr bg-dr-blue-2 hv-dr-blue-2-o"#}
-                                               {#value="post comment">#}
-                                    {#</div>#}
 
-                                {#</div>#}
-                            {#</form>#}
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-4">
@@ -176,3 +150,33 @@
 
         {{ dump() }}
     {% endblock %}
+{% block javascripts %}
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            if ($('#carnetsbundle_blogcomment_arcticle').length) {
+
+                /**
+                 *
+                 */
+                $("a.comment-reply").click(function() {
+                    console.log("ezzz");
+                });
+
+                /*
+                permet de charger l'article dans le select du commentaire
+                 */
+                var text1 = '{{ article.title }}';
+                $("#carnetsbundle_blogcomment_arcticle option").filter(function() {
+                    //may want to use $.trim in here
+                    return $(this).text() == text1;
+                }).attr('selected', true);
+
+
+            }
+        });
+    </script>
+{% endblock %}
