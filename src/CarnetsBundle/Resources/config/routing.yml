@@ -53,6 +53,11 @@ carnets_de_voy_page:
 carnets_de_voy_blog:
     path:     /carnet/le-lounge/
     defaults: { _controller: CarnetsBundle:Default:indexBlog }
+
+carnets_de_voy_blog_article:
+    path:     /carnet/le-lounge/{slug}
+    defaults: { _controller: CarnetsBundle:BlogArticle:show }
+
 #
 #     AJAX
 #

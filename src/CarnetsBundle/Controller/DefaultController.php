@@ -36,11 +36,11 @@ class DefaultController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('page', 1),1
+            $this->get('request')->query->get('page', 1),10
         );
 
 
-        return $this->render('CarnetsBundle:BlogArticle:show.html.twig', array(
+        return $this->render('CarnetsBundle:BlogArticle:showAll.html.twig', array(
             'entities' => $pagination,
         ));
     }
