@@ -110,7 +110,7 @@
                         </div>
                         <div class="comment-text color-grey">{{ com.contenu | raw }}
                         </div>
-                        <a class="comment-reply c-button b-26 bg-dr-blue-2 hv-dr-blue-2-o"
+                        <a class="comment-reply c-button b-26 bg-dr-blue-2 hv-dr-blue-2-o" data-commentId="{{ com.id }}"
                            href="#">Reply</a>
                     </div>
                 </li>
@@ -163,7 +163,16 @@
                  *
                  */
                 $("a.comment-reply").click(function() {
-                    console.log("ezzz");
+                   var q =  $(this).attr("data-commentId");
+                    console.log("-> " + q);
+
+                    $("#carnetsbundle_blogcomment_reply option").filter(function() {
+                        //may want to use $.trim in here
+                        return $(this).text() == q;
+                    }).attr('selected', true);
+
+
+                    return false
                 });
 
                 /*
