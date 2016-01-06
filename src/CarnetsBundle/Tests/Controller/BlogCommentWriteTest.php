@@ -11,18 +11,20 @@ namespace CarnetsBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class BlogCommentWriteTest extends WebTestCase{
+class BlogCommentWriteTest extends WebTestCase
+{
 
     public function testCompleteScenario()
     {
         $client = static::createClient();
 
         $crawler = $client->request('GET', "/carnet/le-lounge/bienvenue");
-        $this->assertEquals(200 , $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
 
         $form = $crawler->selectButton('Create')->form(array(
-            'carnetsbundle_blogcomment[authorName]' => 'Test'
+            'carnetsbundle_blogcomment[authorName]' => 'Test',
+            'carnetsbundle_blogcomment[contenu]' => 'plupTest',
         ));
 
 
@@ -34,13 +36,11 @@ class BlogCommentWriteTest extends WebTestCase{
 //            'carnetsbundle_blogcomment[reply]' => NULL
 //        ));
 
-//        die(var_dump($form));
         $client->submit($form);
         $client->followRedirect();
 
 
-
-        $this->assertGreaterThan(0, $crawler->filter('div.comment-text.color-grey:contains("plup")')->count(), 'Missing element td:contains("Test")');
+        $this->assertGreaterThan(0, $crawler->filter('div.comment-text.color-grey:contains("plupTest")')->count(), 'Missing element div.comment-text.color-grey:contains("plupTest")');
 
 //        die(var_dump($crawler));
 
