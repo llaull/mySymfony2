@@ -11,8 +11,8 @@ before_script:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
   - php app/console doctrine:schema:update --force
-  - php app/console doctrine:migrations:migrate -n
   - php app/console fos:user:create test test test --super-admin
+  - php app/console doctrine:migrations:migrate -n
   - php app/console xml:tcl
 
 script: phpunit -c app/
