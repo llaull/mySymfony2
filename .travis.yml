@@ -12,6 +12,9 @@ before_script:
   - composer install
   - php app/console doctrine:schema:update --force
   - php app/console doctrine:migrations:migrate -n
+  - php app/console fos:user:create test test test --super-admin
+  - php app/console xml:tcl
+  - php app/console xml:tv
 
 script: phpunit -c app/
 
