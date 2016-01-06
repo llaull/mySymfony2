@@ -66,7 +66,9 @@
                 <li><a href="{{ path('admin_page') }}" title="Les pages"><i
                                 class="entypo-book-open"></i><span> les pages</span></a>
                 </li>
-                <li><a href="#" title="Le blog" class="submenu accordion" data-id="blog-sub"><i
+                <li><a href="#" title="Le blog"
+                       class="{{ "CarnetsBundle"|menuActive(app.request.attributes.get('_controller')) }} submenu accordion"
+                       data-id="blog-sub"><i
                                 class="entypo-book-open"></i><span> le blog</span></a>
                     <ul id="blog-sub">
                         <li><a href="{{ path('admin_carnet_blog_article') }}" title="les articles"><i
