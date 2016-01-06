@@ -14,7 +14,6 @@ before_script:
   - php app/console doctrine:migrations:migrate -n
   - php app/console fos:user:create test test test --super-admin
   - php app/console xml:tcl
-  - php app/console xml:tv
 
 script: phpunit -c app/
 

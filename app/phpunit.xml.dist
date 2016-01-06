@@ -13,6 +13,7 @@
             <!--<directory>../src/*/Bundle/*Bundle/Tests</directory>-->
             <!--<directory>../src/*Bundle/Tests</directory>-->
             <directory>../src/CarnetsBundle/Tests/Controller/BlogArticleReadTest.php</directory>
+            <directory>../src/Commun/UserBundle/Tests/UserControllerTest.php</directory>
         </testsuite>
     </testsuites>
 
