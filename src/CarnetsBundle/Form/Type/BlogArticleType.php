@@ -27,6 +27,12 @@ class BlogArticleType extends AbstractType
             ->add('contenu', 'ckeditor', array(
                 'label' => 'Contenu',
             ))
+            ->add('image', 'elfinder', array(
+                'instance' => 'form',
+                'label' => 'header du carnet',
+                'required' => false,
+                'attr' => array('class' => 'form-control')
+            ))
             ->add('actived')
 
         ;
