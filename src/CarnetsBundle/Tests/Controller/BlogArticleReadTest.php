@@ -17,7 +17,6 @@ class BlogArticleReadTest extends WebTestCase{
     {
         $client = static::createClient();
 
-        // Create a new entry in the database
         $client->request('GET', "/nos-voyages");
         $this->assertEquals(200 , $client->getResponse()->getStatusCode());
     }
