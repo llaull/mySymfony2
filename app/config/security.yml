@@ -1,7 +1,10 @@
 # app/config/security.yml
 security:
    encoders:
-       FOS\UserBundle\Model\UserInterface: sha512
+       FOS\UserBundle\Model\UserInterface:
+            algorithm: sha512
+            iterations: 5001
+            encode_as_base64: true
 
    role_hierarchy:
        ROLE_ADMIN:       ROLE_USER
