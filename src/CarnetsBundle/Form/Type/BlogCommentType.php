@@ -18,9 +18,10 @@ class BlogCommentType extends AbstractType
             ->add('authorName')
             ->add('authorMail',null, array('required' => false))
             ->add('contenu')
-            ->add('arcticle')
+//            ->add('arcticle')
 //            ->add('arcticle',null,array( 'attr'=>array('style'=>'display:none;')) )
-            ->add('reply')
+            ->add('arcticle', null, array('label' => false))
+            ->add('reply', null, array('label' => false))
         ;
     }
     
