@@ -51,25 +51,12 @@ class BlogCategory
         $this->created = new \DateTime();
         $this->modified = new \DateTime();
     }
+
     public function __toString()
     {
         return $this->title;
     }
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return datetime
@@ -85,22 +72,6 @@ class BlogCategory
     public function setCreated($created)
     {
         $this->created = $created;
-    }
-
-    /**
-     * @return datetime
-     */
-    public function getModified()
-    {
-        return $this->modified;
-    }
-
-    /**
-     * @param datetime $modified
-     */
-    public function setModified($modified)
-    {
-        $this->modified = $modified;
     }
 
     /**
@@ -128,6 +99,22 @@ class BlogCategory
     }
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @param string $slug
      */
     public function setSlug($slug)
@@ -135,5 +122,19 @@ class BlogCategory
         $this->slug = $slug;
     }
 
+    /**
+     * @return datetime
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
 
+    /**
+     * @param datetime $modified
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    }
 }
