@@ -1,14 +1,14 @@
-carnets_admin_carnet_blog_comment:
-    resource: "@CarnetsBundle/Resources/config/routing/blogcomment.yml"
-    prefix:   /admin/carnet/blog/comment
-
-carnets_admin_carnet_blog_category:
-    resource: "@CarnetsBundle/Resources/config/routing/blogcategory.yml"
-    prefix:   /admin/carnet/blog/category
-
-carnets_admin_carnet_blog_article:
-    resource: "@CarnetsBundle/Resources/config/routing/blogarticle.yml"
-    prefix:   /admin/carnet/blog/article
+#carnets_admin_carnet_blog_comment:
+#    resource: "@CarnetsBundle/Resources/config/routing/blogcomment.yml"
+#    prefix:   /admin/carnet/blog/comment
+#
+#carnets_admin_carnet_blog_category:
+#    resource: "@CarnetsBundle/Resources/config/routing/blogcategory.yml"
+#    prefix:   /admin/carnet/blog/category
+#
+#carnets_admin_carnet_blog_article:
+#    resource: "@CarnetsBundle/Resources/config/routing/blogarticle.yml"
+#    prefix:   /admin/carnet/blog/article
 
 carnets_admin_general_texte:
     resource: "@CarnetsBundle/Resources/config/routing/generaltexte.yml"
@@ -50,13 +50,7 @@ carnets_de_voy_page:
     path:     /carnet/{carnet}/{ville}/{page}.html
     defaults: { _controller: CarnetsBundle:Page:show }
 
-carnets_de_voy_blog:
-    path:     /carnet/le-lounge/
-    defaults: { _controller: CarnetsBundle:Default:indexBlog }
 
-carnets_de_voy_blog_article:
-    path:     /carnet/le-lounge/{slug}
-    defaults: { _controller: CarnetsBundle:BlogArticle:show }
 
 #
 #     AJAX

@@ -1,3 +1,12 @@
+carnet_app_carnet:
+    resource: "@CarnetAppCarnetBundle/Resources/config/routing.yml"
+    prefix:   /
+
+carnet_app_blog:
+    resource: "@CarnetAppBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
 domotiquebundle_front:
     resource: "@DomotiquebundleFrontBundle/Resources/config/routing.yml"
     prefix:   /

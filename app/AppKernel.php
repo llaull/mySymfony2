@@ -37,6 +37,8 @@ class AppKernel extends Kernel
             new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
             new Commun\ToDoBundle\CommunToDoBundle(),
             new Domotique\bundle\FrontBundle\DomotiquebundleFrontBundle(),
+            new CarnetApp\BlogBundle\CarnetAppBlogBundle(),
+            new CarnetApp\CarnetBundle\CarnetAppCarnetBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
