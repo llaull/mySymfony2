@@ -1,3 +1,37 @@
-carnet_app_carnet_homepage:
-    path:     /hello/{name}
+carnet_app_carnet_carnet_page:
+    resource: "@CarnetAppCarnetBundle/Resources/config/routing/page.yml"
+    prefix:   /admin/carnet/page
+
+carnet_app_carnet_carnet_lieu:
+    resource: "@CarnetAppCarnetBundle/Resources/config/routing/lieu.yml"
+    prefix:   /admin/carnet/lieu
+
+carnet_app_carnet_admin_carnet:
+    resource: "@CarnetAppCarnetBundle/Resources/config/routing/carnet.yml"
+    prefix:   /admin/carnet
+
+#
+#     cote front office
+#
+carnets_de_voy_homepage:
+    path:     /nos-voyages
     defaults: { _controller: CarnetAppCarnetBundle:Default:index }
+
+carnets_de_voy_destination:
+    path:     /carnet/{slug}
+    defaults: { _controller: CarnetAppCarnetBundle:Carnet:show }
+
+carnets_de_voy_ville:
+    path:     /carnet/{carnet}/{ville}.html
+    defaults: { _controller: CarnetAppCarnetBundle:Lieu:show }
+
+carnets_de_voy_page:
+    path:     /carnet/{carnet}/{ville}/{page}.html
+    defaults: { _controller: CarnetAppCarnetBundle:Page:show }
+
+#
+#     AJAX
+#
+carnets_de_voy_carte_path:
+    path:     /carnet/path/{slug}
+    defaults: { _controller: CarnetAppCarnetBundle:Carnet:path }

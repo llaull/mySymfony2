@@ -1,6 +1,6 @@
 <?php
 
-namespace CarnetApp\CarnetBundle\Tests\Controller;
+namespace CarnetApp\ToolBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

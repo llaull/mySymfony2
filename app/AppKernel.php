@@ -39,6 +39,8 @@ class AppKernel extends Kernel
             new Domotique\bundle\FrontBundle\DomotiquebundleFrontBundle(),
             new CarnetApp\BlogBundle\CarnetAppBlogBundle(),
             new CarnetApp\CarnetBundle\CarnetAppCarnetBundle(),
+            new CarnetApp\ToolBundle\CarnetAppToolBundle(),
+            new CarnetApp\StaticPageBundle\CarnetAppStaticPageBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -14,51 +14,51 @@ carnets_admin_general_texte:
     resource: "@CarnetsBundle/Resources/config/routing/generaltexte.yml"
     prefix:   /admin/general/texte
 
-carnets_admin_page:
-    resource: "@CarnetsBundle/Resources/config/routing/page.yml"
-    prefix:   /admin/page
-
-carnets_admin_lieu:
-    resource: "@CarnetsBundle/Resources/config/routing/lieu.yml"
-    prefix:   /admin/lieu
-
-carnets_admin_carnet:
-    resource: "@CarnetsBundle/Resources/config/routing/carnet.yml"
-    prefix:   /admin/carnet
+#carnets_admin_page:
+#    resource: "@CarnetsBundle/Resources/config/routing/page.yml"
+#    prefix:   /admin/page
+#
+#carnets_admin_lieu:
+#    resource: "@CarnetsBundle/Resources/config/routing/lieu.yml"
+#    prefix:   /admin/lieu
+#
+#carnets_admin_carnet:
+#    resource: "@CarnetsBundle/Resources/config/routing/carnet.yml"
+#    prefix:   /admin/carnet
 
 
 #
 #     cote front office
 #
-general_texte_show:
-    path:     /{slug}.html
-    defaults: { _controller: "CarnetsBundle:GeneralTexte:show" }
-
-carnets_de_voy_homepage:
-    path:     /nos-voyages
-    defaults: { _controller: CarnetsBundle:Default:index }
-
-carnets_de_voy_destination:
-    path:     /carnet/{slug}
-    defaults: { _controller: CarnetsBundle:Carnet:show }
-
-carnets_de_voy_ville:
-    path:     /carnet/{carnet}/{ville}.html
-    defaults: { _controller: CarnetsBundle:Lieu:show }
-
-carnets_de_voy_page:
-    path:     /carnet/{carnet}/{ville}/{page}.html
-    defaults: { _controller: CarnetsBundle:Page:show }
+#general_texte_show:
+#    path:     /{slug}.html
+#    defaults: { _controller: "CarnetsBundle:GeneralTexte:show" }
+#
+#carnets_de_voy_homepage:
+#    path:     /nos-voyages
+#    defaults: { _controller: CarnetsBundle:Default:index }
+#
+#carnets_de_voy_destination:
+#    path:     /carnet/{slug}
+#    defaults: { _controller: CarnetsBundle:Carnet:show }
+#
+#carnets_de_voy_ville:
+#    path:     /carnet/{carnet}/{ville}.html
+#    defaults: { _controller: CarnetsBundle:Lieu:show }
+#
+#carnets_de_voy_page:
+#    path:     /carnet/{carnet}/{ville}/{page}.html
+#    defaults: { _controller: CarnetsBundle:Page:show }
 
 
 
 #
 #     AJAX
 #
-carnets_de_voy_twitter:
-    path:     /twitter
-    defaults: { _controller: CarnetsBundle:Twitter:index }
-
-carnets_de_voy_carte_path:
-    path:     /carnet/path/{slug}
-    defaults: { _controller: CarnetsBundle:Carnet:path }
+#carnets_de_voy_twitter:
+#    path:     /twitter
+#    defaults: { _controller: CarnetsBundle:Twitter:index }
+#
+#carnets_de_voy_carte_path:
+#    path:     /carnet/path/{slug}
+#    defaults: { _controller: CarnetsBundle:Carnet:path }

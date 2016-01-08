@@ -1,3 +1,11 @@
+carnet_app_static_page:
+    resource: "@CarnetAppStaticPageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+carnet_app_tool:
+    resource: "@CarnetAppToolBundle/Resources/config/routing.yml"
+    prefix:   /
+
 carnet_app_carnet:
     resource: "@CarnetAppCarnetBundle/Resources/config/routing.yml"
     prefix:   /
@@ -32,9 +40,9 @@ tcl:
     resource: "@TclBundle/Resources/config/routing.yml"
     prefix:   /
 
-carnets_de_voy:
-    resource: "@CarnetsBundle/Resources/config/routing.yml"
-    prefix:   /
+#carnets_de_voy:
+#    resource: "@CarnetsBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 commun_user:
     resource: "@CommunUserBundle/Controller/"
