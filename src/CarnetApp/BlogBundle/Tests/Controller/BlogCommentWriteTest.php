@@ -6,7 +6,7 @@
  * Time: 10:08
  */
 
-namespace CarnetsBundle\Tests\Controller;
+namespace CarnetApp\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

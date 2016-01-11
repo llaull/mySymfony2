@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Commun\UserBundle\CommunUserBundle(),
             new Debril\RssAtomBundle\DebrilRssAtomBundle(),
-            new CarnetsBundle\CarnetsBundle(),
+//            new CarnetsBundle\CarnetsBundle(),
             new TclBundle\TclBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new ProgrammeTvBundle\ProgrammeTvBundle(),
