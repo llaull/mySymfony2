@@ -35,7 +35,6 @@ framework:
 twig:
     globals:
         pinterest_account: "%pinterest_account%"
-        pinterest_board: "%pinterest_board%"
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
