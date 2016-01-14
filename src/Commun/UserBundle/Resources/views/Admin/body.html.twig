@@ -90,7 +90,9 @@
     <script src="{{ asset('assets/jquery-ui/jquery-ui.min.js') }}"></script>
 
     <!--Bootstrap-->
-    <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
+    {% javascripts '@CommunUserBundle/Resources/public/js/bootstrap/bootstrap.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
 
     {% javascripts
