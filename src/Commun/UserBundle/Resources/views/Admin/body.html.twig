@@ -87,7 +87,14 @@
     <!--Scripts-->
     <!--JQuery-->
 
-    <script src="{{ asset('assets/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!--jquery-->
+    {% javascripts '@CommunUserBundle/Resources/public/js/jquery/jquery.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <!--jquery-ui-->
+    {% javascripts '@CommunUserBundle/Resources/public/js/jquery/jquery-ui.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
     <!--Bootstrap-->
     {% javascripts '@CommunUserBundle/Resources/public/js/bootstrap/bootstrap.min.js' %}
