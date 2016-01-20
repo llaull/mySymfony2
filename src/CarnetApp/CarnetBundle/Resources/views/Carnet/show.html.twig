@@ -53,12 +53,16 @@
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="hotel-item style-3">
                                 <div class="radius-top" style="max-height: 220px">
-                                    <img src="{{ l.imageAccueil }}" alt="">
+                                    <a href="{{ path('carnets_de_voy_ville',{'carnet':entity.slug,'ville': l.slug }) }}"><img
+                                                src="{{ l.imageAccueil }}" alt=""></a>
                                 </div>
                                 <div class="title">
                                     <div class="date"> du <strong>{{ l.dateArrived|date("m/d/Y") }}</strong> au
                                         <strong>{{ l.dateDeparture|date("m/d/Y") }}</strong></div>
-                                    <h4><b>{{ ville[0] }}</b></h4>
+                                    <h4>
+                                        <b><a href="{{ path('carnets_de_voy_ville',{'carnet':entity.slug,'ville': l.slug }) }}">{{ ville[0] }}</a></b>
+                                    </h4>
+
                                     <p></p>
                                     {#<p class="f-14">&nbsp;{{ l.contenu|slice(0, 120)|raw }}</p>#}
                                     <a href="{{ path('carnets_de_voy_ville',{'carnet':entity.slug,'ville': l.slug }) }}"

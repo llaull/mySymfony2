@@ -24,4 +24,7 @@ parameters:
     pinterest_account:
     pinterest_board:
     domain:
-    api_google_map:
+    api_google_analytics:
+    api_google_WMT:
+    host_carnet:
+    host_domotique:

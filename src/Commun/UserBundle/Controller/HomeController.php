@@ -14,8 +14,17 @@ class HomeController extends Controller
     public function indexAction()
     {
 
-    	$user = $this->container->get('security.context')->getToken()->getUser();
-	   	return $this->render('CommunUserBundle:Default:bootstrap.html.twig',  array('user' => $user));
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $host = $this->container->get('request')->getHost();
+
+        switch ($host) {
+            case $this->getParameter('host_carnet');
+                return $this->redirect($this->generateUrl('carnets_de_voy_homepage'));
+                break;
+            default:
+                return $this->render('CommunUserBundle:Default:bootstrap.html.twig',  array('user' => $user));
+        }
+
     }
 
     /**
