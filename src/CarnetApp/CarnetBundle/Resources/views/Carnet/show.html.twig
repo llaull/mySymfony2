@@ -11,6 +11,7 @@
                         <ul class="banner-breadcrumb color-white clearfix">
 
                             <h1>{{ entity.title }}</h1>
+
                             <p class="color-white-light">{{ entity.description|slice(0, 220)|raw }}</p>
 
                         </ul>
@@ -58,7 +59,7 @@
                                     <div class="date"> du <strong>{{ l.dateArrived|date("m/d/Y") }}</strong> au
                                         <strong>{{ l.dateDeparture|date("m/d/Y") }}</strong></div>
                                     <h4><b>{{ ville[0] }}</b></h4>
-
+                                    <p></p>
                                     {#<p class="f-14">&nbsp;{{ l.contenu|slice(0, 120)|raw }}</p>#}
                                     <a href="{{ path('carnets_de_voy_ville',{'carnet':entity.slug,'ville': l.slug }) }}"
                                        class="c-button transparent color-grey-3 hv-o">
