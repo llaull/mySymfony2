@@ -24,3 +24,4 @@ parameters:
     pinterest_account:
     pinterest_board:
     domain:
+    api_google_map:

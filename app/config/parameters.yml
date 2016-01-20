@@ -20,3 +20,4 @@ parameters:
     tweet_limit: 2
     pinterest_account: llovem0760
     domain: llovem.eu
+    api_google_map: AIzaSyC_ZQKuddf-gIFkFOPFLeBO9oycJH25jmY

@@ -35,6 +35,7 @@ framework:
 twig:
     globals:
         pinterest_account: "%pinterest_account%"
+        googleApiKey: "%api_google_map%"
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
