@@ -71,7 +71,9 @@ class AdminPathTest extends WebTestCase{
     {
         return array(
             array('admin/carnet/staticPage/texte/'),
-            array('admin/carnet/staticPage/texte/new')
+            array('admin/carnet/staticPage/texte/new'),
+            array('admin/carnet/staticPage/texte/1/edit'),
+            array('admin/carnet/staticPage/texte/1/delete'),
         );
     }
 
