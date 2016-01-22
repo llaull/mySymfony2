@@ -6,7 +6,7 @@
  * Time: 09:45
  */
 
-namespace CarnetApp\StaticPageBundle\Tests\Controller;
+namespace CarnetApp\ToolBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -70,9 +70,7 @@ class AdminPathTest extends WebTestCase{
     public function urlProvider()
     {
         return array(
-            array('admin/carnet/staticPage/texte/'),
-            array('admin/carnet/staticPage/texte/new'),
-            array('admin/carnet/staticPage/texte/1/edit'),
+            array('carnet/tool/option/1/edit'),
         );
     }
 
