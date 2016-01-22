@@ -21,7 +21,7 @@ parameters:
     pinterest_account: llovem0760
     domain: llovem.eu
     api_google_map: AIzaSyC_ZQKuddf-gIFkFOPFLeBO9oycJH25jmY
-    api_google_analytics:
+    api_google_analytics: UA-19180062-5
     api_google_WMT:
     host_carnet: carnet.test.local
     host_domotique:

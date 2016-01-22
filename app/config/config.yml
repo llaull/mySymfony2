@@ -36,6 +36,8 @@ twig:
     globals:
         pinterest_account: "%pinterest_account%"
         googleApiKey: "%api_google_map%"
+        api_google_analytics: "%api_google_analytics%"
+        api_google_WMT: "%api_google_WMT%"
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
