@@ -211,7 +211,6 @@ class TexteController extends Controller
      * Deletes a Texte entity.
      *
      */
-
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
