@@ -26,9 +26,8 @@
                                 <li class="type-1 active">
                                     <a href="{{ path('carnets_de_voy_ville',{'carnet':l.carnet.slug,'ville': l.slug }) }}">{{ ville[0] }}
                                         <span class="fa fa-angle-down"></span></a>
-                                    <ul {% if page|length > 1 %}
-                                        class="dropmenu"
-                                            {% endif %}>
+                                    {% if page|length > 1 %}
+                                    <ul class="dropmenu">
                                         {% for p in page %}
                                             {% if p.lieu.ville==l.ville %}
                                                 <li>
@@ -37,6 +36,7 @@
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
+                                    {% endif %}>
                                 </li>
                             {% endfor %}
                         </ul>
