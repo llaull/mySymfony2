@@ -101,7 +101,9 @@
         if ($('div#accordion').length) {
             $('#accordion').accordion({
                 active: false,
-                collapsible: true
+                heightStyle: "content",
+                autoHeight: false,
+                clearStyle: true
             });
         }
     });
