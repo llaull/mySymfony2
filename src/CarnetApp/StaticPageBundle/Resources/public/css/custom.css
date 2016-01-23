@@ -12,7 +12,7 @@
 /* 02 - accordéon css
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 
-div.detail-content-block .ui-accordion-header{
+div.detail-content-block .ui-accordion-header {
     position: relative;
     font-size: 14px;
     line-height: 21px;
@@ -25,14 +25,24 @@ div.detail-content-block .ui-accordion-header{
     background: #2d3e50;
     color: #fff;
 }
+
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 03 -  MeP des element dans le contenu des pages
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-div.detail-content-block > h2{
+div.detail-content-block > h2 {
     color: #206ab0;
     font-size: x-large;
 }
-div.detail-content-block a{
+
+div.detail-content-block a {
     color: #206ab0;
     text-decoration: underline;
+}
+
+div.detail-content-block img {
+    margin-bottom: 0px;
+}
+
+div.detail-content ul {
+    width: auto;
 }
