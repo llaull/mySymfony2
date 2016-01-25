@@ -16,8 +16,10 @@
         <a class="color">
             <div class="colorInner"></div>
         </a>
+        {% image '@DomotiquebundleFrontBundle/Resources/public/images/text-color.png'
+        output='/images/text-color.png' %}
+        <div class="track" style="background:#EFEFEF url({{ asset_url }}) no-repeat 50% 50%; "></div>{% endimage %}
 
-        <div class="track" style="background:#EFEFEF url({{ asset('text-color.png') }}) no-repeat 50% 50%; "></div>
         <ul class="dropdown">
             <li></li>
         </ul>
