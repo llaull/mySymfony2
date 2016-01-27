@@ -41,6 +41,7 @@ class AppKernel extends Kernel
             new CarnetApp\CarnetBundle\CarnetAppCarnetBundle(),
             new CarnetApp\ToolBundle\CarnetAppToolBundle(),
             new CarnetApp\StaticPageBundle\CarnetAppStaticPageBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
