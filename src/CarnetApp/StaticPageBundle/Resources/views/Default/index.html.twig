@@ -9,18 +9,10 @@
 
 {% endif %}
 <!DOCTYPE html>
-<html>
+<html {{ sonata_seo_html_attributes() }}>
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if entity is defined %}{{ metaTitle }}{% else %}Accueil{% endif %} - carnet de voyage</title>
-
-    {#facebook meta#}
-    <meta property="og:url" content="{{ app.request.uri }}"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title"
-          content="{% if entity is defined %}{{ metaTitle }}{% else %}Accueil{% endif %} - carnet de voyage"/>
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
 
     {% image '@CarnetAppStaticPageBundle/Resources/public/images/Logo_cdv.png'
     output='/images/carnet-de-voyage.png' %}

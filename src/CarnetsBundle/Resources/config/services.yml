@@ -1,7 +1,0 @@
-services:
-#    tcl.example:
-#        class: TclBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
-
-#    plip.plop:
-#        class: CarnetsBundle\Services\Menu

@@ -25,3 +25,4 @@ parameters:
     api_google_WMT:
     host_carnet: carnet.test.local
     host_domotique:
+    titleSuffix: - carnet de voyage
