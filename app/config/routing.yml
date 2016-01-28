@@ -1,3 +1,7 @@
+carnet_app_twitter:
+    resource: "@CarnetAppTwitterBundle/Resources/config/routing.yml"
+    prefix:   /
+
 carnet_app_static_page:
     resource: "@CarnetAppStaticPageBundle/Resources/config/routing.yml"
     prefix:   /
