@@ -64,3 +64,9 @@ div.detail-content ul {
     width: 100%;
     height: auto;
 }
+
+div.img-center{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+}
