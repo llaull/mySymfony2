@@ -4,25 +4,30 @@ parameters:
     database_name: symfonyllm
     database_user: root
     database_password: null
+
     mailer_transport: smtp
     mailer_host: 10.85.42.229
     mailer_user: null
     mailer_password: null
+    mon_mail: laurent.hazard@cgi.com
+
     secret: 664c93a12f29e282094736af4ce49fbc7e7a6739
     ext_proxy: fr-proxy.groupinfra.com:3128
     kazer_id: h1b8bzfz3npye
-    mon_mail: laurent.hazard@cgi.com
+
     oauth_access_token: 919513532-zDKJFkxxl0sUDRneVAODQBKYRLRU9WD6OtjDNcyO
     oauth_access_token_secret: HplPNptaTi0ABUcbD4Zlpre5wmy2MLTctMnmS9l32peOu
     consumer_key: WESgXKpJsY6hXjj80mT5hWZwp
     consumer_secret: P5SLONRd9JsAwzqK1R6DLrCiVX8fwhNtWyAMrb3QLyKHJUJAm9
+
     twitter_account: llovem33
     tweet_limit: 2
     pinterest_account: llovem0760
-    domain: llovem.eu
+
     api_google_map: AIzaSyC_ZQKuddf-gIFkFOPFLeBO9oycJH25jmY
     api_google_analytics: UA-19180062-5
     api_google_WMT:
-    host_carnet: carnet.test.local
-    host_domotique:
-    titleSuffix: - carnet de voyage
+
+    app_host: carnet.test.local
+    app_route: carnets_de_voy_homepage
+    app_titleSuffix: - carnet de voyage

@@ -18,8 +18,8 @@ class HomeController extends Controller
         $host = $this->container->get('request')->getHost();
 
         switch ($host) {
-            case $this->getParameter('host_carnet');
-                return $this->redirect($this->generateUrl('carnets_de_voy_homepage'));
+            case $this->getParameter('app_host');
+                return $this->redirect($this->generateUrl($this->getParameter('app_route')));
                 break;
             default:
                 return $this->render('CommunUserBundle:Default:bootstrap.html.twig',  array('user' => $user));

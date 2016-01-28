@@ -4,25 +4,30 @@ parameters:
     database_name: test
     database_user: travis
     database_password: ~
+
     mailer_transport: smtp
     mailer_host:
     mailer_user: null
     mailer_password: null
+    mon_mail:
+
     secret: d767cb298c96549dae4a8ee718661441c7f9451c
     ext_proxy:
     kazer_id:
-    mon_mail:
+
     oauth_access_token:
     oauth_access_token_secret:
     consumer_key:
     consumer_secret:
+
     twitter_account:
     tweet_limit: 2
     pinterest_account:
-    pinterest_board:
-    domain:
+
     api_google_map: XXX
     api_google_analytics:
     api_google_WMT:
-    host_carnet:
-    host_domotique:
+
+    app_host:
+    app_route:
+    app_titleSuffix: test

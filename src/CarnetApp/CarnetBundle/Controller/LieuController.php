@@ -123,7 +123,7 @@ class LieuController extends Controller
 
         $seoPage = $this->container->get('sonata.seo.page');
         $seoPage
-            ->setTitle($entity[0]->getVille() . ' - ' . $entity[0]->getCarnet()->getTitle() . " " . $this->getParameter('titleSuffix'))
+            ->setTitle($entity[0]->getVille() . ' - ' . $entity[0]->getCarnet()->getTitle() . " " . $this->getParameter('app_titleSuffix'))
             ->addMeta('property', 'og:title', $seoPage->getTitle())
             ->addMeta('property', 'og:type', 'blog')
         ;
