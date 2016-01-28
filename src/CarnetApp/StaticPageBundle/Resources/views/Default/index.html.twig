@@ -11,10 +11,9 @@
     {{ sonata_seo_metadatas() }}
 
     {% image '@CarnetAppStaticPageBundle/Resources/public/images/Logo_cdv.png'
-    output='/images/carnet-de-voyage.png' %}
+    output='images/carnet-de-voyage.png' %}
     <meta property="og:image" content="{{ asset_url }}"/>
     {% endimage %}
-    {#facebook meta#}
 
     {% stylesheets
     '@CarnetAppStaticPageBundle/Resources/public/css/entypo.css'
@@ -26,6 +25,19 @@
     output='css/compiled/font-awesome.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
     {% endstylesheets %}
+
+    {% stylesheets
+    '@CarnetAppStaticPageBundle/Resources/public/js/owl-carousel/owl.carousel.css'
+    output='css/compiled/owl.carousel.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+
+    {% stylesheets
+    '@CarnetAppStaticPageBundle/Resources/public/js/owl-carousel/owl.theme.css'
+    output='css/compiled/owl.theme.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+
 
     {% stylesheets
     '@CarnetAppStaticPageBundle/Resources/public/css/bootstrap.min.css'
@@ -77,6 +89,10 @@
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
+{% javascripts '@CarnetAppStaticPageBundle/Resources/public/js/owl-carousel/owl.carousel.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
 {% javascripts
 '@CarnetAppStaticPageBundle/Resources/public/js/idangerous.swiper.min.js'
 '@CarnetAppStaticPageBundle/Resources/public/js/isotope.pkgd.min.js'
@@ -86,6 +102,19 @@
 {% endjavascripts %}
 <script>
     $(document).ready(function () {
+
+        if ($('div#owl-demo').length) {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                items: 4,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3]
+
+            })
+        }
+
         if ($('div#accordion').length) {
             $('#accordion').accordion({
                 active: false,

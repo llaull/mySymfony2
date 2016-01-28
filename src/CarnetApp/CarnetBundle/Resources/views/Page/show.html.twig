@@ -69,7 +69,7 @@
                     <div class="col-xs-12 col-md-4">
                         <div class="right-sidebar">
                             <div class="detail-block bg-dr-blue">
-                                <div class="details-desc">
+                                <div class="details-desc center-block">
 
                                     {% if page.pinterestLink is defined %}
                                         {% if page.pinterestLink is not null %}
@@ -108,5 +108,7 @@
                 </div>
             </div>
         </div>
-        {{ dump() }}
+
     {% endblock %}
+{% block dynamic_js %}
+{% endblock dynamic_js %}
