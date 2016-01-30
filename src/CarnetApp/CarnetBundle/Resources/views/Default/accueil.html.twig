@@ -28,12 +28,12 @@
         <div class="container">
             {% if carnets is defined %}
                 {% for row in carnets|batch(3) %}
-                    <div clas="row">
+                    <div class="row">
                         {% for carnet in row %}
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="hotel-item style-6">
                                     <div class="radius-top">
-                                        <img src="{{ carnet.imageAccueil }}" alt="">
+                                        <img src="{{ carnet.imageAccueil }}" alt="Carnet du voyage : {{ carnet.title }}">
                                     </div>
                                     <div class="title">
                                         <h5><strong class="color-red-3">{{ carnet.title }}</strong></h5>
@@ -45,7 +45,7 @@
                                             <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}"
                                                class="c-button b-40 color-grey-3 hv-o fr">{% image '@CarnetAppStaticPageBundle/Resources/public/images/flag_icon_grey.png'
                                                 output='images/flag_icon_grey.png' %}
-                                                <img src="{{ asset_url }}"/>
+                                                <img alt="Afficher tout le carnet de {{ carnet.title }}" src="{{ asset_url }}"/>
                                                 {% endimage %}
                                                 découvrir</a>
                                         </div>

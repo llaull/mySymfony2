@@ -52,7 +52,7 @@
                 </div>
 
                 {% for row in lieux|batch(3) %}
-                    <div clas="row">
+                    <div class="row">
                         {% for l in row %}
                             {% set ville = l.ville|split(',') %}
                             <div class="col-xs-12 col-sm-6 col-md-4">
