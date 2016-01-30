@@ -106,7 +106,6 @@ class ArticleController extends Controller
 
         $comment = $em->getRepository('CarnetAppBlogBundle:Comment')->findByArcticle($entity);
 
-        //die(var_dump($entity));
         $seoPage = $this->container->get('sonata.seo.page');
         $seoPage
             ->setTitle($entity[0]->getTitle() .' - le lounge '.  $this->getParameter('app_titleSuffix'))
