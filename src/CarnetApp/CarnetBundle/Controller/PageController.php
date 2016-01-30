@@ -152,6 +152,12 @@ class PageController extends Controller
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($entity[0]->getTitre() . ' - ' . $entityCarnet->getTitle() . ' ' . $this->getParameter('app_titleSuffix'))
+            ->addMeta('property', 'og:title', $seoPage->getTitle())
+            ->addMeta('property', 'og:type', 'blog');
+
         return $this->render('CarnetAppCarnetBundle:Page:show.html.twig', array(
             'entity' => $entityCarnet,
             'page' => current($entity),
