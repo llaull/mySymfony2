@@ -109,12 +109,15 @@ class ArticleController extends Controller
 
 
         $comment = $em->getRepository('CarnetAppBlogBundle:Comment')->findByArcticle($entity);
-
+        $url = $this->generateUrl('carnets_de_voy_blog_article', array('slug' => $entity[0]->getSlug()), true);
         $seoPage = $this->container->get('sonata.seo.page');
         $seoPage
             ->setTitle($entity[0]->getTitle() .' - le lounge '.  $this->getParameter('app_titleSuffix'))
             ->addMeta('property', 'og:title', $seoPage->getTitle())
-            ->addMeta('property', 'og:type', 'blog');
+            ->addMeta('property', 'og:type', 'blog')
+            ->addMeta('property', 'og:image', $url.'/../../..'.$entity[0]->getImage())
+            ->addMeta('property', 'og:url', $url);
+
 
         return $this->render('CarnetAppBlogBundle:Article:show.html.twig', array(
             'article' => current($entity),
