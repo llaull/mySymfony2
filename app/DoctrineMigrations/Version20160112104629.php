@@ -15,7 +15,7 @@ class Version20160112104629 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->addSql("INSERT INTO `carnet2voyage__generalOption` (`id`, `modified`, `blog_actived`, `blog_comment_actived`, `site_actived`) VALUES (NULL, NOW(), NULL, NULL, NULL);");
+        $this->addSql("INSERT INTO `carnet2voyage__generalOption` (`id`, `modified`, `blog_actived`, `blog_comment_actived`, `site_actived`) VALUES (NULL, NOW(), 1, 1, 1);");
 
     }
 
