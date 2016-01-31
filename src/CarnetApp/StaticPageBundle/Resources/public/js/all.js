@@ -43,11 +43,25 @@ $(function () {
     }
 
     if ($('div#accordion').length) {
+
+        var icons = {
+            header: "entypo-plus",
+            activeHeader: "entypo-minus"
+        };
+
         $('#accordion').accordion({
+            icons: icons,
             active: false,
             heightStyle: "content",
             autoHeight: false,
             clearStyle: true
+        });
+        $( "#toggle" ).button().click(function() {
+            if ( $( "#accordion" ).accordion( "option", "icons" ) ) {
+                $( "#accordion" ).accordion( "option", "icons", null );
+            } else {
+                $( "#accordion" ).accordion( "option", "icons", icons );
+            }
         });
     }
 
