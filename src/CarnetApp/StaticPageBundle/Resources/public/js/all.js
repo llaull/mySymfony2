@@ -44,6 +44,13 @@ $(function () {
         })
     }
 
+    $("img.s_news-img").MyThumbnail({
+        thumbWidth:120,
+        thumbHeight:100,
+        backgroundColor:"#ccc",
+        imageDivClass:"thumb"
+    });
+
     if ($('div#accordion').length) {
 
         var icons = {
