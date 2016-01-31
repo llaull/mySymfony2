@@ -45,8 +45,8 @@ $(function () {
     }
 
     $("img.s_news-img").MyThumbnail({
-        thumbWidth:120,
-        thumbHeight:100,
+        thumbWidth:263,
+        thumbHeight:195,
         backgroundColor:"#ccc",
         imageDivClass:"thumb"
     });
