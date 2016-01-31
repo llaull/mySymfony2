@@ -26,6 +26,18 @@
 
     <div class="main-wraper hotel-items">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>L'aventure à deux, autour du monde, à pied ou à roulette... C'est le récit de nos carnets de voyage ! Découvrez nos itinéraires, adresses, anecdotes et expériences de Globe Riders. Qu'ils puissent vous inspirer et vous aider à planifier vos prochaines aventures !</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="second-title">
+                        <h2>Nos carnets ({{ carnets|length }}) </h2>
+                    </div>
+                </div>
+            </div>
             {% if carnets is defined %}
                 {% for row in carnets|batch(3) %}
                     <div class="row">
@@ -33,19 +45,23 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="hotel-item style-6">
                                     <div class="radius-top">
-                                        <img src="{{ carnet.imageAccueil }}" alt="Carnet du voyage : {{ carnet.title }}">
+                                        <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}">
+                                            <img src="{{ carnet.imageAccueil }}"
+                                                 alt="Carnet du voyage : {{ carnet.title }}"></a>
                                     </div>
                                     <div class="title">
-                                        <h5><strong class="color-red-3">{{ carnet.title }}</strong></h5>
+                                        <h5><a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}"
+                                            ><strong class="color-red-3">{{ carnet.title }}</strong></a></h5>
                                         <h4>{{ carnet.destination }}</h4>
-
-                                        <p>{{ carnet.description }}</p>
-
+<div style="height: 83px;">
+                                 <p >{{ carnet.description }}</p>
+</div>
                                         <div class="clearfix">
                                             <a href="{{ path('carnets_de_voy_destination',{'slug': carnet.slug}) }}"
                                                class="c-button b-40 color-grey-3 hv-o fr">{% image '@CarnetAppStaticPageBundle/Resources/public/images/flag_icon_grey.png'
                                                 output='images/flag_icon_grey.png' %}
-                                                <img alt="Afficher tout le carnet de {{ carnet.title }}" src="{{ asset_url }}"/>
+                                                <img alt="Afficher tout le carnet de {{ carnet.title }}"
+                                                     src="{{ asset_url }}"/>
                                                 {% endimage %}
                                                 découvrir</a>
                                         </div>
