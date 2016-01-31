@@ -104,6 +104,10 @@ class ArticleController extends Controller
         $entities = $this->getDoctrine()->getRepository('CarnetAppBlogBundle:Article');
         $category = $entities->findCategoyWithInfo($em);
 
+
+        $tool = $em->getRepository('CarnetAppToolBundle:Option')->findById(1);
+
+
         $comment = $em->getRepository('CarnetAppBlogBundle:Comment')->findByArcticle($entity);
 
         $seoPage = $this->container->get('sonata.seo.page');
@@ -115,7 +119,8 @@ class ArticleController extends Controller
         return $this->render('CarnetAppBlogBundle:Article:show.html.twig', array(
             'article' => current($entity),
             'category' => $category,
-            'comment' => $comment
+            'comment' => $comment,
+            'toolOption' => current($tool)
 
         ));
     }
