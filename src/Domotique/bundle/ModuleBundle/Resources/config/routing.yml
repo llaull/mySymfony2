@@ -1,3 +1,9 @@
+domotiquebundle_module_domotique_module_logs_add_json:
+    path:     /m/g/coucou/values
+    defaults: { _controller: "DomotiquebundleModuleBundle:Logs:addJson" }
+    methods:  [POST, DELETE, GET]
+    
+
 domotiquebundle_module_domotique_module_logs_add:
     path:     /m/g/{string}
     defaults: { _controller: "DomotiquebundleModuleBundle:Logs:add" }

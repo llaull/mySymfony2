@@ -27,6 +27,23 @@ class LogsController extends Controller
         return new JsonResponse(array('name' => $entities));
     }
 
+
+    public function addJsonAction()
+    {
+        $params = array();
+        $content = $this->get("request")->getContent();
+        if (!empty($content)) {
+            $params = json_decode($content, true); // 2nd param to get as array
+        }
+
+        $logger = $this->get('logger');
+        $logger->error(print_r($params));
+        $logger->error($content);
+
+        var_dump($params);
+        die();
+    }
+
     /**
      * Lists all Logs entities.
      *
