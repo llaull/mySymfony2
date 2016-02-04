@@ -24,7 +24,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Commun\UserBundle\CommunUserBundle(),
             new Debril\RssAtomBundle\DebrilRssAtomBundle(),
-//            new CarnetsBundle\CarnetsBundle(),
             new TclBundle\TclBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new ProgrammeTvBundle\ProgrammeTvBundle(),
@@ -43,6 +42,7 @@ class AppKernel extends Kernel
             new CarnetApp\StaticPageBundle\CarnetAppStaticPageBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
             new CarnetApp\TwitterBundle\CarnetAppTwitterBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
