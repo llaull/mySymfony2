@@ -9,7 +9,7 @@ services:
 before_script:
   - mysql -e 'create database test;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
-  - composer install
+  - composer install --dev
   - php app/console doctrine:schema:update --force
   - php app/console fos:user:create test test test --super-admin
   - php app/console doctrine:migrations:migrate -n
