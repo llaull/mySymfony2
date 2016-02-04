@@ -37,8 +37,8 @@ class LogsController extends Controller
         }
 
         $logger = $this->get('logger');
-        $logger->error(print_r($params));
-        $logger->error($content);
+        $logger->error("params ->" . print_r($params));
+        $logger->error("content -> "  . $content);
 
         var_dump($params);
         die();
