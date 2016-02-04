@@ -5,11 +5,12 @@
  * Date: 04/02/2016
  * Time: 17:12
  */
+namespace Domotique\bundle\ModuleBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class PostJsonTest extends WebTestCase {
+class PostTest extends WebTestCase {
 
 
     public function testIndex()
