@@ -15,7 +15,6 @@ before_script:
   - php app/console doctrine:migrations:migrate -n
   - php app/console xml:tcl
   - mkdir -p build/logs
-  - mkdir -p build/logs
 
 script:
   - phpunit -c app/
