@@ -17,23 +17,22 @@ class PostTest extends WebTestCase {
     public function testIndex()
     {
         $client = static::createClient();
-
-
-
-        $dados = array(
-            'nome' => 'Entidade TESTE 01',
-            'ativo' => 0,
-            '_token' => "ee"
+        
+        // données simulé
+        $datas = array(
+            'mac' => "01:80:C2:00:00:00",
+            'ipv4' => "192.168.15.15",
+            'iteration' => 1,
+            "texte test" => "lorem ussu"
         );
 
-//
         $client->request(
             'POST',
             '/m/g/coucou/values',
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            json_encode(array('cartorio_servico_entidade'=>$dados))
+            json_encode(array('data'=>$datas))
         );
 
         $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
