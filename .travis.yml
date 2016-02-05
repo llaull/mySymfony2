@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 5.5
+#  - 5.5
   - 5.6
 
 services:
@@ -22,8 +22,11 @@ script:
   - phpunit -c app/ --coverage-text --coverage-clover build/logs/clover.xml -c app
 
 after_script:
-  - php bin/coveralls -v
-  - php bin/coveralls -v --config .coveralls.yml;
+  - bin/coveralls -v
+  - php vendor/satooshi/php-coveralls/bin/coveralls -v --config .coveralls.yml;
+  - php vendor/satooshi/php-coveralls/bin/coveralls --config .coveralls.yml;
+  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/clover.xml
+  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir app/build/logs/clover.xml
 
 notifications:
   email:
