@@ -22,7 +22,7 @@ script:
 
 after_script:
   ## Coveralls
-  - php vendor/bin/coveralls -v
+  - php bin/coveralls -v
 
 
 notifications:
