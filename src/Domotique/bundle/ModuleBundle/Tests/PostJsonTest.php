@@ -6,6 +6,8 @@
  * Time: 17:12
  */
 
+namespace Domotique\bundle\ModuleBundle\Tests;
+
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
@@ -16,14 +18,38 @@ class PostJsonTest extends WebTestCase {
     {
         $client = static::createClient();
 
-        $client->request(
-            'POST',
-            '/m/g/coucou/values',
-            array(),
-            array(),
-            array('CONTENT_TYPE' => 'application/json'),
-            '{"name":"Fabien"}'
+
+
+        $dados = array(
+            'nome' => 'Entidade TESTE 01',
+            'ativo' => 0,
+            '_token' => $this->csrfDefaultToken
         );
+
+        $crawler = $this->client->request(
+            'POST',
+            'm/g/coucou/values',
+            array(),
+            array(),
+            array(
+                'CONTENT_TYPE'          => 'application/json',
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ),
+            json_encode(array('cartorio_servico_entidade'=>$dados))
+        );
+
+        $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
+
+
+//
+//        $client->request(
+//            'POST',
+//            '/m/g/coucou/values',
+//            array(),
+//            array(),
+//            array('CONTENT_TYPE' => 'application/json'),
+//            '{"name":"Fabien"}'
+//        );
 
     }
 }
