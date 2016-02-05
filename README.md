@@ -1,5 +1,7 @@
 # mySomfony
 
+[![Coverage Status](https://coveralls.io/repos/github/llaull/mySymfony2/badge.svg?branch=master)](https://coveralls.io/github/llaull/mySymfony2?branch=master)
+
 ## installation de fosuserbundle
 
 http://www.tutodidacte.com/symfony2-installer-fosuserbundle?debut_article_rubrique_date=10#pagination_article_rubrique_date
