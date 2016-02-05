@@ -7,7 +7,6 @@
 /app/config/parameters.yml
 /app/bootstrap.php.cache
 /app/logs
-/composer.lamp.json
 /app/cache
 /web/images
 /web/css
