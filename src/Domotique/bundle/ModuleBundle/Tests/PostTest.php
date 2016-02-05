@@ -17,7 +17,7 @@ class PostTest extends WebTestCase {
     public function testIndex()
     {
         $client = static::createClient();
-        
+
         // données simulé
         $datas = array(
             'mac' => "01:80:C2:00:00:00",
@@ -35,6 +35,6 @@ class PostTest extends WebTestCase {
             json_encode(array('data'=>$datas))
         );
 
-        $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(201, $client->getResponse()->getStatusCode());
     }
 }
