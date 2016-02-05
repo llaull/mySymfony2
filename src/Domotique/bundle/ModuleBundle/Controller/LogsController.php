@@ -42,6 +42,11 @@ class LogsController extends Controller
 
         //var_dump($params);
         return new JsonResponse(array('name' => $params));
+
+        //recherche module
+            //si introuvable on le cree
+
+        //on insers les donne recu avec l'id du module
     }
 
     /**
