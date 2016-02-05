@@ -11,3 +11,6 @@ services:
 #    import.csvtoarray:
 #        class: AlertBundle\Services\ConvertCsvToArray
 
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine
