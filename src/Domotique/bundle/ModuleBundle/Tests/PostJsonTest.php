@@ -44,7 +44,7 @@ class PostJsonTest extends WebTestCase {
 
         $client->request(
             'POST',
-            '/m/g/coucou/values',
+            '/m/g/coucou/valuesX',
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
