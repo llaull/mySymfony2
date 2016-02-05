@@ -41,7 +41,7 @@ class LogsController extends Controller
         $logger->error("content -> "  . $content);
 
         var_dump($params);
-        die();
+        return new JsonResponse(array('name' => $params));
     }
 
     /**
