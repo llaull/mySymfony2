@@ -20,37 +20,37 @@ class PostTest extends WebTestCase {
 
 
 
-//        $dados = array(
-//            'nome' => 'Entidade TESTE 01',
-//            'ativo' => 0,
-//            '_token' => $this->csrfDefaultToken
-//        );
-//
-//        $crawler = $this->client->request(
+        $dados = array(
+            'nome' => 'Entidade TESTE 01',
+            'ativo' => 0,
+            '_token' => $this->csrfDefaultToken
+        );
+
+        $crawler = $client->request(
+            'POST',
+            'm/g/coucou/values',
+            array(),
+            array(),
+            array(
+                'CONTENT_TYPE'          => 'application/json',
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ),
+            json_encode(array('cartorio_servico_entidade'=>$dados))
+        );
+
+        $this->assertEquals(201, $client->getResponse()->getStatusCode());
+
+
+
+//        $client->request(
 //            'POST',
-//            'm/g/coucou/values',
+//            '/m/g/coucou/values',
 //            array(),
 //            array(),
-//            array(
-//                'CONTENT_TYPE'          => 'application/json',
-//                'HTTP_X-Requested-With' => 'XMLHttpRequest'
-//            ),
-//            json_encode(array('cartorio_servico_entidade'=>$dados))
+//            array('CONTENT_TYPE' => 'application/json'),
+//            '{"name":"Fabien"}'
 //        );
 //
 //        $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
-
-
-
-        $client->request(
-            'POST',
-            '/m/g/coucou/values',
-            array(),
-            array(),
-            array('CONTENT_TYPE' => 'application/json'),
-            '{"name":"Fabien"}'
-        );
-
-        $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
     }
 }
