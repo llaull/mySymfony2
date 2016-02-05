@@ -19,28 +19,13 @@ class PostTest extends WebTestCase {
         $client = static::createClient();
 
 
-
-        $dados = array(
-            'nome' => 'Entidade TESTE 01',
-            'ativo' => 0,
-            '_token' => $this->csrfDefaultToken
+        // données simulé
+        $datas = array(
+            'mac' => "01:80:C2:00:00:00",
+            'ipv4' => "192.168.15.15",
+            'iteration' => 1,
+            "texte test" => "lorem ussu"
         );
-
-//        $crawler = $client->request(
-//            'POST',
-//            'm/g/coucou/values',
-//            array(),
-//            array(),
-//            array(
-//                'CONTENT_TYPE'          => 'application/json',
-//                'HTTP_X-Requested-With' => 'XMLHttpRequest'
-//            ),
-//            json_encode(array('cartorio_servico_entidade'=>$dados))
-//        );
-//
-//        $this->assertEquals(201, $client->getResponse()->getStatusCode());
-
-
 
         $client->request(
             'POST',
@@ -48,7 +33,7 @@ class PostTest extends WebTestCase {
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            json_encode(array('data'=>$dados))
+            json_encode(array('data'=>$datas))
         );
 
         $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
