@@ -19,14 +19,16 @@ before_script:
 
 script:
   - phpunit -c app/
-  - phpunit -c app/ --coverage-text --coverage-clover build/logs/clover.xml -c app
+  - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
 
 after_script:
-  - bin/coveralls -v
-  - bin/coveralls -v --config .coveralls.yml;
-  - bin/coveralls --config .coveralls.yml;
-  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/*.xml
-  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir app/build/logs/*.xml
+  - cd build/logs/
+  - ls l
+  - php vendor/bin/coveralls -c .coveralls.yml
+#  - bin/coveralls -v --config .coveralls.yml;
+#  - bin/coveralls --config .coveralls.yml;
+#  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/*.xml
+#  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir app/build/logs/*.xml
 
 notifications:
   email:
