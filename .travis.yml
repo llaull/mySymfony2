@@ -22,8 +22,8 @@ script:
   - phpunit -c app/ --coverage-text --coverage-clover build/logs/clover.xml -c app
 
 after_script:
-#  - php bin/coveralls -v
-  - php bin/coveralls -v --config .coveralls.yml; fi;
+  - php bin/coveralls -v
+  - php bin/coveralls -v --config .coveralls.yml;
 
 notifications:
   email:
