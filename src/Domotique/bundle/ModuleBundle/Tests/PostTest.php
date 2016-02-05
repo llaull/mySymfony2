@@ -19,21 +19,21 @@ class PostTest extends WebTestCase {
         $client = static::createClient();
 
 
-        // données simulé
-        $datas = array(
-            'mac' => "01:80:C2:00:00:00",
-            'ipv4' => "192.168.15.15",
-            'iteration' => 1,
-            "texte test" => "lorem ussu"
+
+        $dados = array(
+            'nome' => 'Entidade TESTE 01',
+            'ativo' => 0,
+            '_token' => "ee"
         );
 
+//
         $client->request(
             'POST',
             '/m/g/coucou/values',
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            json_encode(array('data'=>$datas))
+            json_encode(array('cartorio_servico_entidade'=>$dados))
         );
 
         $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
