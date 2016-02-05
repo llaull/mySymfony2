@@ -37,10 +37,10 @@ class LogsController extends Controller
         }
 
         $logger = $this->get('logger');
-        $logger->error("params ->" . print_r($params));
+       // $logger->error("params ->" . $params));
         $logger->error("content -> "  . $content);
 
-        var_dump($params);
+        //var_dump($params);
         return new JsonResponse(array('name' => $params));
     }
 
