@@ -11,8 +11,8 @@ namespace Domotique\bundle\ModuleBundle;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class PostTest extends WebTestCase {
-
+class PostTest extends WebTestCase
+{
 
     public function testIndex()
     {
@@ -32,9 +32,9 @@ class PostTest extends WebTestCase {
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            json_encode(array('data'=>$datas))
+            json_encode(array('data' => $datas))
         );
 
-        $this->assertEquals(201, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }
