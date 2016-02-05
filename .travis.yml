@@ -3,7 +3,6 @@ language: php
 php:
   - 5.5
   - 5.6
-  - hhvm
 
 services:
   - mysql
@@ -11,7 +10,7 @@ services:
 before_script:
   - mysql -e 'create database test;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
-  - composer install --dev
+  - composer install --dev  --no-interaction
   - php app/console doctrine:schema:update --force
   - php app/console fos:user:create test test test --super-admin
   - php app/console doctrine:migrations:migrate -n
@@ -23,13 +22,7 @@ script:
   - phpunit -c app/ --coverage-text --coverage-clover build/logs/clover.xml -c app
 
 after_script:
-  ## Coveralls
-#  - php bin/coveralls -v
-
-after_success:
-#  - coveralls
-  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php bin/coveralls -v; fi;'
-
+  - php bin/coveralls -v
 
 notifications:
   email:
