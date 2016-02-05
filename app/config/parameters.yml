@@ -6,13 +6,13 @@ parameters:
     database_password: null
 
     mailer_transport: smtp
-    mailer_host: 10.85.42.229
+    mailer_host:
     mailer_user: null
     mailer_password: null
     mon_mail: laurent.hazard@cgi.com
 
     secret: 664c93a12f29e282094736af4ce49fbc7e7a6739
-    ext_proxy: fr-proxy.groupinfra.com:3128
+    ext_proxy: 
     kazer_id: h1b8bzfz3npye
 
     oauth_access_token: 919513532-zDKJFkxxl0sUDRneVAODQBKYRLRU9WD6OtjDNcyO
