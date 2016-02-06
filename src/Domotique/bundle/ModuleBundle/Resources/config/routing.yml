@@ -1,7 +1,7 @@
 domotiquebundle_module_domotique_module_logs_add_json:
-    path:     /m/g/coucou/values
+    path:     /module/esp8266/post/json/
     defaults: { _controller: "DomotiquebundleModuleBundle:Logs:addJson" }
-    methods:  [POST, DELETE, GET]
+    methods:  [POST]
 
 domotiquebundle_module_domotique_module_logs_add:
     path:     /m/g/{string}

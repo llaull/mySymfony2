@@ -41,7 +41,7 @@ class LogsController extends Controller
         $logger->error("content -> "  . $content);
 
         //var_dump($params);
-        return new JsonResponse(array('name' => $params));
+        return new JsonResponse(array('requete' => "sucess"));
 
         //recherche module
             //si introuvable on le cree
@@ -72,9 +72,6 @@ class LogsController extends Controller
         $stmt->bindValue('sonde_id', NULL);
         $stmt->bindValue('temps', $now->format('Y-m-d H:i:s'));
         $stmt->execute();
-
-        $logger = $this->get('logger');
-        $logger->error($string);
 
         return new JsonResponse(array('string' => $string));
 
