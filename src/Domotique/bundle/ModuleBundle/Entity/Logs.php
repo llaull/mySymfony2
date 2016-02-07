@@ -64,11 +64,11 @@ class Logs
     private $temps;
 
     /**
-     * @var \Domotique\ReseauBundle\Entity\Module
+     * @var Domotique\ReseauBundle\Entity\Module
      *
      * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\Module")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="modules_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
      * })
      */
     private $modules;
