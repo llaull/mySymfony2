@@ -43,9 +43,12 @@ class LogsController extends Controller
 
 
         //recherche module
-        $module = $em->getRepository('DomotiqueReseauBundle:Module')->find($params['mac']);
-        $logger->error($module->getId());
-        if (!$module) {
+        $moduleX = $em->getRepository('DomotiqueReseauBundle:Module')
+            ->findOneBy(array('adressMac' => $params['mac']));
+        $logger->error($moduleX->getId());
+        $logger->error($params['mac']);
+
+        if (!$moduleX) {
             $logger->error("Unable to find module entity.");
 //
             $module = new Module();
@@ -61,12 +64,12 @@ class LogsController extends Controller
             foreach ($params['sensors'] as $k => $v) {
                 $log = new Logs();
 
-               // $module = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find(1);
+                // $module = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find(1);
                 $SondeType = $em->getRepository('DomotiquebundleModuleBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
                 $SondeUnit = $em->getRepository('DomotiquebundleModuleBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
 
 
-                $log->setModules($module);
+                $log->setModules($moduleX);
                 $log->setSondeId($params['sensors'][$k]['sensor Id']);
                 $log->setSondeType($SondeType);
                 $log->setSondeUnit($SondeUnit);

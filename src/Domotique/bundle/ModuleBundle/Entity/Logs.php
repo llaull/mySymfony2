@@ -4,6 +4,7 @@ namespace Domotique\bundle\ModuleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Domotique\ReseauBundle\Entity\Module;
 /**
  * Logs
  *
