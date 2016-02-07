@@ -44,6 +44,7 @@ class LogsController extends Controller
 
         //recherche module
         $module = $em->getRepository('DomotiqueReseauBundle:Module')->find($params['mac']);
+        $logger->error($module->getId());
         if (!$module) {
             $logger->error("Unable to find module entity.");
 //

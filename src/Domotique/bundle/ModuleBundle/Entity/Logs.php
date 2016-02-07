@@ -179,11 +179,11 @@ class Logs
     /**
      * Set modules
      *
-     * @param \Domotique\bundle\ModuleBundle\Entity\Infos $modules
+     * @param \Domotique\ReseauBundle\Entity\Module $modules
      *
      * @return Logs
      */
-    public function setModules(\Domotique\bundle\ModuleBundle\Entity\Infos $modules = null)
+    public function setModules(\Domotique\ReseauBundle\Entity\Module $modules = null)
     {
         $this->modules = $modules;
 
@@ -193,7 +193,7 @@ class Logs
     /**
      * Get modules
      *
-     * @return \Domotique\bundle\ModuleBundle\Entity\Infos
+     * @return \Domotique\ReseauBundle\Entity\Module
      */
     public function getModules()
     {
