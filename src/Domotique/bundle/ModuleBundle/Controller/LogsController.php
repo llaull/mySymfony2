@@ -40,7 +40,7 @@ class LogsController extends Controller
        // $logger->error("params ->" . $params));
         $logger->error("content -> "  . $content);
 
-        //var_dump($params);
+        var_dump($params);
         return new JsonResponse(array('requete' => "sucess"));
 
         //recherche module

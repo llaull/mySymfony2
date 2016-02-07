@@ -43,6 +43,7 @@ class AppKernel extends Kernel
             new Sonata\SeoBundle\SonataSeoBundle(),
             new CarnetApp\TwitterBundle\CarnetAppTwitterBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new Domotique\ReseauBundle\DomotiqueReseauBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

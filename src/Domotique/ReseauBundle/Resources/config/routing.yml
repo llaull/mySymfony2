@@ -1,0 +1,4 @@
+domotique_reseau_admin_domotique_modules:
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/module.yml"
+    prefix:   /admin/domotique/modules
+
