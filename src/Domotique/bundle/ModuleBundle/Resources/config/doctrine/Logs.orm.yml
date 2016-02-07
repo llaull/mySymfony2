@@ -45,7 +45,7 @@ Domotique\bundle\ModuleBundle\Entity\Logs:
                 comment: 'NOW de l enregistrement'
     manyToOne:
         modules:
-            targetEntity: Infos
+            targetEntity: Module
             cascade: {  }
             fetch: LAZY
             mappedBy: null
