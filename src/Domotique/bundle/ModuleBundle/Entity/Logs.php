@@ -65,7 +65,7 @@ class Logs
     /**
      * @var \Domotique\bundle\ModuleBundle\Entity\Infos
      *
-     * @ORM\ManyToOne(targetEntity="Domotique\bundle\ModuleBundle\Entity\Infos")
+     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\Module")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="modules_id", referencedColumnName="id")
      * })

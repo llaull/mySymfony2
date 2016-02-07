@@ -43,29 +43,44 @@ class LogsController extends Controller
 
 
         //recherche module
-        //$module = $em->getRepository('DomotiqueReseauBundle:Module')->findByAdressMac($params['mac']);
-        //if (!$module) {
-        //    $logger->error("Unable to find module entity.");
+        $module = $em->getRepository('DomotiqueReseauBundle:Module')->find($params['mac']);
+        if (!$module) {
+            $logger->error("Unable to find module entity.");
 //
-        //    $module = new Module();
-        //    $module->setAdressMac($params['mac']);
-        //    $module->setAdressIpv4($params['ipv4']);
+            $module = new Module();
+            $module->setId(NULL);
+            $module->setAdressMac($params['mac']);
+            $module->setAdressIpv4($params['ipv4']);
 //
-        //    $em->persist($module);
-        //    $em->flush();
-        //}
+            $em->persist($module);
+            $em->flush();
+        } else {
 
-        foreach ($params['sensors'] as $k => $v) {
-            $log = new Logs();
-            $log->setModules($module->getId());
-            $log->setSondeId($params['sensors'][$k]['sensor Id']);
-            $log->setSondeType($params['sensors'][$k]['sensor type Id'])
-            $log->setSondeUnit($params['sensors'][$k]['sensor unit Id']);
-            $log->setSondeValeur($params['sensors'][$k]['sensor value']);
-            $log->setTemps(new \DateTime());
-            $em->persist($log);
+            foreach ($params['sensors'] as $k => $v) {
+                $log = new Logs();
+
+               // $module = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find(1);
+                $SondeType = $em->getRepository('DomotiquebundleModuleBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
+                $SondeUnit = $em->getRepository('DomotiquebundleModuleBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
+
+//$logger->error($SondeType->getId());
+
+                $log->setModules($module);
+                $log->setSondeId($params['sensors'][$k]['sensor Id']);
+                $log->setSondeType($SondeType);
+                $log->setSondeUnit($SondeUnit);
+                $log->setSondeValeur($params['sensors'][$k]['sensor value']);
+
+                //$log->setModules($module->getId());
+                //$log->setSondeId($params['sensors'][$k]['sensor Id']);
+                //$log->setSondeType($params['sensors'][$k]['sensor type Id'])
+                //$log->setSondeUnit($params['sensors'][$k]['sensor unit Id']);
+                //$log->setSondeValeur($params['sensors'][$k]['sensor value']);
+                //$log->setTemps(new \DateTime());
+                $em->persist($log);
+            }
+            $em->flush();
         }
-        $em->flush();
 
         //si introuvable on le cree
 
