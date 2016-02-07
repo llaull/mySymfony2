@@ -41,7 +41,7 @@ class Module
     /**
      * @var string
      *
-     * @ORM\Column(name="mac", type="string", length=16, unique=true, nullable=false)
+     * @ORM\Column(name="mac", type="string", length=17, unique=true, nullable=false)
      */
     private $adressMac;
     /**

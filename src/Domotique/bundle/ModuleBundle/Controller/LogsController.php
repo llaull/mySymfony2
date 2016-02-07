@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Domotique\bundle\ModuleBundle\Entity\Logs;
 use Domotique\bundle\ModuleBundle\Repository;
 
+use Domotique\ReseauBundle\Entity\Module;
+
 /**
  * Logs controller.
  *
@@ -30,23 +32,45 @@ class LogsController extends Controller
 
     public function addJsonAction()
     {
+        $em = $this->getDoctrine()->getManager();
         $params = array();
+        $logger = $this->get('logger');
+
         $content = $this->get("request")->getContent();
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
 
-        $logger = $this->get('logger');
-       // $logger->error("params ->" . $params));
-        $logger->error("content -> "  . $content);
-
-        var_dump($params);
-        return new JsonResponse(array('requete' => "sucess"));
 
         //recherche module
-            //si introuvable on le cree
+        $module = $em->getRepository('DomotiqueReseauBundle:Module')->findByAdressMac($params['mac']);
+        if (!$module) {
+            $logger->error("Unable to find module entity.");
+
+            $module = new Module();
+            $module->setAdressMac($params['mac']);
+            $module->setAdressIpv4($params['ipv4']);
+
+            $em->persist($module);
+            $em->flush();
+        }
+
+        foreach ($params['sensors'] as $sensor) {
+            $logger->error($sensor);
+        }
+       //$log = new Logs();
+       //$log->setModules($module->getId());
+       //$log->setSondeId();
+       //$log->setSondeUnit();
+       //$log->setSondeValeur();
+       //$log->setTemps(new \DateTime());
+
+        //si introuvable on le cree
 
         //on insers les donne recu avec l'id du module
+
+
+        return new JsonResponse(array('requete' => "sucess"));
     }
 
     /**
