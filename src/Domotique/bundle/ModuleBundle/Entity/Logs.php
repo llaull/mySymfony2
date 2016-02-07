@@ -63,7 +63,7 @@ class Logs
     private $temps;
 
     /**
-     * @var \Domotique\bundle\ModuleBundle\Entity\Infos
+     * @var \Domotique\ReseauBundle\Entity\Module
      *
      * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\Module")
      * @ORM\JoinColumns({

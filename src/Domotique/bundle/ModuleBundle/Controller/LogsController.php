@@ -55,6 +55,7 @@ class LogsController extends Controller
             $em->persist($module);
             $em->flush();
         } else {
+            $logger->error("ok !");
 
             foreach ($params['sensors'] as $k => $v) {
                 $log = new Logs();
@@ -63,7 +64,6 @@ class LogsController extends Controller
                 $SondeType = $em->getRepository('DomotiquebundleModuleBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
                 $SondeUnit = $em->getRepository('DomotiquebundleModuleBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
 
-//$logger->error($SondeType->getId());
 
                 $log->setModules($module);
                 $log->setSondeId($params['sensors'][$k]['sensor Id']);
@@ -71,21 +71,10 @@ class LogsController extends Controller
                 $log->setSondeUnit($SondeUnit);
                 $log->setSondeValeur($params['sensors'][$k]['sensor value']);
 
-                //$log->setModules($module->getId());
-                //$log->setSondeId($params['sensors'][$k]['sensor Id']);
-                //$log->setSondeType($params['sensors'][$k]['sensor type Id'])
-                //$log->setSondeUnit($params['sensors'][$k]['sensor unit Id']);
-                //$log->setSondeValeur($params['sensors'][$k]['sensor value']);
-                //$log->setTemps(new \DateTime());
                 $em->persist($log);
             }
             $em->flush();
         }
-
-        //si introuvable on le cree
-
-        //on insers les donne recu avec l'id du module
-
 
         return new JsonResponse(array('requete' => "sucess"));
     }
