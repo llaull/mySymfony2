@@ -2,6 +2,8 @@
 
 namespace Domotique\ReseauBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -43,14 +45,13 @@ class LogController extends Controller
             $logger->error("ok !");
             foreach ($params['sensors'] as $k => $v) {
                 $log = new Log();
-                // $module = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find(1);
                 $SondeType = $em->getRepository('DomotiqueReseauBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
                 $SondeUnit = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
                 $log->setModule($moduleX);
-                $log->setSondeId($params['sensors'][$k]['sensor Id']);
+                $log->setSensorId($params['sensors'][$k]['sensor Id']);
                 $log->setSensorType($SondeType);
                 $log->setSensorUnit($SondeUnit);
-                $log->setSensorValue($params['sensors'][$k]['sensor value']);
+                $log->setSonsorValue($params['sensors'][$k]['sensor value']);
                 $em->persist($log);
             }
             $em->flush();

@@ -71,11 +71,27 @@ class Log
      *   @ORM\JoinColumn(name="sonsor_unit", referencedColumnName="id")
      * })
      */
-    private $sondeUnit;
+    private $sensorUnit;
 
     public function __construct()
     {
         $this->created = new \DateTime();
+    }
+
+    /**
+     * @return SondeUnit
+     */
+    public function getSensorUnit()
+    {
+        return $this->sensorUnit;
+    }
+
+    /**
+     * @param SondeUnit $sensorUnit
+     */
+    public function setSensorUnit($sensorUnit)
+    {
+        $this->sensorUnit = $sensorUnit;
     }
 
     public function __toString()
@@ -179,21 +195,7 @@ class Log
         $this->sensorType = $sensorType;
     }
 
-    /**
-     * @return SondeUnit
-     */
-    public function getSondeUnit()
-    {
-        return $this->sondeUnit;
-    }
 
-    /**
-     * @param SondeUnit $sondeUnit
-     */
-    public function setSondeUnit($sondeUnit)
-    {
-        $this->sondeUnit = $sondeUnit;
-    }
 
 
 }
