@@ -15,7 +15,7 @@ class Version20151030130233 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->addSql("INSERT INTO `domotique__module_emplacement` (`id`, `nom`) VALUES
+        $this->addSql("INSERT INTO `domotique__module_emplacement` (`id`, `name`) VALUES
 (1, 'salon'),
 (2, 'test'),
 (3, 'bureau'),
