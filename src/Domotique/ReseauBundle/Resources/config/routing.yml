@@ -21,5 +21,5 @@ domotique_reseau_admin_domotique_modules:
 # venant des modules
 domotiquebundle_module_domotique_module_logs_add_json:
     path:     /module/esp8266/post/json/
-    defaults: { _controller: "DomotiqueReseauBundle:Logs:addJson" }
+    defaults: { _controller: "DomotiqueReseauBundle:Log:addJson" }
     methods:  [POST]

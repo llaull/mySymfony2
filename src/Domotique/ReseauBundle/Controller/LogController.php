@@ -46,7 +46,7 @@ class LogController extends Controller
                 // $module = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find(1);
                 $SondeType = $em->getRepository('DomotiqueReseauBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
                 $SondeUnit = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
-                $log->setModules($moduleX);
+                $log->setModule($moduleX);
                 $log->setSondeId($params['sensors'][$k]['sensor Id']);
                 $log->setSondeType($SondeType);
                 $log->setSondeUnit($SondeUnit);
