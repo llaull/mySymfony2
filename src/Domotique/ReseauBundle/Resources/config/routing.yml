@@ -1,4 +1,25 @@
+domotique_reseau_admin_sensor_unit:
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/sondeunit.yml"
+    prefix:   /admin/sensor/unit
+
+domotique_reseau_admin_sensor_type:
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/sondetype.yml"
+    prefix:   /admin/sensor/type/
+
+domotique_reseau_admin_module_emplacement:
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/emplacement.yml"
+    prefix:   /admin/module/emplacement
+
+domotique_reseau_admin_sensor_log:
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/log.yml"
+    prefix:   /admin/sensor/log
+
 domotique_reseau_admin_domotique_modules:
     resource: "@DomotiqueReseauBundle/Resources/config/routing/module.yml"
     prefix:   /admin/domotique/modules
 
+# venant des modules
+domotiquebundle_module_domotique_module_logs_add_json:
+    path:     /module/esp8266/post/json/
+    defaults: { _controller: "DomotiqueReseauBundle:Logs:addJson" }
+    methods:  [POST]
