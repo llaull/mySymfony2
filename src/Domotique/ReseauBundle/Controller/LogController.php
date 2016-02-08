@@ -42,7 +42,7 @@ class LogController extends Controller
         } else {
             $logger->error("ok !");
             foreach ($params['sensors'] as $k => $v) {
-                $log = new Logs();
+                $log = new Log();
                 // $module = $em->getRepository('DomotiquebundleModuleBundle:Infos')->find(1);
                 $SondeType = $em->getRepository('DomotiqueReseauBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
                 $SondeUnit = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
