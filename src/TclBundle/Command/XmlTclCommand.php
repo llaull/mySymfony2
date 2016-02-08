@@ -7,8 +7,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use TclBundle\Entity\Feed;
-use Domotique\bundle\TaskBundle\Entity\Log;
-use Domotique\bundle\TaskBundle\Entity\Task;
+//use Domotique\bundle\TaskBundle\Entity\Log;
+//use Domotique\bundle\TaskBundle\Entity\Task;
 
 class XmlTclCommand extends ContainerAwareCommand
 {
@@ -35,13 +35,13 @@ class XmlTclCommand extends ContainerAwareCommand
         $em->getConnection()->getConfiguration()->setSQLLogger(null);
 
         //log task
-        $task = $em->getRepository('DomotiquebundleTaskBundle:Task')
-            ->findOneByTitle("xml:tcl");
+        //$task = $em->getRepository('DomotiquebundleTaskBundle:Task')
+       //     ->findOneByTitle("xml:tcl");
 
-        $newTaskLog = new Log();
-        $newTaskLog->setSource("cron");
-        $newTaskLog->setDestination("Command");
-        $newTaskLog->setIdTask($task);
+      //  $newTaskLog = new Log();
+      //  $newTaskLog->setSource("cron");
+      //  $newTaskLog->setDestination("Command");
+      //  $newTaskLog->setIdTask($task);
 
     //    throw new \Exception('Something went wrong!');
 
@@ -61,7 +61,7 @@ class XmlTclCommand extends ContainerAwareCommand
 
         if ($data === false) {
             $e = "Failed loading XML";
-            $newTaskLog->setReponse($e);
+           // $newTaskLog->setReponse($e);
             $output->writeln($e);
 
 
@@ -131,8 +131,8 @@ class XmlTclCommand extends ContainerAwareCommand
         $now = new \DateTime();
         $end = $now->format('d-m-Y G:i:s');
         $output->writeln('<comment>' .$i . ' ajout en ' . abs(strtotime($start) - strtotime($end)) . 'sec'. '</comment>');
-        $newTaskLog->setReponse($i . ' ajout en ' . abs(strtotime($start) - strtotime($end)) . 'sec');
-        $em->persist($newTaskLog);
+        //$newTaskLog->setReponse($i . ' ajout en ' . abs(strtotime($start) - strtotime($end)) . 'sec');
+        //$em->persist($newTaskLog);
 
         // Flushing and clear data on queue
         $em->flush();
