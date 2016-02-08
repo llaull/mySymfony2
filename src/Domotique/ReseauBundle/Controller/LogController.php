@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Domotique\ReseauBundle\Entity\Log;
 use Domotique\ReseauBundle\Form\LogType;
 
+use Domotique\ReseauBundle\Entity\Module;
+
 /**
  * Log controller.
  *
@@ -29,8 +31,6 @@ class LogController extends Controller
         //recherche module
         $moduleX = $em->getRepository('DomotiqueReseauBundle:Module')
             ->findOneBy(array('adressMac' => $params['mac']));
-        $logger->error($moduleX->getId());
-        $logger->error($params['mac']);
         if (!$moduleX) {
             $logger->error("Unable to find module entity.");
 //
@@ -177,12 +177,12 @@ class LogController extends Controller
     }
 
     /**
-    * Creates a form to edit a Log entity.
-    *
-    * @param Log $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Log entity.
+     *
+     * @param Log $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Log $entity)
     {
         $form = $this->createForm(new LogType(), $entity, array(
@@ -262,6 +262,6 @@ class LogController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;
+            ;
     }
 }
