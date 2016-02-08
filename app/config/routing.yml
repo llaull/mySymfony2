@@ -23,21 +23,21 @@ carnet_app_blog:
     prefix:   /
 
 
-domotiquebundle_front:
-    resource: "@DomotiquebundleFrontBundle/Resources/config/routing.yml"
-    prefix:   /
+#domotiquebundle_front:
+#    resource: "@DomotiquebundleFrontBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 commun_to_do:
     resource: "@CommunToDoBundle/Resources/config/routing.yml"
     prefix:   /
 
-domotiquebundle_module:
-    resource: "@DomotiquebundleModuleBundle/Resources/config/routing.yml"
-    prefix:   /
-
-domotiquebundle_task:
-    resource: "@DomotiquebundleTaskBundle/Resources/config/routing.yml"
-    prefix:   /
+#domotiquebundle_module:
+#    resource: "@DomotiquebundleModuleBundle/Resources/config/routing.yml"
+#    prefix:   /
+#
+#domotiquebundle_task:
+#    resource: "@DomotiquebundleTaskBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 
 programme_tv:

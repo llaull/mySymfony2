@@ -51,9 +51,9 @@ class Module
      */
     private $adressIpv4;
     /**
-     * @var \Domotique\bundle\ModuleBundle\Entity\Emplacement
+     * @var \Domotique\ReseauBundle\Entity\Emplacement
      *
-     * @ORM\ManyToOne(targetEntity="Domotique\bundle\ModuleBundle\Entity\Emplacement")
+     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\Emplacement")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="emplacement_id", referencedColumnName="id")
      * })

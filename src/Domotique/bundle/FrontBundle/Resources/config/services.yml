@@ -1,4 +1,0 @@
-services:
-    commun.curl:
-        class: Domotique\bundle\FrontBundle\Services\MyCurlService
-        arguments: ["@service_container"]

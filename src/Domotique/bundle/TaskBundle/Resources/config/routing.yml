@@ -1,7 +1,0 @@
-domotiquebundle_task_admin_task:
-    resource: "@DomotiquebundleTaskBundle/Resources/config/routing/task.yml"
-    prefix:   /admin/task
-
-domotiquebundle_task_admin_taskLog:
-    resource: "@DomotiquebundleTaskBundle/Resources/config/routing/log.yml"
-    prefix:   /admin/taskLog

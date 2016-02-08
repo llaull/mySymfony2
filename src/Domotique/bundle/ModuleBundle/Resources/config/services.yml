@@ -1,4 +1,0 @@
-services:
-#    domotiquebundle_module.example:
-#        class: Domotique\bundle\ModuleBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
