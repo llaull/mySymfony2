@@ -3,6 +3,7 @@
 namespace Domotique\DomoboxBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Domotique\ReseauBundle\Entity\Log;
 use Domotique\ReseauBundle\Entity\Module;
 
