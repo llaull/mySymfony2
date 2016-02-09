@@ -31,6 +31,7 @@ class LogRepository extends EntityRepository
         INNER JOIN domotique__module AS info on info.id = logs.module_id
         WHERE logs.created > DATE_SUB(NOW(), INTERVAL 24 HOUR)
         AND type.id in (2,3,4)
+        AND unit.id = 2
         GROUP BY YEAR(logs.created),
                  MONTH(logs.created),
                  DAY(logs.created),
