@@ -34,16 +34,16 @@
                 <tr>
                     <th>Temps</th>
                     <th>Sondevaleur</th>
-                    <th>Sondeid</th>
+                    {#<<th>Sondeid</th>"#}
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td>{% if entity.temps %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.sondeValue }}</td>
-                        <td>{{ entity.sondeId }}</td>
+                        <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.sonsorValue }}</td>
+                        {#<<td>{{ entity.sensorId }}</td>"#}
                         <td>
                             <div class="btn-group">
                                 {#<a class="btn btn-danger btn-sm modal-delete" role="button"#}
