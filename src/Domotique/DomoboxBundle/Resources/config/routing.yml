@@ -8,3 +8,8 @@ domotiquebundle_domobox_module_flux_json:
     path:     /module/esp8266/post/json/
     defaults: { _controller: "DomotiqueReseauBundle:Log:addJson" }
     methods:  [POST]
+
+#donne la moyenne
+domotique_log_moyen:
+    path: /log/moyenne
+    defaults: { _controller: "DomotiqueDomoboxBundle:Output:logMoyenne" }

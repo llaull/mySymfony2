@@ -14,15 +14,15 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_sensor_type__show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('admin_sensor_type_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.nom }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('admin_sensor_type__show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin_sensor_type_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_sensor_type__edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('admin_sensor_type_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -33,7 +33,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('admin_sensor_type__new') }}">
+            <a href="{{ path('admin_sensor_type_new') }}">
                 Create a new entry
             </a>
         </li>

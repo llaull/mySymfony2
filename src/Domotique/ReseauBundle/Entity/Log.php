@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="domotique__sensor_log")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Domotique\ReseauBundle\Repository\LogRepository")*
  */
 class Log
 {
