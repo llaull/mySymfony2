@@ -44,6 +44,7 @@ class AppKernel extends Kernel
             new CarnetApp\TwitterBundle\CarnetAppTwitterBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Domotique\ReseauBundle\DomotiqueReseauBundle(),
+            new Domotique\DomoboxBundle\DomotiqueDomoboxBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

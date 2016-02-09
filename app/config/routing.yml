@@ -1,3 +1,7 @@
+domotique_domobox:
+    resource: "@DomotiqueDomoboxBundle/Resources/config/routing.yml"
+    prefix:   /
+
 domotique_reseau:
     resource: "@DomotiqueReseauBundle/Resources/config/routing.yml"
     prefix:   /
