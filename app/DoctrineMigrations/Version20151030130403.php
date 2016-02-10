@@ -15,7 +15,7 @@ class Version20151030130403 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->addSql("INSERT INTO `domotique__sonde_unit` (`id`, `symbole`, `name`, `slug`) VALUES
+        $this->addSql("INSERT INTO `domotique__sensor_unit` (`id`, `symbole`, `name`, `slug`) VALUES
 (2, '°C', 'Température', 'temperature'),
 (3, '%', 'Humidité', 'humidite'),
 (1, 'V', 'Tension ', 'tension'),
