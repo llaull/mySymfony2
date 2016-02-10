@@ -15,7 +15,7 @@ class Version20151030130235 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->addSql("INSERT INTO `domotique__sonde_type` (`id`, `nom`) VALUES
+        $this->addSql("INSERT INTO `domotique__sonde_type` (`id`, `name`) VALUES
 (2, 'DHT11'),
 (5, 'PIR_sonde'),
 (1, 'systeme'),

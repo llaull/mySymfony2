@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>SondeType</h1>
+    <h1>SensorUnit</h1>
 
     <table class="record_properties">
         <tbody>
@@ -10,20 +10,28 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
-                <td>{{ entity.nom }}</td>
+                <th>Symbole</th>
+                <td>{{ entity.symbole }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ entity.slug }}</td>
             </tr>
         </tbody>
     </table>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('admin_sensor_type') }}">
+        <a href="{{ path('admin_sensor_unit') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('admin_sensor_type_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('admin_sensor_unit_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>

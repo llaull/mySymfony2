@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('DomotiqueDomoboxBundle:Default:index.html.twig', array('name' => "test"));
+
     }
 }

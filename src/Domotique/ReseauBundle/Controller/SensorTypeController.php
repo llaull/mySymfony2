@@ -5,37 +5,37 @@ namespace Domotique\ReseauBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Domotique\ReseauBundle\Entity\SondeUnit;
-use Domotique\ReseauBundle\Form\SondeUnitType;
+use Domotique\ReseauBundle\Entity\SensorType;
+use Domotique\ReseauBundle\Form\SensorTypeType;
 
 /**
- * SondeUnit controller.
+ * SensorType controller.
  *
  */
-class SondeUnitController extends Controller
+class SensorTypeController extends Controller
 {
 
     /**
-     * Lists all SondeUnit entities.
+     * Lists all SensorType entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->findAll();
+        $entities = $em->getRepository('DomotiqueReseauBundle:SensorType')->findAll();
 
-        return $this->render('DomotiqueReseauBundle:SondeUnit:index.html.twig', array(
+        return $this->render('DomotiqueReseauBundle:SensorType:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new SondeUnit entity.
+     * Creates a new SensorType entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new SondeUnit();
+        $entity = new SensorType();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class SondeUnitController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_sensor_unit_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_sensor_type_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('DomotiqueReseauBundle:SondeUnit:new.html.twig', array(
+        return $this->render('DomotiqueReseauBundle:SensorType:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a SondeUnit entity.
+     * Creates a form to create a SensorType entity.
      *
-     * @param SondeUnit $entity The entity
+     * @param SensorType $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(SondeUnit $entity)
+    private function createCreateForm(SensorType $entity)
     {
-        $form = $this->createForm(new SondeUnitType(), $entity, array(
-            'action' => $this->generateUrl('admin_sensor_unit_create'),
+        $form = $this->createForm(new SensorTypeType(), $entity, array(
+            'action' => $this->generateUrl('admin_sensor_type_create'),
             'method' => 'POST',
         ));
 
@@ -73,60 +73,60 @@ class SondeUnitController extends Controller
     }
 
     /**
-     * Displays a form to create a new SondeUnit entity.
+     * Displays a form to create a new SensorType entity.
      *
      */
     public function newAction()
     {
-        $entity = new SondeUnit();
+        $entity = new SensorType();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('DomotiqueReseauBundle:SondeUnit:new.html.twig', array(
+        return $this->render('DomotiqueReseauBundle:SensorType:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a SondeUnit entity.
+     * Finds and displays a SensorType entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($id);
+        $entity = $em->getRepository('DomotiqueReseauBundle:SensorType')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find SondeUnit entity.');
+            throw $this->createNotFoundException('Unable to find SensorType entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('DomotiqueReseauBundle:SondeUnit:show.html.twig', array(
+        return $this->render('DomotiqueReseauBundle:SensorType:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing SondeUnit entity.
+     * Displays a form to edit an existing SensorType entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($id);
+        $entity = $em->getRepository('DomotiqueReseauBundle:SensorType')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find SondeUnit entity.');
+            throw $this->createNotFoundException('Unable to find SensorType entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('DomotiqueReseauBundle:SondeUnit:edit.html.twig', array(
+        return $this->render('DomotiqueReseauBundle:SensorType:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -134,16 +134,16 @@ class SondeUnitController extends Controller
     }
 
     /**
-    * Creates a form to edit a SondeUnit entity.
+    * Creates a form to edit a SensorType entity.
     *
-    * @param SondeUnit $entity The entity
+    * @param SensorType $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(SondeUnit $entity)
+    private function createEditForm(SensorType $entity)
     {
-        $form = $this->createForm(new SondeUnitType(), $entity, array(
-            'action' => $this->generateUrl('admin_sensor_unit_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new SensorTypeType(), $entity, array(
+            'action' => $this->generateUrl('admin_sensor_type_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -152,17 +152,17 @@ class SondeUnitController extends Controller
         return $form;
     }
     /**
-     * Edits an existing SondeUnit entity.
+     * Edits an existing SensorType entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($id);
+        $entity = $em->getRepository('DomotiqueReseauBundle:SensorType')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find SondeUnit entity.');
+            throw $this->createNotFoundException('Unable to find SensorType entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -172,17 +172,17 @@ class SondeUnitController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_sensor_unit_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_sensor_type_edit', array('id' => $id)));
         }
 
-        return $this->render('DomotiqueReseauBundle:SondeUnit:edit.html.twig', array(
+        return $this->render('DomotiqueReseauBundle:SensorType:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a SondeUnit entity.
+     * Deletes a SensorType entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -192,21 +192,21 @@ class SondeUnitController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($id);
+            $entity = $em->getRepository('DomotiqueReseauBundle:SensorType')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find SondeUnit entity.');
+                throw $this->createNotFoundException('Unable to find SensorType entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_sensor_unit'));
+        return $this->redirect($this->generateUrl('admin_sensor_type'));
     }
 
     /**
-     * Creates a form to delete a SondeUnit entity by id.
+     * Creates a form to delete a SensorType entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -215,7 +215,7 @@ class SondeUnitController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_sensor_unit_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_sensor_type_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

@@ -7,16 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SondeUnit
  *
- * @ORM\Table(name="domotique__sonde_unit")
+ * @ORM\Table(name="domotique__sensor_unit")
  * @ORM\Entity
  */
-class SondeUnit
+class SensorUnit
 {
-
-    public function __toString()
-    {
-        return $this->nom;
-    }
 
     /**
      * @var integer
@@ -26,21 +21,18 @@ class SondeUnit
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="symbole", type="string", length=90, nullable=false)
      */
     private $symbole;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
-    private $nom;
-
+    private $name;
     /**
      * @var string
      *
@@ -48,12 +40,13 @@ class SondeUnit
      */
     private $slug;
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -61,22 +54,14 @@ class SondeUnit
     }
 
     /**
-     * Set symbole
-     *
-     * @param string $symbole
-     *
-     * @return SondeUnit
+     * @param int $id
      */
-    public function setSymbole($symbole)
+    public function setId($id)
     {
-        $this->symbole = $symbole;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get symbole
-     *
      * @return string
      */
     public function getSymbole()
@@ -85,50 +70,44 @@ class SondeUnit
     }
 
     /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return SondeUnit
+     * @param string $symbole
      */
-    public function setNom($nom)
+    public function setSymbole($symbole)
     {
-        $this->nom = $nom;
-
-        return $this;
+        $this->symbole = $symbole;
     }
 
     /**
-     * Get nom
-     *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return SondeUnit
+     * @param string $name
      */
-    public function setSlug($slug)
+    public function setName($name)
     {
-        $this->slug = $slug;
-
-        return $this;
+        $this->name = $name;
     }
 
     /**
-     * Get slug
-     *
      * @return string
      */
     public function getSlug()
     {
         return $this->slug;
     }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+
 }

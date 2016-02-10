@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SondeTypeType extends AbstractType
+class SensorTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,7 @@ class SondeTypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
+            ->add('name')
         ;
     }
     
@@ -25,7 +25,7 @@ class SondeTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Domotique\ReseauBundle\Entity\SondeType'
+            'data_class' => 'Domotique\ReseauBundle\Entity\SensorType'
         ));
     }
 
@@ -34,6 +34,6 @@ class SondeTypeType extends AbstractType
      */
     public function getName()
     {
-        return 'domotique_reseaubundle_sondetype';
+        return 'domotique_reseaubundle_sensortype';
     }
 }

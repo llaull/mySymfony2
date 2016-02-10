@@ -1,18 +1,18 @@
 domotique_reseau_admin_sensor_unit:
-    resource: "@DomotiqueReseauBundle/Resources/config/routing/sondeunit.yml"
-    prefix:   /admin/sensor/unit
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/sensorunit.yml"
+    prefix:   /admin/domotique/sensor/unit
 
 domotique_reseau_admin_sensor_type:
-    resource: "@DomotiqueReseauBundle/Resources/config/routing/sondetype.yml"
-    prefix:   /admin/sensor/type/
+    resource: "@DomotiqueReseauBundle/Resources/config/routing/sensortype.yml"
+    prefix:   /admin/domotique/sensor/type
 
 domotique_reseau_admin_module_emplacement:
     resource: "@DomotiqueReseauBundle/Resources/config/routing/emplacement.yml"
-    prefix:   /admin/module/emplacement
+    prefix:   /admin/domotique/module/emplacement
 
 domotique_reseau_admin_sensor_log:
     resource: "@DomotiqueReseauBundle/Resources/config/routing/log.yml"
-    prefix:   /admin/sensor/log
+    prefix:   /admin/domotique/sensor/log
 
 domotique_reseau_admin_module:
     resource: "@DomotiqueReseauBundle/Resources/config/routing/module.yml"

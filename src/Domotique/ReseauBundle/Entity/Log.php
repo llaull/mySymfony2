@@ -56,18 +56,18 @@ class Log
      */
     private $module;
     /**
-     * @var \Domotique\ReseauBundle\Entity\SondeType
+     * @var \Domotique\ReseauBundle\Entity\SensorType
      *
-     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\SondeType")
+     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\SensorType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="sensor_type", referencedColumnName="id")
      * })
      */
     private $sensorType;
     /**
-     * @var \Domotique\ReseauBundle\Entity\SondeUnit
+     * @var \Domotique\ReseauBundle\Entity\SensorUnit
      *
-     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\SondeUnit")
+     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\SensorUnit")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="sonsor_unit", referencedColumnName="id")
      * })
@@ -195,8 +195,4 @@ class Log
     {
         $this->sensorType = $sensorType;
     }
-
-
-
-
 }

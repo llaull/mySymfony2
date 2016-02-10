@@ -19,7 +19,7 @@ class OutputController extends Controller
 
         $em = $this->getDoctrine()->getEntityManager();
         $entities = $this->getDoctrine()->getRepository('DomotiqueReseauBundle:Log');
-        $entities = $entities->moyenneByModuleBySondes($em);
+        $entities = $entities->getMoyenHourGroupByModule($em, 1, 1);
 
         return new JsonResponse($entities);
     }
