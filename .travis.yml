@@ -16,8 +16,8 @@ before_script:
   - php app/console doctrine:schema:update --force
   - php app/console fos:user:create test test test --super-admin
   - php app/console doctrine:migrations:migrate -n
-  - php app/console xml:tcl
-  - mkdir -p build/logs
+  - php app/console cache:clear
+#  - mkdir -p build/logs
 
 script:
   - phpunit -c app/
