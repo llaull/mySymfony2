@@ -12,7 +12,6 @@
             <directory>../src/*/*Bundle/Tests</directory>
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
             <directory>../src/*Bundle/Tests</directory>
-            <directory>../src/*/bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
 
