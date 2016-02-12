@@ -34,11 +34,11 @@ script:
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
 after_script:
-  - travis_retry php /bin/coveralls
-#  - bin/coveralls -v --config .coveralls.yml;
-#  - bin/coveralls --config .coveralls.yml;
-#  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/*.xml
-#  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir app/build/logs/*.xml
+#  - travis_retry php /bin/coveralls
+  - bin/coveralls -v --config .coveralls.yml;
+  - bin/coveralls --config .coveralls.yml;
+  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/*.xml
+  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir app/build/logs/*.xml
 
 notifications:
   email:
