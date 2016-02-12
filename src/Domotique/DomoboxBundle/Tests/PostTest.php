@@ -28,7 +28,7 @@ class PostTest extends WebTestCase
 
         $client->request(
             'POST',
-            '/module/esp8266/post/json/',
+            '/module/esp8266/post/jhjhjkhjson/',
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
