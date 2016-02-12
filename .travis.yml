@@ -12,11 +12,11 @@ services:
 before_script:
   - mysql -e 'create database test;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
-  - composer install --dev --no-interaction
+  - composer install --dev
   - php app/console doctrine:schema:update --force
   - php app/console fos:user:create test test test --super-admin
   - php app/console doctrine:migrations:migrate -n
-  - php app/console cache:clear
+  - php app/console xml:tcl
   - mkdir -p build/logs
 
 script:
@@ -24,8 +24,8 @@ script:
   - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
 
 after_script:
-#  - cd build/logs/
-#  - ls l
+  - cd build/logs/
+  - ls l
   - php vendor/bin/coveralls -c .coveralls.yml
 #  - bin/coveralls -v --config .coveralls.yml;
 #  - bin/coveralls --config .coveralls.yml;
