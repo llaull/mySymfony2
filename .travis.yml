@@ -26,10 +26,10 @@ before_script:
 
 script:
 #  - phpunit -c app/
-#  - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
 
   - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
+  - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
+#  - phpunit --coverage-clover build/logs/clover.xml
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
