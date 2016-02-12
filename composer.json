@@ -37,6 +37,7 @@
     "liip/imagine-bundle": "^1.4"
   },
   "require-dev": {
+    "phpunit/phpunit": "@stable",
     "sensio/generator-bundle": "~2.3",
     "satooshi/php-coveralls": "dev-master"
   },

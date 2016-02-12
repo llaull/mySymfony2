@@ -8,11 +8,11 @@ services:
   - mysql
 
 ## Customize dependencies
-dependencies:
-  override:
-    - mkdir -p build/logs
-    - composer install --dev --no-interaction
-    - sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
+#dependencies
+#  override:
+#    - mkdir -p build/logs
+#    - composer install --dev --no-interaction
+#    - sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
 
 
 before_script:
@@ -25,11 +25,16 @@ before_script:
   - php app/console cache:clear
 
 script:
-  - phpunit -c app/
-  - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
+#  - phpunit -c app/
+#  - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
+
+  - mkdir -p build/logs
+  - phpunit --coverage-clover build/logs/clover.xml
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
 after_script:
-  - travis_retry php vendor/bin/coveralls
+  - travis_retry php /bin/coveralls
 #  - bin/coveralls -v --config .coveralls.yml;
 #  - bin/coveralls --config .coveralls.yml;
 #  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/*.xml
