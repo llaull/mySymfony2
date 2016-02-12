@@ -27,7 +27,7 @@ class LogController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findAll(array('created' => 'DESC'), 500, 0);
+        $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findBy(array(), array('created' => 'DESC'), 500, 0);
 
         return $this->render('DomotiqueReseauBundle:Log:index.html.twig', array(
             'entities' => $entities,
