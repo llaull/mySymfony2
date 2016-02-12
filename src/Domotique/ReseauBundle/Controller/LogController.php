@@ -27,12 +27,13 @@ class LogController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findAll();
+        $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findAll(array('created' => 'DESC'), 500, 0);
 
         return $this->render('DomotiqueReseauBundle:Log:index.html.twig', array(
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Log entity.
      *
@@ -53,7 +54,7 @@ class LogController extends Controller
 
         return $this->render('DomotiqueReseauBundle:Log:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -83,11 +84,11 @@ class LogController extends Controller
     public function newAction()
     {
         $entity = new Log();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('DomotiqueReseauBundle:Log:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -108,7 +109,7 @@ class LogController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('DomotiqueReseauBundle:Log:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -131,8 +132,8 @@ class LogController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('DomotiqueReseauBundle:Log:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -155,6 +156,7 @@ class LogController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Log entity.
      *
@@ -180,11 +182,12 @@ class LogController extends Controller
         }
 
         return $this->render('DomotiqueReseauBundle:Log:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Log entity.
      *
@@ -222,7 +225,6 @@ class LogController extends Controller
             ->setAction($this->generateUrl('admin_sensor_log_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-            ;
+            ->getForm();
     }
 }
