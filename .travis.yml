@@ -1,13 +1,19 @@
 language: php
 
 php:
-  #- 5.5.12
   - 5.5.30
-#  - 5.5
   - 5.6
 
 services:
   - mysql
+
+## Customize dependencies
+dependencies:
+  override:
+    - mkdir -p build/logs
+    - composer install --dev --no-interaction
+    - sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
+
 
 before_script:
   - mysql -e 'create database test;'
@@ -17,16 +23,13 @@ before_script:
   - php app/console fos:user:create test test test --super-admin
   - php app/console doctrine:migrations:migrate -n
   - php app/console cache:clear
-#  - mkdir -p build/logs
 
 script:
   - phpunit -c app/
   - phpunit -c app/ --coverage-text --coverage-clover build/logs/coverage.xml -c app
 
 after_script:
-  - cd build/logs/
-  - ls l
-  - php vendor/bin/coveralls -c .coveralls.yml
+  - travis_retry php vendor/bin/coveralls
 #  - bin/coveralls -v --config .coveralls.yml;
 #  - bin/coveralls --config .coveralls.yml;
 #  - php vendor/satooshi/php-coveralls/bin/coveralls --root_dir build/logs/*.xml
