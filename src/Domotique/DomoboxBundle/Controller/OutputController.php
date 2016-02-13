@@ -16,11 +16,22 @@ class OutputController extends Controller
 
     public function logMoyenneAction()
     {
-
         $em = $this->getDoctrine()->getEntityManager();
         $entities = $this->getDoctrine()->getRepository('DomotiqueReseauBundle:Log');
-        $entities = $entities->getMoyenHourGroupByModule($em, 1, 1);
+        $entities = $entities->getMoyenHourGroupByModule($em, 1, 2);
 
         return new JsonResponse($entities);
+    }
+
+    public function getCurrentDateAction(){
+        $now = new \DateTime();
+        $currentDate = $now->format('d-m-Y G:i:s');
+
+        $return = array("time" => $currentDate);
+        return new JsonResponse($return);
+    }
+
+    public function getCurrentTemp(){
+
     }
 }

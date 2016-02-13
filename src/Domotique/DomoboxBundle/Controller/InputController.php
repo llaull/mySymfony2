@@ -14,10 +14,15 @@ class InputController extends Controller
         $em = $this->getDoctrine()->getManager();
         $params = array();
         $logger = $this->get('logger');
+
         $content = $this->get("request")->getContent();
+
+        $logger->error($content);
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
+
+        $logger->error($params);
         //recherche module
         $moduleX = $em->getRepository('DomotiqueReseauBundle:Module')
             ->findOneBy(array('adressMac' => $params['mac']));
@@ -35,8 +40,8 @@ class InputController extends Controller
             $logger->error("ok !");
             foreach ($params['sensors'] as $k => $v) {
                 $log = new Log();
-                $SondeType = $em->getRepository('DomotiqueReseauBundle:SondeType')->find($params['sensors'][$k]['sensor type Id']);
-                $SondeUnit = $em->getRepository('DomotiqueReseauBundle:SondeUnit')->find($params['sensors'][$k]['sensor unit Id']);
+                $SondeType = $em->getRepository('DomotiqueReseauBundle:SensorType')->find($params['sensors'][$k]['sensor type Id']);
+                $SondeUnit = $em->getRepository('DomotiqueReseauBundle:SensorUnit')->find($params['sensors'][$k]['sensor unit Id']);
                 $log->setModule($moduleX);
                 $log->setSensorId($params['sensors'][$k]['sensor Id']);
                 $log->setSensorType($SondeType);

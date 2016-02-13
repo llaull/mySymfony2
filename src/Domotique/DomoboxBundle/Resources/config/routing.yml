@@ -8,3 +8,8 @@ domotiquebundle_domobox_module_flux_json:
 domotique_log_moyen:
     path: /log/moyenne
     defaults: { _controller: "DomotiqueDomoboxBundle:Output:logMoyenne" }
+
+#retourne l'heure local
+domobox_get_hour:
+    path: /flux/hour
+    defaults: { _controller: "DomotiqueDomoboxBundle:Output:getCurrentDate" }
