@@ -1,9 +1,26 @@
-{% extends '::base.html.twig' %}
+{% extends "CommunUserBundle:Admin:MainWrapper.html.twig" %}
+{% block title %}{% endblock title %}
+{% block h1_header %}{% endblock h1_header %}
+{% block h1_header_s %}-{% endblock h1_header_s %}
 
-{% block body -%}
-    <h1>SensorUnit list</h1>
+{% block dynamic_body %}
 
-    <table class="records_list">
+<div class="col-md-12 bootstrap-grid">
+
+    <div class="powerwidget" id="datatable-basic-init" data-widget-editbutton="false">
+        <header>
+            {#<h2>tableaux</h2>#}
+            {#<h2>plup#}
+            {#<small>-</small>#}
+            {#</h2>#}
+        </header>
+        <div class="inner-spacer">
+
+            <ul class="btn-group">
+                <a class="btn btn-success btn-sm" role="button" href="{{ path('admin_sensor_unit_new') }}">New</a>
+            </ul>
+
+            <table class="table table-striped table-hover" id="table-1">
         <thead>
             <tr>
                 <th>Id</th>
@@ -33,13 +50,9 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+            </table>
+        </div>
+    </div>
+</div>
 
-        <ul>
-        <li>
-            <a href="{{ path('admin_sensor_unit_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock dynamic_body %}

@@ -20,7 +20,15 @@ class PostTest extends WebTestCase
 
         // données simulé
         $datas = array(
-            // {"mac":"18fe349d958b","ipv4":"10.0.112.2","iterator":"1932","debug txt":"sucess","sensors":[{"sensor Id":"1","sensor type Id":"1","sensor unit Id":"7","sensor value":"1"},{"sensor Id":"1","sensor type Id":"3","sensor unit Id":"2","sensor value":"22.60"},{"sensor Id":"1","sensor type Id":"3","sensor unit Id":"3","sensor value":"44.90"}]}
+            "mac" => "000000000000",
+            "ipv4" => "10.1.1.1",
+            "iterator" => "1932",
+            "debug txt" => "sucess",
+            "sensors" => array(
+                "sensor Id" => "1",
+                "sensor type Id" => "1",
+                "sensor unit Id" => "7",
+                "sensor value" => "1")
         );
 
         $client->request(
