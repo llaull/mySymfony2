@@ -153,16 +153,19 @@ fm_elfinder:
 
 
 liip_imagine:
-    resolvers:
-       default:
-          web_path: ~
-
     filter_sets:
-        cache: ~
-        my_thumb:
-            quality: 75
+        my_heighten_accueil:
             filters:
-                thumbnail: { size: [263, 214], mode: outbound }
+                relative_resize: { heighten: 173 } # Transforms 50x40 to 75x60
+        my_widen:
+            filters:
+                relative_resize: { widen: 263 }    # Transforms 50x40 to 32x26
+        my_increase:
+            filters:
+                relative_resize: { increase: 10 } # Transforms 50x40 to 60x50
+        my_widen:
+            filters:
+                relative_resize: { scale: 2.5 }   # Transforms 50x40 to 125x100
 
 
 
