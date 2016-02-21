@@ -154,18 +154,18 @@ fm_elfinder:
 
 liip_imagine:
     filter_sets:
-        my_heighten_accueil:
+        thumb_accueil:
             filters:
-                relative_resize: { heighten: 173 } # Transforms 50x40 to 75x60
+                relative_resize: { heighten: 173 }
         my_widen:
             filters:
-                relative_resize: { widen: 263 }    # Transforms 50x40 to 32x26
-        my_increase:
+                relative_resize: { widen: 263 }
+        thumb_accueil_lieux:
             filters:
-                relative_resize: { increase: 10 } # Transforms 50x40 to 60x50
+                relative_resize: { heighten: 238 }
         my_widen:
             filters:
-                relative_resize: { scale: 2.5 }   # Transforms 50x40 to 125x100
+                relative_resize: { scale: 2.5 }
 
 
 
