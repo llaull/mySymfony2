@@ -163,9 +163,9 @@ liip_imagine:
         thumb_accueil_lieux:
             filters:
                 relative_resize: { heighten: 238 }
-        my_widen:
+        thumb_accueil_blog:
             filters:
-                relative_resize: { scale: 2.5 }
+                relative_resize: { heighten: 258 }
 
 
 
