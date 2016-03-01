@@ -4,6 +4,16 @@ domotiquebundle_domobox_module_flux_json:
     defaults: { _controller: "DomotiqueDomoboxBundle:Input:addJson" }
     methods:  [POST]
 
+
+domotiquebundle_domobox_module_flux_fake:
+    path:     /module/esp8266/post/fake/
+    defaults: { _controller: "DomotiqueDomoboxBundle:Input:addFuxFake" }
+
+#retourne les valeurs de toute les sondes
+domotique_log_moyen:
+    path: /log/value
+    defaults: { _controller: "DomotiqueDomoboxBundle:Output:getCurrentValue" }
+
 #donne la moyenne
 domotique_log_moyen:
     path: /log/moyenne
