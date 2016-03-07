@@ -14,11 +14,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class OutputController extends Controller
 {
 
-    public function logMoyenneAction()
+    public function logMoyenneAction($unit, $spot)
     {
         $em = $this->getDoctrine()->getEntityManager();
         $entities = $this->getDoctrine()->getRepository('DomotiqueReseauBundle:Log');
-        $entities = $entities->getMoyenHourGroupByModule($em, 2, 1);
+        $entities = $entities->getMoyenHourGroupByModule($em, $unit, $spot);
 
         return new JsonResponse($entities);
     }
@@ -84,7 +84,6 @@ ORDER BY module_id , sensor_type , sonsor_unit';
         $results = $statement->fetchAll();
 
         return new JsonResponse($results);
-//        return $results;
 
     }
 }

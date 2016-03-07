@@ -96,7 +96,7 @@
 
         $(document).ready(function () {
 
-            $.getJSON("{{ path('domotique_log_moyen') }}", function (json) {
+            $.getJSON("{{ path('domotique_log_moyen', { 'unit': 2, 'spot': 1 }) }}", function (json) {
 
 
                 dataMax = [];
@@ -134,7 +134,7 @@
                     resize: true,
                     pointFillColors: ['#ffffff'],
                     pointStrokeColors: ['black'],
-                    lineColors: ['gray', 'red', 'blue'],
+                    lineColors: ['gray', 'red', 'white'],
                     yLabelFormat: function (y) {
                         return y.toFixed(2) + ' °C';
                     }

@@ -16,7 +16,7 @@ class InputController extends Controller
 //        $sensorFluxAdd = new \DateTime(rand(-12, 12).' hour');
         $sensorFluxAdd = new \DateTime();
 
-        $moduleId = 2;
+        $moduleId = 1;
         $sensorId = 1;
         $sensorTypeId = 2;
         $sensorUnitId = 2;

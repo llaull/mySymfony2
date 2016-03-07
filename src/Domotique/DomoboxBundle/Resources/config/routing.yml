@@ -10,14 +10,15 @@ domotiquebundle_domobox_module_flux_fake:
     defaults: { _controller: "DomotiqueDomoboxBundle:Input:addFuxFake" }
 
 #retourne les valeurs de toute les sondes
-domotique_log_moyen:
+domotique_log_sonde:
     path: /log/value
     defaults: { _controller: "DomotiqueDomoboxBundle:Output:getCurrentValue" }
 
-#donne la moyenne
+#donne la moyenne selont l'unitée et le lieu
 domotique_log_moyen:
-    path: /log/moyenne
+    path: /log/moyenne/{unit}/{spot}/
     defaults: { _controller: "DomotiqueDomoboxBundle:Output:logMoyenne" }
+    methods:  [GET]
 
 #retourne l'heure local
 domobox_get_hour:
