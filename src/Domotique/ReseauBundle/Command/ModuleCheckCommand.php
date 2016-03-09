@@ -27,11 +27,18 @@ class ModuleCheckCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $now = new \DateTime();
-
         //doctrine
         $em = $this->getContainer()->get('doctrine')->getManager();
         $em->getConnection()->getConfiguration()->setSQLLogger(null);
+
+        //check les modules qui n'ont rien envoyer depuis 10 min
+        $this->ModuleLostCheck($em, $output);
+        // check les modules revenu depuis 10 min
+        $this->ModuleBackCheck($em, $output);
+    }
+
+    protected function ModuleLostCheck($em, $output)
+    {
 
         //charge tout les modules
         $entities = $em->getRepository('DomotiqueReseauBundle:Module')->findAll();
@@ -41,56 +48,113 @@ class ModuleCheckCommand extends ContainerAwareCommand
         foreach ($entities as $value) {
 
             //on va chercher son dernier envoie
-            $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findOneBy(array('module' => $value->getId()), array('created' => 'DESC'));
+            $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findOneBy(
+                array('module' => $value->getId()), array('created' => 'DESC'));
 
             // si source
             if ($entities) {
 
-                $last = $entities->getCreated();
-                $diff = $last->diff($now);
+                if ($this->betweenDateToMinutes($entities->getCreated()) > 10) {
+
+                    //on regarde si la notification à deja été generé
+                    $checkNotifiy = $em->getRepository('DomotiqueReseauBundle:ModuleNotify')->findOneBy(
+                        array('log' => $entities->getId(), 'status' => 'lost'));
+
+                    //sinon on cree la notification
+                    if (!$checkNotifiy){
+                            $notif = new ModuleNotify();
+                            $notif->setLog($entities);
+                            $notif->setStatus("lost");
+                            $em->persist($notif);
+                            $em->flush();
+
+                            //il faut envoyer le mail ici
+                            $this->sendMail($output, 'perdu', $notif);
+
+                    } // fin si la notication estdeja dans le systeme
+                } // fin if 10 min
+            } // fin if
+        } //fin boucle des modules
+
+    }
+
+    protected function ModuleBackCheck($em,$output)
+    {
+
+        //charge tout les modules
+        $entities = $em->getRepository('DomotiqueReseauBundle:Module')->findAll();
 
 
-                $output->writeln("id du module " . $value->getId());
-                $output->writeln("id du log " . $entities->getId() . ' -> ' . $last->format('d/m/Y H:i:s'));
-                $output->writeln($diff->format('%R%d days et : %R%h heure'));
-                $output->writeln($diff->format('%Y-%M-%D %H:%I:%S'));
-                $output->writeln("_________________");
+        // pour chaque module
+        foreach ($entities as $value) {
 
-                //on regarde si la notification à deja été generé
-                $checkNotifiy= $em->getRepository('DomotiqueReseauBundle:ModuleNotify')->findOneBy(array('log' => $entities->getId()));
+            //on va chercher son dernier envoie
+            $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findOneBy(
+                array('module' => $value->getId()), array('created' => 'DESC'));
 
-                //sinon on cree la notification
-                if (!$checkNotifiy) {
-                    $notif = new ModuleNotify();
-                    $notif->setLog($entities);
-                    $notif->setStatus("lost");
-                    $em->persist($notif);
-                    $em->flush();
+            // si source
+            if ($entities) {
 
-                    //il faut envoyer le mail ici
-                }
+                if ($this->betweenDateToMinutes($entities->getCreated()) < 10) {
 
 
-            }
 
-        }
+                    //on regarde si la notification à deja été generé
+                    $checkNotifiy = $em->getRepository('DomotiqueReseauBundle:ModuleNotify')->findOneBy(
+                        array('log' => $entities->getId(), 'status' => 'back'));
 
-        $formData = array(
-            'date' => "eeq",
-        );
+                    //sinon on cree la notification
+                    if (!$checkNotifiy){
+                            $notif = new ModuleNotify();
+                            $notif->setLog($entities);
+                            $notif->setStatus("back");
+                            $em->persist($notif);
+                            $em->flush();
 
-        //si $newFeed n'est pas un objet (non present en base)
+
+                            //il faut envoyer le mail ici
+                            $this->sendMail($output, 'perdu', $notif);
+
+                    } // fin si la notication estdeja dans le systeme
+
+                } // fin if 10 min
+            } // fin if
+        } //fin boucle des modules
+
+    }
+
+    /**
+     * retourne en minute la difference entre deux date
+     * @param $objDate
+     * @return int|mixed
+     */
+    protected function betweenDateToMinutes($objDate)
+    {
+
+        $diff = date_diff(new \DateTime(), $objDate);
+        $minutes = $diff->days * 24 * 60;
+        $minutes += $diff->h * 60;
+        $minutes += $diff->i;
+
+        return $minutes;
+    }
+
+    protected function sendMail($output, $subject, $data)
+    {
+        $lastLog = $data->getLog()->getCreated('date');
+
         $mailPerso = $this->getContainer()->getParameter('mon_mail');
         $message = \Swift_Message::newInstance()
-            ->setSubject('alert !')
+            ->setSubject('la connexion de ' . $data->getLog()->getModule()->getName() . ' est ' . $subject . ' depuis le ' . $lastLog->format('d-m-Y G:i:s'))
             ->setFrom('Gargamail@llovem.eu')
             ->setTo($mailPerso)
             ->setCharset('UTF-8')
             ->setContentType('text/html')
-            ->setBody($this->getContainer()->get('templating')->render('DomotiqueReseauBundle:Email:default.html.twig', $formData));
+            ->setBody($this->getContainer()->get('templating')->render('DomotiqueReseauBundle:Email:default.html.twig',
+                array('data' => $data)));
 
         try {
-//            $this->getContainer()->get('mailer')->send($message);
+            $this->getContainer()->get('mailer')->send($message);
         } catch (\Swift_TransportException $e) {
             $output->writeln($e->getMessage());
         }
