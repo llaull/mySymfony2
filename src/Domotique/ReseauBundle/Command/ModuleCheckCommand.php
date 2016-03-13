@@ -23,6 +23,8 @@ class ModuleCheckCommand extends ContainerAwareCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @return int|null|void
+     * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -31,10 +33,12 @@ class ModuleCheckCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
         $em->getConnection()->getConfiguration()->setSQLLogger(null);
 
+        $output->writeln("_______________                                       back");
+        // check les modules revenu depuis 5 min
+        $this->ModuleBackCheck($em, $output);
+        $output->writeln("_______________                                       lost");
         //check les modules qui n'ont rien envoyer depuis 10 min
         $this->ModuleLostCheck($em, $output);
-        // check les modules revenu depuis 10 min
-        $this->ModuleBackCheck($em, $output);
     }
 
     protected function ModuleLostCheck($em, $output)
@@ -51,25 +55,33 @@ class ModuleCheckCommand extends ContainerAwareCommand
             $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findOneBy(
                 array('module' => $value->getId()), array('created' => 'DESC'));
 
-            // si source
+            // si log avec ce module
             if ($entities) {
+
+                $output->writeln("id du module " . $value->getId());
+                $output->writeln("id du log " . $entities->getId());
+                $output->writeln('il y a '.$this->betweenDateToMinutes($entities->getCreated()));
 
                 if ($this->betweenDateToMinutes($entities->getCreated()) > 10) {
 
+
+
                     //on regarde si la notification à deja été generé
                     $checkNotifiy = $em->getRepository('DomotiqueReseauBundle:ModuleNotify')->findOneBy(
-                        array('log' => $entities->getId(), 'status' => 'lost'));
+                        array('module' => $value->getId(), 'status' => 'lost'));
 
                     //sinon on cree la notification
                     if (!$checkNotifiy){
-                            $notif = new ModuleNotify();
-                            $notif->setLog($entities);
-                            $notif->setStatus("lost");
-                            $em->persist($notif);
-                            $em->flush();
+                        $notif = new ModuleNotify();
+                        $notif->setLog($entities);
+                        $notif->setModule($value);
+                        $notif->setStatus("lost");
+                        $em->persist($notif);
+                        $em->flush();
 
-                            //il faut envoyer le mail ici
-                            $this->sendMail($output, 'perdu', $notif);
+                        $output->writeln('new lost');
+                        //il faut envoyer le mail ici
+                        $this->sendMail($output, 'perdu', $notif);
 
                     } // fin si la notication estdeja dans le systeme
                 } // fin if 10 min
@@ -92,32 +104,36 @@ class ModuleCheckCommand extends ContainerAwareCommand
             $entities = $em->getRepository('DomotiqueReseauBundle:Log')->findOneBy(
                 array('module' => $value->getId()), array('created' => 'DESC'));
 
-            // si source
+            // si log avec ce module
             if ($entities) {
 
-                if ($this->betweenDateToMinutes($entities->getCreated()) < 10) {
+                $output->writeln("id du module " . $value->getId());
+                $output->writeln("id du log " . $entities->getId());
+                $output->writeln('il y a '.$this->betweenDateToMinutes($entities->getCreated()));
 
+              //  if ($this->betweenDateToMinutes($entities->getCreated()) < 10) {
 
 
                     //on regarde si la notification à deja été generé
                     $checkNotifiy = $em->getRepository('DomotiqueReseauBundle:ModuleNotify')->findOneBy(
-                        array('log' => $entities->getId(), 'status' => 'back'));
+                        array('module' => $value->getId(),'status' => 'back'));
 
                     //sinon on cree la notification
                     if (!$checkNotifiy){
-                            $notif = new ModuleNotify();
-                            $notif->setLog($entities);
-                            $notif->setStatus("back");
-                            $em->persist($notif);
-                            $em->flush();
+                        $notif = new ModuleNotify();
+                        $notif->setLog($entities);
+                        $notif->setModule($value);
+                        $notif->setStatus("back");
+                        $em->persist($notif);
+                        $em->flush();
 
-
-                            //il faut envoyer le mail ici
-                            $this->sendMail($output, 'perdu', $notif);
+                        $output->writeln('new back');
+                        //il faut envoyer le mail ici
+                        $this->sendMail($output, 'back', $notif);
 
                     } // fin si la notication estdeja dans le systeme
 
-                } // fin if 10 min
+              //  } // fin if 10 min
             } // fin if
         } //fin boucle des modules
 

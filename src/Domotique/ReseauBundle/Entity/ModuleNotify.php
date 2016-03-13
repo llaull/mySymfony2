@@ -36,6 +36,15 @@ class ModuleNotify
      */
     private $log;
     /**
+     * @var \Domotique\ReseauBundle\Entity\Module
+     *
+     * @ORM\ManyToOne(targetEntity="Domotique\ReseauBundle\Entity\Module")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     * })
+     */
+    private $module;
+    /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=100, nullable=true)
@@ -45,6 +54,22 @@ class ModuleNotify
     public function __construct()
     {
         $this->created = new \DateTime();
+    }
+
+    /**
+     * @return Module
+     */
+    public function getModule()
+    {
+        return $this->module;
+    }
+
+    /**
+     * @param Module $module
+     */
+    public function setModule($module)
+    {
+        $this->module = $module;
     }
 
     /**
